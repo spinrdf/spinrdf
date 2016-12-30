@@ -1,13 +1,11 @@
-Spin RDF
-========
+# Spin RDF
 
-Welcome to SpinRDF, an implement of SPIn for Apache Jena.
+Welcome to SpinRDF, an implement of the SPIN API for Apache Jena.
 
 For more information on SPIN, please see http://spinrdf.org/.
 
 
-
-== Original code
+## Original code
 
 This git repository started with original material taken from the
 following publicly available files:
@@ -24,6 +22,4 @@ with the following changes made by TopQuadrant Inc:
  * Organise into a maven project.
 
 These original materials are copyright TopQuadrant Inc and licensed with the
-Apache Software License.
-
-https://www.apache.org/licenses/LICENSE-2.0
+[Apache Software License](https://www.apache.org/licenses/LICENSE-2.0).
