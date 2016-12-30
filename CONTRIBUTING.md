@@ -13,8 +13,9 @@ documentation as needed.
 
 ## Workflow
 
-Flow](https://guides.github.com/introduction/flow/). We test PRs out
-locally before merging as an alternative to "deploying a branch".
+[GitHub Work Flow](https://guides.github.com/introduction/flow/).
+
+We test PRs out locally before merging as an alternative to "deploying a branch".
 
 ### Pull Request
 
@@ -77,9 +78,9 @@ You, as an individual, must be entitled to make the contribution to the
 project. If the contribution is part of your employment, please arrange
 this before making the contribution.
 
-At some time in the future, the sinrdf project may request an Apache software
-grant. This grants additional rioghts so that the code can more easily
-incoprorated in releases by a Apache Software Foundation Project.
+At some time in the future, the spinrdf project may request an Apache software
+grant from contributors. This grants additional rights so that the code can more easily
+be incoprorated into releases by an Apache Software Foundation Project.
 
 For a large contributions, the project may also ask for a specific software
 grant from the contributor.
