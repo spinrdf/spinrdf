@@ -1,0 +1,192 @@
+<!--
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+    See the NOTICE file distributed with this work for additional
+    information regarding copyright ownership.
+-->
+
+
+
+
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                      http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.topbraid</groupId>
+	<artifactId>spin</artifactId>
+	<packaging>jar</packaging>
+	<version>3.0.0</version>
+	<name>TopBraid SPIN API</name>
+	<url>http://spinrdf.org/</url>
+
+	<description>
+  		A library for creating and using SPIN models with Apache Jena.
+  </description>
+
+	<licenses>
+		<license>
+			<name>Apache License 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+  <issueManagement> 
+    <url>https://github.com/spinrdf/spinrdf/issues</url>
+  </issueManagement>
+
+  <!--
+      TravisCI
+      <ciManagement><url></url></ciManagement>
+  -->
+
+  <scm>
+    <url>https://github.com/spinrdf/spinrdf</url>
+    <connection>scm:git:https://github.com/spinrdf/spinrdf</connection>
+    <developerConnection>scm:git:git@github.com:spinrdf/spinrdf.git</developerConnection>
+  </scm>
+
+  <prerequisites>
+    <maven>3.3.3</maven>
+  </prerequisites>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.jena</groupId>
+			<artifactId>apache-jena-libs</artifactId>
+			<version>3.0.1</version>
+      <type>pom</type>
+		</dependency>
+	</dependencies>
+
+	<build>
+
+		<resources>
+			<resource>
+				<directory>etc</directory>
+				<targetPath>etc</targetPath>
+			</resource>
+		</resources>
+
+		<plugins>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.6.0</version>
+				<configuration>
+					<debug>true</debug>
+					<debuglevel>source,lines,vars</debuglevel>
+					<optimize>true</optimize>
+					<source>1.8</source>
+					<target>1.8</target>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+        <version>3.0.0</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+      <!--
+          Binary distribution?
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>3.0.0</version>
+				<configuration>
+					<descriptors>
+						<descriptor>zip.xml</descriptor>
+					</descriptors>
+				</configuration>
+				<executions>
+					<execution>
+						<id>create-assembly</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+      -->
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>  
+        <version>2.10.4</version>
+				<configuration>
+					<quiet>true</quiet>
+					<encoding>UTF-8</encoding>
+					<links>
+						<link>http://docs.oracle.com/javase/8/docs/api/</link>
+					</links>
+					<show>protected</show>
+					<detectLinks>true</detectLinks>
+					<excludePackageNames>*.examples:*.impl:*.internal</excludePackageNames>
+				</configuration>
+			</plugin>
+
+		</plugins>
+
+	</build>
+
+  <!--
+  <distributionManagement>
+    <snapshotRepository>
+      <id>ossrh.snapshots</id>
+      <name>Sonatype Snapshots Repository</name>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+    <repository>
+      <id>ossrh.releases</id>
+      <name>Sonatype Gateway to Maven Central</name>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+    </repository>
+  </distributionManagement>
+  -->
+  <!--
+  <repositories>
+    <!- - Sonatype snapshot repository - ->
+    <repository>
+      <id>sonatype.public</id>
+      <name>Sonatype Snapshots Repository</name>
+      <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+        <updatePolicy>daily</updatePolicy>
+        <checksumPolicy>fail</checksumPolicy>
+      </snapshots>
+    </repository>
+  </repositories>
+  -->
+
+</project>
