@@ -24,11 +24,11 @@
                       http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.topbraid</groupId>
-	<artifactId>spin</artifactId>
+	<groupId>org.spinrdf</groupId>
+	<artifactId>core</artifactId>
 	<packaging>jar</packaging>
-	<version>3.0.0</version>
-	<name>TopBraid SPIN API</name>
+	<version>3.0.0-SNAPSHOT</version>
+	<name>SPIN API</name>
 	<url>http://spinrdf.org/</url>
 
 	<description>
