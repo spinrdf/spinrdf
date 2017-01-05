@@ -178,7 +178,7 @@ public class SPTextUtil {
 		try {
 			while(it.hasNext()) {
 				Statement o = it.next();
-				if(!RDF.type.equals(o.getPredicate()) && !SP.text.equals(o.getPredicate()) && !SPIN.thisUnbound.equals(o.getPredicate())) {
+				if (SP.NS.equals(o.getPredicate().getNameSpace()) && !SP.text.equals(o.getPredicate())) {
 					return true;
 				}
 			}
