@@ -25,7 +25,7 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.spinrdf</groupId>
-	<artifactId>core</artifactId>
+	<artifactId>spinrdf</artifactId>
 	<packaging>jar</packaging>
 	<version>3.0.0-SNAPSHOT</version>
 	<name>SPIN RDF API</name>
