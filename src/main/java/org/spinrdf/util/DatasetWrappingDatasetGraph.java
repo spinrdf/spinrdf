@@ -25,6 +25,7 @@ import org.apache.jena.graph.Graph;
 import org.apache.jena.graph.Node;
 import org.apache.jena.graph.NodeFactory;
 import org.apache.jena.query.Dataset;
+import org.apache.jena.query.ReadWrite;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.shared.Lock;
 import org.apache.jena.sparql.core.DatasetGraphBase;
@@ -35,7 +36,7 @@ import org.apache.jena.sparql.core.Quad;
  * Dataset implementation.
  */
 public class DatasetWrappingDatasetGraph extends DatasetGraphBase {
-
+    // Beware of DelegatingDataset.asDatasetGraph which returns a  DatasetWrappingDatasetGraph - risk of recursion
 	private Dataset dataset;
 	
 	
@@ -163,4 +164,32 @@ public class DatasetWrappingDatasetGraph extends DatasetGraphBase {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException();
 	}
+
+
+    @Override
+    public boolean supportsTransactions() {
+        return false;
+    }
+
+
+    @Override
+    public void begin(ReadWrite readWrite) { throw new UnsupportedOperationException("Transactions not supported"); }
+
+
+    @Override
+    public void commit() {}
+
+
+    @Override
+    public void abort() {}
+
+
+    @Override
+    public void end() {}
+
+
+    @Override
+    public boolean isInTransaction() {
+        return false;
+    }
 }

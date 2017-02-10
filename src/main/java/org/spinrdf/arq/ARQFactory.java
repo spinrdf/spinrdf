@@ -17,23 +17,21 @@
 
 package org.spinrdf.arq;
 
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.apache.http.auth.AuthScope;
+import org.apache.http.auth.Credentials;
+import org.apache.http.auth.UsernamePasswordCredentials;
+import org.apache.http.client.CredentialsProvider;
+import org.apache.http.client.HttpClient;
+import org.apache.http.impl.client.BasicCredentialsProvider;
+import org.apache.http.impl.client.HttpClients;
 import org.apache.jena.graph.Node;
-import org.apache.jena.query.Dataset;
-import org.apache.jena.query.Query;
-import org.apache.jena.query.QueryExecution;
-import org.apache.jena.query.QueryExecutionFactory;
-import org.apache.jena.query.QueryFactory;
-import org.apache.jena.query.QuerySolution;
-import org.apache.jena.query.Syntax;
+import org.apache.jena.query.*;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.RDFNode;
+import org.apache.jena.riot.web.HttpOp;
 import org.apache.jena.shared.PrefixMapping;
 import org.apache.jena.shared.impl.PrefixMappingImpl;
 import org.apache.jena.sparql.core.DatasetImpl;
@@ -380,37 +378,44 @@ public class ARQFactory {
 		return createRemoteQueryExecution(service, query, Collections.singletonList(serviceAsURI), graphURIs, null, null);
 	}
 	
-	
-	public QueryEngineHTTP createRemoteQueryExecution(
-			String service,
-			Query query, 
-			List<String> defaultGraphURIs, 
-			List<String> namedGraphURIs, 
-			String user, 
-			char[] password) {
-		QueryEngineHTTP qexec = (QueryEngineHTTP) QueryExecutionFactory.sparqlService(service, query);
-		if( defaultGraphURIs.size() > 0 ) {
-			qexec.setDefaultGraphURIs(defaultGraphURIs);
-		}
-		if( namedGraphURIs.size() > 0 ) {
-			qexec.setNamedGraphURIs(namedGraphURIs);
-		}
-		if( user != null ) {
-			qexec.setBasicAuthentication(user, password);
-		}
-		return qexec;
+
+	public QueryEngineHTTP createRemoteQueryExecution(String service,
+	                                                  Query query, 
+	                                                  List<String> defaultGraphURIs, 
+	                                                  List<String> namedGraphURIs, 
+	                                                  String user, 
+	                                                  String password) {
+	    HttpClient httpClient = buildHttpClient(service, user, password);
+	    QueryEngineHTTP qexec = (QueryEngineHTTP) QueryExecutionFactory.sparqlService(service, query, httpClient);
+	    if( defaultGraphURIs.size() > 0 ) {
+	        qexec.setDefaultGraphURIs(defaultGraphURIs);
+	    }
+	    if( namedGraphURIs.size() > 0 ) {
+	        qexec.setNamedGraphURIs(namedGraphURIs);
+	    }
+	    return qexec;
 	}
-	
-	
+
+	public static HttpClient buildHttpClient(String serviceURI, String user, String password) {
+	    if ( user == null )
+	        return HttpOp.getDefaultHttpClient();
+	    CredentialsProvider credsProvider = new BasicCredentialsProvider();
+	    Credentials credentials = new UsernamePasswordCredentials(user, password);
+	    credsProvider.setCredentials(AuthScope.ANY, credentials);
+	    return HttpClients.custom()
+	        .setDefaultCredentialsProvider(credsProvider)
+	        .build();
+	}
+
 	public UpdateRequest createUpdateRequest(String parsableString) {
-		UpdateRequest result = string2Update.get(parsableString);
-		if(result == null) {
-			result = UpdateFactory.create(parsableString);
-			if(useCaches) {
-				string2Update.put(parsableString, result);
-			}
-		}
-		return result;
+	    UpdateRequest result = string2Update.get(parsableString);
+	    if(result == null) {
+	        result = UpdateFactory.create(parsableString);
+	        if(useCaches) {
+	            string2Update.put(parsableString, result);
+	        }
+	    }
+	    return result;
 	}
 	
 	

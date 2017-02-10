@@ -29,6 +29,7 @@ import org.apache.jena.graph.Node;
 import org.apache.jena.graph.NodeFactory;
 import org.apache.jena.query.ARQ;
 import org.apache.jena.query.Dataset;
+import org.apache.jena.query.ReadWrite;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.shared.Lock;
 import org.apache.jena.sparql.core.DatasetGraph;
@@ -255,4 +256,32 @@ class ControlledUpdateGraphStore implements DatasetGraph {
 	public void delete(Node g, Node s, Node p, Node o) {
 		delete(Quad.create(g, s, p, o));
 	}
+
+
+    @Override
+    public void begin(ReadWrite readWrite) { throw new UnsupportedOperationException("Tarsnactions not supported"); }
+
+
+    @Override
+    public void commit() {}
+
+
+    @Override
+    public void abort() {}
+
+
+    @Override
+    public void end() {}
+
+
+    @Override
+    public boolean isInTransaction() {
+        return false;
+    }
+
+
+    @Override
+    public boolean supportsTransactions() {
+        return false;
+    }
 }
