@@ -1,9 +1,14 @@
 # Spin RDF
 
-Welcome to SpinRDF, an implement of the SPIN API for Apache Jena.
+Welcome to SpinRDF, an implement of the SPIN API for [Apache Jena](http://jena/apache.org).
 
 For more information on SPIN, please see http://spinrdf.org/.
 
+The project welcomes contributions, large and small, from anyone.
+
+For contribution, please see "[Guide to Contributing](.github/CONTRIBUTING.md).
+
+The project is licensed with the [Apache License](LICENSE).
 
 ## Original code
 
