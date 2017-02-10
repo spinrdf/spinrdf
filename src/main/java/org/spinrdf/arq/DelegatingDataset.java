@@ -30,10 +30,10 @@ import org.spinrdf.util.DatasetWrappingDatasetGraph;
 
 /**
  * A Dataset that simply delegates all its calls, allowing to wrap an existing
- * Dataset (e.g. the TopBraid Dataset).
+ * Dataset.
  */
-public abstract class DelegatingDataset implements Dataset {
-
+public class DelegatingDataset implements Dataset {
+    
 	private Dataset delegate;
 	
 	public DelegatingDataset(Dataset delegate) {
@@ -151,4 +151,9 @@ public abstract class DelegatingDataset implements Dataset {
 	public void end() {
 		delegate.end();
 	}
+
+    @Override
+    public boolean supportsTransactionAbort() {
+        return delegate.supportsTransactionAbort();
+    }
 }
