@@ -61,11 +61,14 @@ import org.spinrdf.vocabulary.SPIN;
  * For convenience, also implements PropertyFunctionFactory.
  *
  * @author Holger Knublauch
+ * @version $Id: $Id
  */
 public class SPINARQPFunction extends PropertyFunctionBase implements PropertyFunctionFactory {
 	
+	/** Constant <code>SELECT_STAR_NOT_SUPPORTED_IN_MAGIC_PROPERTIES="SELECT * not supported in magic propert"{trunked}</code> */
 	public static final String SELECT_STAR_NOT_SUPPORTED_IN_MAGIC_PROPERTIES = "SELECT * not supported in magic properties";
 
+	/** Constant <code>SELECT_WITH_EXPRESSIONS_NOT_SUPPORTED_IN_MAGIC_PROPERTIES="SELECT with expressions not supported i"{trunked}</code> */
 	public static final String SELECT_WITH_EXPRESSIONS_NOT_SUPPORTED_IN_MAGIC_PROPERTIES = "SELECT with expressions not supported in magic properties";
 
 	private org.apache.jena.query.Query arqQuery;
@@ -75,6 +78,11 @@ public class SPINARQPFunction extends PropertyFunctionBase implements PropertyFu
 	private List<String> objectVarNames = new ArrayList<String>();
 
 	
+	/**
+	 * <p>Constructor for SPINARQPFunction.</p>
+	 *
+	 * @param functionCls a {@link org.spinrdf.model.Function} object.
+	 */
 	public SPINARQPFunction(Function functionCls) {
 		
 		Select spinQuery = (Select) functionCls.getBody();
@@ -111,11 +119,13 @@ public class SPINARQPFunction extends PropertyFunctionBase implements PropertyFu
 	}
 
 	
+	/** {@inheritDoc} */
 	public PropertyFunction create(String arg0) {
 		return this;
 	}
 
 	
+	/** {@inheritDoc} */
 	@Override
 	public QueryIterator exec(Binding binding, PropFuncArg argSubject, Node predicate,
 			PropFuncArg argObject, ExecutionContext context) {

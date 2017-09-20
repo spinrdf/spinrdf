@@ -23,6 +23,7 @@ import org.spinrdf.model.CommandWithWhere;
  * A SPARQL Update operation representing a DELETE/INSERT.
  *
  * @author Holger Knublauch
+ * @version $Id: $Id
  */
 public interface Modify extends Update, CommandWithWhere {
 }

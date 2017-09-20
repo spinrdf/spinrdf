@@ -23,13 +23,15 @@ import java.util.List;
 /**
  * A collection of zero or more child Elements.
  * Implementations include Optional, Union etc.
- * 
+ *
  * @author Holger Knublauch
+ * @version $Id: $Id
  */
 public interface ElementGroup extends Element {
 
 	/**
 	 * Gets the List of child Elements.
+	 *
 	 * @return a List of children
 	 */
 	List<Element> getElements();

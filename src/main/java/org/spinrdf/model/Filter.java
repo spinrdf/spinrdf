@@ -22,6 +22,9 @@ import org.apache.jena.rdf.model.RDFNode;
 
 /**
  * A SPARQL FILTER element.
+ *
+
+ * @version $Id: $Id
  */
 public interface Filter extends Element {
 
@@ -29,6 +32,7 @@ public interface Filter extends Element {
 	 * Gets the expression representing the filter condition.
 	 * The result object will be typecast into the most specific
 	 * subclass of RDFNode, e.g. FunctionCall or Variable.
+	 *
 	 * @return the expression or null
 	 */
 	RDFNode getExpression();

@@ -49,11 +49,15 @@ import org.spinrdf.vocabulary.SPIN;
 
 /**
  * The magic property spin:constructViolations.
+ *
+
+ * @version $Id: $Id
  */
 public class ConstructViolationsPFunction extends PropertyFunctionBase {
 	
 	private final static String NAME = SPIN.PREFIX + ":" + SPIN.constructViolations.getLocalName();
 
+	/** {@inheritDoc} */
 	@Override
 	public QueryIterator exec(Binding binding, PropFuncArg argSubject,
 			Node predicate, PropFuncArg argObject, ExecutionContext execCxt) {

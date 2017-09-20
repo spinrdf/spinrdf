@@ -45,9 +45,13 @@ import org.apache.jena.sparql.util.IterLib;
  * A helper property function needed by OWL 2 RL rule prp-spo2.
  * This rule needs to walk rdf:Lists of arbitrary length and
  * match triple along the way - very hard to express in pure SPARQL.
+ *
+
+ * @version $Id: $Id
  */
 public class PropertyChainHelperPFunction extends PropertyFunctionBase {
 
+	/** {@inheritDoc} */
 	@Override
 	public QueryIterator exec(final Binding binding, PropFuncArg argSubject,
 			Node predicate, PropFuncArg argObject, final ExecutionContext execCxt) {

@@ -21,13 +21,15 @@ package org.spinrdf.model;
 /**
  * A nested sub-query.  Right now, only SELECT queries seem to be allowed
  * but this might change in the future.
- * 
+ *
  * @author Holger Knublauch
+ * @version $Id: $Id
  */
 public interface SubQuery extends Element {
 
 	/**
 	 * Gets the nested query.
+	 *
 	 * @return the query
 	 */
 	Query getQuery();

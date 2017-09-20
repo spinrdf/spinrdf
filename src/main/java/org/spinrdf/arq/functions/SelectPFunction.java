@@ -54,21 +54,25 @@ import org.spinrdf.vocabulary.SPIN;
 
 /**
  * The built-in magic property spin:select.
- * 
+ *
  * Executes the query (first argument on the left) and binds the results
  * into the variables on the right.
  * Initial bindings can be specified via pairwise arguments on the right, e.g.
- * 
+ *
  * 		(?query "this" ?self) spin:select (?result1 ?result2)
- * 
+ *
  * will execute the sp:Select bound to ?query and pre-bind the variable ?this
  * with the current value ?self.
+ *
+
+ * @version $Id: $Id
  */
 public class SelectPFunction extends PropertyFunctionBase {
 	
 	private final static String NAME = SPIN.PREFIX + ":" + SPIN.select.getLocalName();
 
 	
+	/** {@inheritDoc} */
 	@Override
 	public QueryIterator exec(Binding binding, PropFuncArg argSubject,
 			Node predicate, PropFuncArg argObject, ExecutionContext execCxt) {

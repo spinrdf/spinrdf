@@ -23,13 +23,26 @@ import org.spinrdf.model.print.PrintContext;
 import org.spinrdf.model.update.Drop;
 
 
+/**
+ * <p>DropImpl class.</p>
+ *
+
+ * @version $Id: $Id
+ */
 public class DropImpl extends UpdateImpl implements Drop {
 
+	/**
+	 * <p>Constructor for DropImpl.</p>
+	 *
+	 * @param node a {@link org.apache.jena.graph.Node} object.
+	 * @param graph a {@link org.apache.jena.enhanced.EnhGraph} object.
+	 */
 	public DropImpl(Node node, EnhGraph graph) {
 		super(node, graph);
 	}
 
 	
+	/** {@inheritDoc} */
 	@Override
 	public void printSPINRDF(PrintContext p) {
 		p.printKeyword("DROP");

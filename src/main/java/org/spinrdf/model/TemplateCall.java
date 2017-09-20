@@ -28,12 +28,16 @@ import org.apache.jena.rdf.model.RDFNode;
 
 /**
  * A template call.
+ *
+
+ * @version $Id: $Id
  */
 public interface TemplateCall extends ModuleCall {
 
 	/**
 	 * Creates a QueryExecution that can be used to execute the associated query
 	 * with the correct variable bindings.
+	 *
 	 * @param dataset  the Dataset to operate on
 	 * @return the QueryExecution
 	 */
@@ -42,6 +46,7 @@ public interface TemplateCall extends ModuleCall {
 	
 	/**
 	 * Gets a Map from ArgumentDescriptors to RDFNodes.
+	 *
 	 * @return a Map from ArgumentDescriptors to RDFNodes
 	 */
 	Map<Argument,RDFNode> getArgumentsMap();
@@ -50,6 +55,7 @@ public interface TemplateCall extends ModuleCall {
 	/**
 	 * Gets a Map from Properties to RDFNodes derived from the
 	 * ArgumentDescriptors.
+	 *
 	 * @return a Map from Properties to RDFNodes
 	 */
 	Map<Property,RDFNode> getArgumentsMapByProperties();
@@ -58,6 +64,7 @@ public interface TemplateCall extends ModuleCall {
 	/**
 	 * Gets a Map from variable names to RDFNodes derived from the
 	 * ArgumentDescriptors.
+	 *
 	 * @return a Map from variable names to RDFNodes
 	 */
 	Map<String,RDFNode> getArgumentsMapByVarNames();
@@ -66,6 +73,7 @@ public interface TemplateCall extends ModuleCall {
 	/**
 	 * Gets the name-value pairs of the template call's arguments as a Jena-friendly
 	 * initial binding object.
+	 *
 	 * @return the initial binding
 	 */
 	QuerySolutionMap getInitialBinding();
@@ -74,6 +82,7 @@ public interface TemplateCall extends ModuleCall {
 	/**
 	 * Gets this template call as a parsable SPARQL string, with all
 	 * pre-bound argument variables inserted as constants.
+	 *
 	 * @return a SPARQL query string
 	 * @deprecated  should not be used: has issues if sp:text is used only,
 	 *              and may produce queries that in fact cannot be parsed back.
@@ -86,6 +95,7 @@ public interface TemplateCall extends ModuleCall {
 	
 	/**
 	 * Gets the associated Template, from the SPINModules registry.
+	 *
 	 * @return the template
 	 */
 	Template getTemplate();

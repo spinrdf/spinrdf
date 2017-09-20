@@ -26,15 +26,28 @@ import org.apache.jena.vocabulary.OWL;
 /**
  * A singleton controlling which properties shall be used to expand imports.
  * This includes owl:imports.
+ *
+
+ * @version $Id: $Id
  */
 public class ImportProperties {
 
 	private static ImportProperties singleton = new ImportProperties();
 	
+	/**
+	 * <p>get.</p>
+	 *
+	 * @return a {@link org.spinrdf.util.ImportProperties} object.
+	 */
 	public static ImportProperties get() {
 		return singleton;
 	}
 	
+	/**
+	 * <p>set.</p>
+	 *
+	 * @param value a {@link org.spinrdf.util.ImportProperties} object.
+	 */
 	public static void set(ImportProperties value) {
 		singleton = value;
 	}
@@ -45,6 +58,11 @@ public class ImportProperties {
 	});
 	
 	
+	/**
+	 * <p>getImportProperties.</p>
+	 *
+	 * @return a {@link java.util.List} object.
+	 */
 	public List<Property> getImportProperties() {
 		return results;
 	}

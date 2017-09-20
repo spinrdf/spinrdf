@@ -24,19 +24,29 @@ import org.apache.jena.rdf.model.ResourceFactory;
  * Vocabulary for http://spinrdf.org/spra
  *
  * @author Holger Knublauch
+ * @version $Id: $Id
  */
 public class SPRA {
 
+    /** Constant <code>BASE_URI="http://spinrdf.org/spra"</code> */
     public final static String BASE_URI = "http://spinrdf.org/spra";
 
+    /** Constant <code>NS="BASE_URI + #"</code> */
     public final static String NS = BASE_URI + "#";
 
+    /** Constant <code>PREFIX="spra"</code> */
     public final static String PREFIX = "spra";
 
 
+    /** Constant <code>Table</code> */
     public final static Resource Table = ResourceFactory.createResource(NS + "Table");
 
 
+    /**
+     * <p>getURI.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public static String getURI() {
         return NS;
     }

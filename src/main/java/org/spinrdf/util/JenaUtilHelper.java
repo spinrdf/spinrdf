@@ -31,17 +31,19 @@ import org.apache.jena.rdf.model.ModelFactory;
 /**
  * This is an extension point for the SPIN library
  * allowing modification of some low level utilities
- * that are exposed through {@link JenaUtil}.
- * 
+ * that are exposed through {@link org.spinrdf.util.JenaUtil}.
+ *
  * Note: Unstable - should not be used outside of TopBraid.
- * 
+ *
  * @author Jeremy Carroll
+ * @version $Id: $Id
  */
 public class JenaUtilHelper {
 	
 	/**
 	 * Return a multiunion.
-	 * @return
+	 *
+	 * @return a {@link org.apache.jena.graph.compose.MultiUnion} object.
 	 */
 	public MultiUnion createMultiUnion() {
 		return new MultiUnion();
@@ -50,7 +52,9 @@ public class JenaUtilHelper {
 	
 	/**
 	 * Return a multiunion, initialized with the given graphs.
-	 * @return
+	 *
+	 * @param graphs a {@link java.util.Iterator} object.
+	 * @return a {@link org.apache.jena.graph.compose.MultiUnion} object.
 	 */
 	public MultiUnion createMultiUnion(Iterator<Graph> graphs) {
 		return new MultiUnion(graphs);
@@ -59,7 +63,9 @@ public class JenaUtilHelper {
 	
 	/**
 	 * Return a multiunion, initialized with the given graphs.
-	 * @return
+	 *
+	 * @param graphs an array of {@link org.apache.jena.graph.Graph} objects.
+	 * @return a {@link org.apache.jena.graph.compose.MultiUnion} object.
 	 */
 	public MultiUnion createMultiUnion(Graph[] graphs) {
 		return new MultiUnion(graphs);
@@ -68,6 +74,8 @@ public class JenaUtilHelper {
 	
 	/**
 	 * A memory graph with no reification.
+	 *
+	 * @return a {@link org.apache.jena.graph.Graph} object.
 	 */
 	public Graph createDefaultGraph() {
 		return Factory.createDefaultGraph();
@@ -78,10 +86,11 @@ public class JenaUtilHelper {
 	 * Returns true if optimizations for faster graphs should
 	 * be applied; false if graph is slower. A typical fast graph
 	 * is stored in memory, a typical slow graph is stored in a database.
-	 * The calling code {@link JenaUtil#isMemoryGraph(Graph)}
-	 * deals with {@link MultiUnion}s by taking
+	 * The calling code {@link org.spinrdf.util.JenaUtil#isMemoryGraph(Graph)}
+	 * deals with {@link org.apache.jena.graph.compose.MultiUnion}s by taking
 	 * the logical AND of the subgraphs.
-	 * @param graph A simple graph, not a {@link MultiUnion}
+	 *
+	 * @param graph A simple graph, not a {@link org.apache.jena.graph.compose.MultiUnion}
 	 * @return true if the graph is fast
 	 */
 	public boolean isMemoryGraph(Graph graph) {
@@ -91,42 +100,83 @@ public class JenaUtilHelper {
 	
 	/**
 	 * The default implementation does nothing. In TB this is enforced.
-	 * @param m
-	 * @return
+	 *
+	 * @param m a {@link org.apache.jena.rdf.model.Model} object.
+	 * @return a {@link org.apache.jena.rdf.model.Model} object.
 	 */
 	public Model asReadOnlyModel(Model m) {
 		return m;
 	}
 	
 	
+	/**
+	 * <p>asReadOnlyGraph.</p>
+	 *
+	 * @param g a {@link org.apache.jena.graph.Graph} object.
+	 * @return a {@link org.apache.jena.graph.Graph} object.
+	 */
 	public Graph asReadOnlyGraph(Graph g) {
 		return g;
 	}
 	
 	
+	/**
+	 * <p>createOntologyModel.</p>
+	 *
+	 * @param spec a {@link org.apache.jena.ontology.OntModelSpec} object.
+	 * @param base a {@link org.apache.jena.rdf.model.Model} object.
+	 * @return a {@link org.apache.jena.ontology.OntModel} object.
+	 */
 	public OntModel createOntologyModel(OntModelSpec spec, Model base) {
 		return ModelFactory.createOntologyModel(spec, base);
 	}
 	
 	
+	/**
+	 * <p>createOntologyModel.</p>
+	 *
+	 * @return a {@link org.apache.jena.ontology.OntModel} object.
+	 */
 	public OntModel createOntologyModel() {
 		return ModelFactory.createOntologyModel();
 	}
 	
 	
+	/**
+	 * <p>createOntologyModel.</p>
+	 *
+	 * @param spec a {@link org.apache.jena.ontology.OntModelSpec} object.
+	 * @return a {@link org.apache.jena.ontology.OntModel} object.
+	 */
 	public OntModel createOntologyModel(OntModelSpec spec) {
 		return ModelFactory.createOntologyModel(spec);
 	}
 	
 	
+	/**
+	 * <p>createConcurrentGraph.</p>
+	 *
+	 * @return a {@link org.apache.jena.graph.Graph} object.
+	 */
 	public Graph createConcurrentGraph() {
 		return createDefaultGraph();
 	}
 	
 	
+	/**
+	 * <p>setGraphReadOptimization.</p>
+	 *
+	 * @param b a boolean.
+	 */
 	public void setGraphReadOptimization(boolean b) {
 	}
 	
+	/**
+	 * <p>deepCloneReadOnlyGraph.</p>
+	 *
+	 * @param g a {@link org.apache.jena.graph.Graph} object.
+	 * @return a {@link org.apache.jena.graph.Graph} object.
+	 */
 	public Graph deepCloneReadOnlyGraph(Graph g) {
 		return asReadOnlyGraph(g);
 	}

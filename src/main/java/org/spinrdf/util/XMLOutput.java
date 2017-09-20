@@ -38,13 +38,15 @@ import org.w3c.dom.Node;
 
 /**
  * Simple utilities for XML.
- * 
+ *
  * @author Jeremy Carroll
+ * @version $Id: $Id
  */
 public class XMLOutput {
 
 	private static final String DEFAULT_METHOD = "xml";
 	private static final String DEFAULT_INDENT = "2";
+	/** Constant <code>USE_SAXON=false</code> */
 	public static boolean USE_SAXON = false;
 	/**
 	 * TopBraid code should always use this transformer factory which is public for 
@@ -66,13 +68,21 @@ public class XMLOutput {
 		}
 		xformFactory = xf;
 	}
+	/**
+	 * <p>getTransformerFactory.</p>
+	 *
+	 * @return a {@link javax.xml.transform.TransformerFactory} object.
+	 */
 	public static TransformerFactory getTransformerFactory() {
 		return xformFactory;
 	}
 
 	/**
 	 * Serializes an XML Node to an OutputStream (as UTF-8).
-	 * @throws IOException
+	 *
+	 * @throws java.io.IOException if any.
+	 * @param node a {@link org.w3c.dom.Node} object.
+	 * @param out a {@link java.io.OutputStream} object.
 	 */
 	public static void printNode(Node node, OutputStream out) throws IOException{
 		printNode(node, new StreamResult(out));
@@ -83,14 +93,25 @@ public class XMLOutput {
 
 	/**
 	 * Serializes an XML Node to a String.
+	 *
 	 * @return The Node as a string
-	 * @throws IOException
+	 * @throws java.io.IOException if any.
+	 * @param node a {@link org.w3c.dom.Node} object.
 	 */
 	public static String toString(Node node) throws IOException {
 		return toString(node, DEFAULT_INDENT, DEFAULT_METHOD);
 	}
 
 	
+	/**
+	 * <p>toString.</p>
+	 *
+	 * @param node a {@link org.w3c.dom.Node} object.
+	 * @param indent a {@link java.lang.String} object.
+	 * @param method a {@link java.lang.String} object.
+	 * @return a {@link java.lang.String} object.
+	 * @throws java.io.IOException if any.
+	 */
 	public static String toString(Node node, String indent, String method) throws IOException {
 		StringWriter rslt = new StringWriter();
 		printNode(node, new StreamResult(rslt), indent, method);
@@ -100,7 +121,10 @@ public class XMLOutput {
 	
 	/**
 	 * Serializes an XML Node to a Writer.
-	 * @throws IOException
+	 *
+	 * @throws java.io.IOException if any.
+	 * @param node a {@link org.w3c.dom.Node} object.
+	 * @param pw a {@link java.io.Writer} object.
 	 */
 	public static void printNode(Node node, Writer pw) throws IOException {
 		printNode(node, new StreamResult(pw));
@@ -150,9 +174,10 @@ public class XMLOutput {
 	
 	/**
 	 * Serializes an XML Node as a byte array (as UTF-8)
+	 *
 	 * @param node  the XML Node to convert
 	 * @return the result byte array
-	 * @throws IOException
+	 * @throws java.io.IOException if any.
 	 */
 	public static byte[] toByteArray(Node node) throws IOException {
 		ByteArrayOutputStream rslt = new ByteArrayOutputStream();

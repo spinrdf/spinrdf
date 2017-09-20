@@ -24,13 +24,17 @@ import org.apache.jena.rdf.model.Resource;
 
 /**
  * A SELECT query.
+ *
+
+ * @version $Id: $Id
  */
 public interface Select extends SolutionModifierQuery {
 	
 	/**
 	 * Gets the names of all variables in the SELECT.
 	 * Returns an empty List for SELECT *.
-	 * List entries may be null if they are expressions only. 
+	 * List entries may be null if they are expressions only.
+	 *
 	 * @return a List of variable names
 	 */
 	List<String> getResultVariableNames();
@@ -44,13 +48,12 @@ public interface Select extends SolutionModifierQuery {
 	 * <code>Variable</code>, <code>Aggregation</code> or
 	 * <code>FunctionCall</code>.  Variables can have an additional
 	 * <code>sp:expression</code>, representing AS expressions.
-	 * 
+	 *
 	 * @deprecated Note that this function returns an empty result if the query is
 	 * represented using sp:text only.
 	 * This means that it should not be used outside of SPIN RDF structures.
 	 * Use #getResultVariableNames otherwise.
 	 * This method will be made private in future versions.
-	 * 
 	 * @return the result "variables"
 	 */
 	List<Resource> getResultVariables();
@@ -58,6 +61,7 @@ public interface Select extends SolutionModifierQuery {
 	
 	/**
 	 * Checks is this query has the DISTINCT flag set.
+	 *
 	 * @return true if distinct
 	 */
 	boolean isDistinct();
@@ -65,6 +69,7 @@ public interface Select extends SolutionModifierQuery {
 
 	/**
 	 * Checks if this query has the REDUCED flag set.
+	 *
 	 * @return true if reduced
 	 */
 	boolean isReduced();

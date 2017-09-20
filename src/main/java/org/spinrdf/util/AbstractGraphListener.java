@@ -44,23 +44,30 @@ import org.apache.jena.util.iterator.ClosableIterator;
  * this is only called by the default implementation
  * of {@link #notifyEvent(Graph, Object)}.
  *
- *
- *
  * @author Holger Knublauch, Jeremy Carroll
+ * @version $Id: $Id
  */
 public abstract class AbstractGraphListener implements GraphListener {
 
 
 
+	/**
+	 * <p>notifyAddArray.</p>
+	 *
+	 * @param g a {@link org.apache.jena.graph.Graph} object.
+	 * @param triples an array of {@link org.apache.jena.graph.Triple} objects.
+	 */
 	public void notifyAddArray(Graph g, Triple[] triples) {
 		notifyAddIterator(g,Arrays.asList(triples).iterator());
 	}
 
+	/** {@inheritDoc} */
 	public void notifyAddGraph(Graph g, Graph added) {
 		notifyAddIterator(g,added.find(Triple.ANY));
 	}
 
 
+	/** {@inheritDoc} */
 	public void notifyAddIterator(Graph g, Iterator<Triple> it) {
 		if (it instanceof ClosableIterator) {
 			// copy in case the find result is holding locks ...
@@ -74,19 +81,28 @@ public abstract class AbstractGraphListener implements GraphListener {
 	}
 
 
+	/** {@inheritDoc} */
 	public void notifyAddList(Graph g, List<Triple> triples) {
 		notifyAddIterator(g, triples.iterator());
 	}
 
+	/**
+	 * <p>notifyDeleteArray.</p>
+	 *
+	 * @param g a {@link org.apache.jena.graph.Graph} object.
+	 * @param triples an array of {@link org.apache.jena.graph.Triple} objects.
+	 */
 	public void notifyDeleteArray(Graph g, Triple[] triples) {
 		notifyDeleteIterator(g,Arrays.asList(triples).iterator());
 	}
+	/** {@inheritDoc} */
 	public void notifyDeleteGraph(Graph g, Graph removed) {
 		notifyDeleteIterator(g,removed.find(Triple.ANY));
 	}
 
 
 
+	/** {@inheritDoc} */
 	public void notifyDeleteIterator(Graph g, Iterator<Triple> it) {
 		if (it instanceof ClosableIterator) {
 			// copy in case the find result is holding locks ...
@@ -101,25 +117,26 @@ public abstract class AbstractGraphListener implements GraphListener {
 
 
 
+	/** {@inheritDoc} */
 	public void notifyDeleteList(Graph g, List<Triple> list) {
 		notifyDeleteIterator(g, list.iterator());
 	}
 
 
-
+// TODO: FIXDOC : These correspond to the bulk operations {@link #notifyRemoveAll()}, and {@link #remove(Node, Node, Node)}, respectively.
 	/**
-    <code>value</code> is usually a {@link GraphEvents}.
-    Special attention is drawn to {@link GraphEvents#removeAll}
-    and events whose {@link GraphEvents#getTitle()} is <code>"remove"</code>
-    (see {@link GraphEvents#remove(Node, Node, Node)}. These correspond
-    to the bulk operations {@link BulkUpdateHandler#removeAll()},
-    and {@link BulkUpdateHandler#remove(Node, Node, Node)}, respectively.
-    Unlike other notifications, the listener cannot tell which triples
-    have been modified, since they have already been deleted by the time
-    this event is sent, and the event does not include a record of them.
-    This default implementation maps these two events to
-    {@link #notifyRemoveAll(Graph, Triple)} calls.
-    */
+	 * {@inheritDoc}
+	 *
+	 *    <code>value</code> is usually a {@link GraphEvents}.
+	 *    Special attention is drawn to {@link GraphEvents#removeAll}
+	 *    and events whose {@link GraphEvents#getTitle()} is <code>"remove"</code>
+	 *    (see {@link GraphEvents#remove(Node, Node, Node)}. 
+	 *    Unlike other notifications, the listener cannot tell which triples
+	 *    have been modified, since they have already been deleted by the time
+	 *    this event is sent, and the event does not include a record of them.
+	 *    This default implementation maps these two events to
+	 *    {@link #notifyRemoveAll(Graph, Triple)} calls.
+	 */
 	public void notifyEvent(Graph source, Object value) {
 		if (value instanceof GraphEvents) {
 			if (GraphEvents.removeAll.equals(value)) {
@@ -138,8 +155,9 @@ public abstract class AbstractGraphListener implements GraphListener {
 	 * actual triples deleted cannot be identified easily.
 	 * See {@link #notifyEvent(Graph, Object)} for explanation
 	 * of this method.
-	 * @param source
-	 * @param pattern The pattern of triples being removed, often {@link Triple#ANY}.
+	 *
+	 * @param source a {@link org.apache.jena.graph.Graph} object.
+	 * @param pattern The pattern of triples being removed, often {@link org.apache.jena.graph.Triple#ANY}.
 	 */
 	protected abstract void notifyRemoveAll(Graph source, Triple pattern);
 }

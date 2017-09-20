@@ -62,12 +62,25 @@ import org.spinrdf.vocabulary.SPIN;
 /**
  * Performs SPIN constraint checking on one or more instances, based
  * on the spin:constraints defined on the types of those instances.
+ *
+
+ * @version $Id: $Id
  */
 public class SPINConstraints {
 	
 	private static List<TemplateCall> NO_FIXES = Collections.emptyList();
 	
 
+	/**
+	 * <p>addConstraintViolations.</p>
+	 *
+	 * @param results a {@link java.util.List} object.
+	 * @param instance a {@link org.spinrdf.model.SPINInstance} object.
+	 * @param predicate a {@link org.apache.jena.rdf.model.Property} object.
+	 * @param matchValue a boolean.
+	 * @param stats a {@link java.util.List} object.
+	 * @param monitor a {@link org.spinrdf.progress.ProgressMonitor} object.
+	 */
 	public static void addConstraintViolations(List<ConstraintViolation> results, SPINInstance instance, Property predicate, boolean matchValue, List<SPINStatistics> stats, ProgressMonitor monitor) {
 		if(predicate == null) {
 			predicate = SPIN.constraint;
@@ -86,7 +99,8 @@ public class SPINConstraints {
 
 	/**
 	 * Creates an RDF representation (instances of spin:ConstraintViolation) from a
-	 * collection of ConstraintViolation Java objects. 
+	 * collection of ConstraintViolation Java objects.
+	 *
 	 * @param cvs  the violation objects
 	 * @param result  the Model to add the results to
 	 * @param createSource  true to also create the spin:violationSource
@@ -159,6 +173,16 @@ public class SPINConstraints {
 	}
 
 
+	/**
+	 * <p>addQueryResults.</p>
+	 *
+	 * @param results a {@link java.util.List} object.
+	 * @param qot a {@link org.spinrdf.model.QueryOrTemplateCall} object.
+	 * @param resource a {@link org.apache.jena.rdf.model.Resource} object.
+	 * @param matchValue a boolean.
+	 * @param stats a {@link java.util.List} object.
+	 * @param monitor a {@link org.spinrdf.progress.ProgressMonitor} object.
+	 */
 	public static void addQueryResults(List<ConstraintViolation> results, QueryOrTemplateCall qot, Resource resource, boolean matchValue, List<SPINStatistics> stats, ProgressMonitor monitor) {
 		
 		QuerySolutionMap arqBindings = new QuerySolutionMap();
@@ -222,6 +246,15 @@ public class SPINConstraints {
 	}
 
 
+	/**
+	 * <p>addTemplateCallResults.</p>
+	 *
+	 * @param results a {@link java.util.List} object.
+	 * @param qot a {@link org.spinrdf.model.QueryOrTemplateCall} object.
+	 * @param resource a {@link org.apache.jena.rdf.model.Resource} object.
+	 * @param matchValue a boolean.
+	 * @param monitor a {@link org.spinrdf.progress.ProgressMonitor} object.
+	 */
 	public static void addTemplateCallResults(List<ConstraintViolation> results, QueryOrTemplateCall qot,
 			Resource resource, boolean matchValue, ProgressMonitor monitor) {
 		TemplateCall templateCall = qot.getTemplateCall();
@@ -279,6 +312,7 @@ public class SPINConstraints {
 	
 	/**
 	 * Checks all spin:constraints for a given Resource.
+	 *
 	 * @param resource  the instance to run constraint checks on
 	 * @param monitor  an (optional) progress monitor (currently ignored)
 	 * @return a List of ConstraintViolations (empty if all is OK)
@@ -290,8 +324,9 @@ public class SPINConstraints {
 	
 	/**
 	 * Checks all spin:constraints for a given Resource.
+	 *
 	 * @param resource  the instance to run constraint checks on
-	 * @param predicate  the system property, e.g. a sub-property of spin:constraint 
+	 * @param predicate  the system property, e.g. a sub-property of spin:constraint
 	 *                   or null for the default (spin:constraint)
 	 * @param monitor  an (optional) progress monitor (currently ignored)
 	 * @return a List of ConstraintViolations (empty if all is OK)
@@ -303,6 +338,7 @@ public class SPINConstraints {
 	
 	/**
 	 * Checks all spin:constraints for a given Resource.
+	 *
 	 * @param resource  the instance to run constraint checks on
 	 * @param predicate  the system property, i.e. spin:constraint or a sub-property thereof
 	 *                   or null for the default (spin:constraint)
@@ -332,9 +368,10 @@ public class SPINConstraints {
 
 	/**
 	 * Checks all instances in a given Model against all spin:constraints and
-	 * returns a List of constraint violations. 
+	 * returns a List of constraint violations.
 	 * A ProgressMonitor can be provided to enable the user to get intermediate
 	 * status reports and to cancel the operation.
+	 *
 	 * @param model  the Model to operate on
 	 * @param monitor  an optional ProgressMonitor
 	 * @return a List of ConstraintViolations
@@ -346,12 +383,14 @@ public class SPINConstraints {
 
 	/**
 	 * Checks all instances in a given Model against all spin:constraints and
-	 * returns a List of constraint violations. 
+	 * returns a List of constraint violations.
 	 * A ProgressMonitor can be provided to enable the user to get intermediate
 	 * status reports and to cancel the operation.
+	 *
 	 * @param model  the Model to operate on
 	 * @param monitor  an optional ProgressMonitor
 	 * @return a List of ConstraintViolations
+	 * @param predicate a {@link org.apache.jena.rdf.model.Property} object.
 	 */
 	public static List<ConstraintViolation> check(Model model, Property predicate, ProgressMonitor monitor) {
 		return check(model, predicate, null, monitor);
@@ -360,9 +399,10 @@ public class SPINConstraints {
 	
 	/**
 	 * Checks all instances in a given Model against all spin:constraints and
-	 * returns a List of constraint violations. 
+	 * returns a List of constraint violations.
 	 * A ProgressMonitor can be provided to enable the user to get intermediate
 	 * status reports and to cancel the operation.
+	 *
 	 * @param model  the Model to operate on
 	 * @param predicate  the system property, e.g. a sub-property of spin:constraint
 	 * @param stats  an (optional) List to write statistics reports to
@@ -507,6 +547,7 @@ public class SPINConstraints {
 	/**
 	 * Checks if a given property is a SPIN constraint property.
 	 * This is defined as a property that is spin:constraint or a sub-property of it.
+	 *
 	 * @param property  the property to check
 	 * @return true if property is a constraint property
 	 */

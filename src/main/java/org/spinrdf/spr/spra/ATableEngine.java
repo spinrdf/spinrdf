@@ -36,9 +36,13 @@ import org.spinrdf.vocabulary.SPRA;
 
 /**
  * Implementation of the SPR protocol http://spinrdf.org/spra
+ *
+
+ * @version $Id: $Id
  */
 public class ATableEngine extends AbstractTableEngine {
 
+	/** {@inheritDoc} */
 	@Override
 	public Resource createTable(Model model, ResultSet rs) {
 		String ns = SPRA.NS;

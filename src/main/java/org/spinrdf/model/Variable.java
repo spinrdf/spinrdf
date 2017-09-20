@@ -25,11 +25,15 @@ import org.spinrdf.model.print.Printable;
 
 /**
  * A variable in a SPIN query.
+ *
+
+ * @version $Id: $Id
  */
 public interface Variable extends Resource, Printable {
 
 	/**
 	 * Gets the name of this variable (without the '?').
+	 *
 	 * @return the variable name
 	 */
 	String getName();
@@ -37,6 +41,7 @@ public interface Variable extends Resource, Printable {
 	
 	/**
 	 * Gets all TriplePatterns where this Variable is mentioned.
+	 *
 	 * @return the TriplePatterns
 	 */
 	Set<TriplePattern> getTriplePatterns();
@@ -44,6 +49,7 @@ public interface Variable extends Resource, Printable {
 	
 	/**
 	 * Checks if this represents a blank node var.
+	 *
 	 * @return true  if a blank node var
 	 */
 	boolean isBlankNodeVar();

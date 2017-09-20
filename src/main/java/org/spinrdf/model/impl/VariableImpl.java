@@ -31,8 +31,20 @@ import org.spinrdf.model.print.PrintContext;
 import org.spinrdf.vocabulary.SP;
 
 
+/**
+ * <p>VariableImpl class.</p>
+ *
+
+ * @version $Id: $Id
+ */
 public class VariableImpl extends AbstractSPINResourceImpl implements Variable {
     
+	/**
+	 * <p>Constructor for VariableImpl.</p>
+	 *
+	 * @param node a {@link org.apache.jena.graph.Node} object.
+	 * @param graph a {@link org.apache.jena.enhanced.EnhGraph} object.
+	 */
 	public VariableImpl(Node node, EnhGraph graph) {
 		super(node, graph);
 	}
@@ -47,11 +59,21 @@ public class VariableImpl extends AbstractSPINResourceImpl implements Variable {
 	}
 
 	
+	/**
+	 * <p>getName.</p>
+	 *
+	 * @return a {@link java.lang.String} object.
+	 */
 	public String getName() {
 		return getString(SP.varName);
 	}
 
 
+	/**
+	 * <p>getTriplePatterns.</p>
+	 *
+	 * @return a {@link java.util.Set} object.
+	 */
 	public Set<TriplePattern> getTriplePatterns() {
 		Set<TriplePattern> results = new HashSet<TriplePattern>();
 		addTriplePatterns(SP.subject, results);
@@ -61,6 +83,11 @@ public class VariableImpl extends AbstractSPINResourceImpl implements Variable {
 	}
 	
 	
+	/**
+	 * <p>isBlankNodeVar.</p>
+	 *
+	 * @return a boolean.
+	 */
 	public boolean isBlankNodeVar() {
 		String name = getName();
 		if(name != null) {
@@ -72,6 +99,7 @@ public class VariableImpl extends AbstractSPINResourceImpl implements Variable {
 	}
 
 
+	/** {@inheritDoc} */
 	public void print(PrintContext p) {
 		String name = getName();
 		if(name.startsWith("?")) {

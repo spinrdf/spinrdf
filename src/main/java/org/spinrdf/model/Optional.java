@@ -20,8 +20,9 @@ package org.spinrdf.model;
 
 /**
  * An OPTIONAL element group.
- * 
+ *
  * @author Holger Knublauch
+ * @version $Id: $Id
  */
 public interface Optional extends ElementGroup {
 }

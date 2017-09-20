@@ -34,8 +34,20 @@ import org.spinrdf.model.print.StringPrintContext;
 import org.spinrdf.model.visitor.ElementVisitor;
 
 
+/**
+ * <p>ElementListImpl class.</p>
+ *
+
+ * @version $Id: $Id
+ */
 public class ElementListImpl extends RDFListImpl implements ElementList {
 
+	/**
+	 * <p>Constructor for ElementListImpl.</p>
+	 *
+	 * @param node a {@link org.apache.jena.graph.Node} object.
+	 * @param graph a {@link org.apache.jena.enhanced.EnhGraph} object.
+	 */
 	public ElementListImpl(Node node, EnhGraph graph) {
 		super(node, graph);
 	}
@@ -76,6 +88,11 @@ public class ElementListImpl extends RDFListImpl implements ElementList {
 	}
 
 	
+	/**
+	 * <p>getElements.</p>
+	 *
+	 * @return a {@link java.util.List} object.
+	 */
 	public List<Element> getElements() {
 		List<Element> results = new LinkedList<Element>();
 		ExtendedIterator<RDFNode> it = iterator();
@@ -119,6 +136,7 @@ public class ElementListImpl extends RDFListImpl implements ElementList {
 	}
 	
 	
+	/** {@inheritDoc} */
 	public void print(PrintContext p) {
 		List<Element> elements = getElements();
 		
@@ -210,6 +228,11 @@ public class ElementListImpl extends RDFListImpl implements ElementList {
 	}
 	
 	
+	/**
+	 * <p>toString.</p>
+	 *
+	 * @return a {@link java.lang.String} object.
+	 */
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		PrintContext context = new StringPrintContext(sb);
@@ -218,6 +241,7 @@ public class ElementListImpl extends RDFListImpl implements ElementList {
 	}
 
 
+	/** {@inheritDoc} */
 	public void visit(ElementVisitor visitor) {
 		visitor.visit(this);
 	}

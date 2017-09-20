@@ -22,12 +22,15 @@ import org.apache.jena.rdf.model.RDFList;
 /**
  * An RDFList representing a plain list of sub-Elements in a Query.
  * Example:
- * 
+ *
  * ASK WHERE {
  *     {
  *         ?this is:partOf :ElementList
- * 	   } 
+ * 	   }
  * }
+ *
+
+ * @version $Id: $Id
  */
 public interface ElementList extends ElementGroup, RDFList {
 }

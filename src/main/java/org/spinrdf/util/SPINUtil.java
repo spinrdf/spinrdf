@@ -55,6 +55,9 @@ import org.spinrdf.vocabulary.SPIN;
 
 /**
  * Some static util methods for SPIN that don't fit anywhere else.
+ *
+
+ * @version $Id: $Id
  */
 public class SPINUtil {
 	
@@ -67,6 +70,7 @@ public class SPINUtil {
 
 	/**
 	 * Collects all queries or template calls at a given class.
+	 *
 	 * @param cls  the class to get the queries at
 	 * @param predicate  the predicate such as <code>spin:rule</code>
 	 * @param results  the List to add the results to
@@ -101,10 +105,12 @@ public class SPINUtil {
 	
 	
 	/**
-	 * Inserts a statement  ?this a ?TYPE_CLASS .  after the WHERE { keyword. 
+	 * Inserts a statement  ?this a ?TYPE_CLASS .  after the WHERE { keyword.
 	 * The current implementation is not 100% correct - it is based on a simple
 	 * regex matching and somebody could put a WHERE { into a comment to break it.
+	 *
 	 * @param str  the input String
+	 * @return a {@link java.lang.String} object.
 	 */
 	public static String addThisTypeClause(String str) {
 		
@@ -128,6 +134,7 @@ public class SPINUtil {
 	/**
 	 * Applies variable bindings, replacing the values of one map with
 	 * the values from a given variables map.
+	 *
 	 * @param map  the Map to modify
 	 * @param bindings  the current variable bindings
 	 */
@@ -148,6 +155,7 @@ public class SPINUtil {
 
 	/**
 	 * Binds the variable ?this with a given value.
+	 *
 	 * @param qexec  the QueryExecution to modify
 	 * @param value  the value to bind ?this with
 	 */
@@ -167,6 +175,7 @@ public class SPINUtil {
 	 * The current implementation is very primitive in that it only checks
 	 * for the string "?this" anywhere in the query, so this method should
 	 * only be used if a false positive does not cause problems.
+	 *
 	 * @param command  the query to test
 	 * @return true if it was found
 	 */
@@ -179,6 +188,7 @@ public class SPINUtil {
 	/**
 	 * Executes a given SELECT query and returns the first value of the first result
 	 * variable, if any exists.  The QueryExecution is closed at the end.
+	 *
 	 * @param qexec  the QueryExecution to execute
 	 * @return the first result or null
 	 */
@@ -198,17 +208,17 @@ public class SPINUtil {
 		}
 	}
 	
-	
+	//TODO: FIXDOC : @deprecated for the same reason as {@link TemplateCall.getQueryString}
 	/**
 	 * Attempts to convert a given RDFNode to a String so that it can be parsed into
 	 * a Jena query object.  The node must be either a string Literal, or a sp:Query node
 	 * or a template call.  If it's a template call then the resulting query string will
 	 * "hard-bind" the template variables.
+	 *
 	 * @param node  the RDFNode to convert
 	 * @param usePrefixes  true to use qname abbreviations
 	 * @return the String representation of node
-	 * @throws IllegalArgumentException  if the node is not a valid SPIN Query or a String
-	 * @deprecated for the same reason as {@link TemplateCall.getQueryString}
+	 * @throws java.lang.IllegalArgumentException  if the node is not a valid SPIN Query or a String
 	 */
 	public static String getQueryString(RDFNode node, boolean usePrefixes) {
 		if(node.isLiteral()) {
@@ -240,16 +250,16 @@ public class SPINUtil {
 		}
 	}
 	
-	
+		//TODO: FIXDOC :  @deprecated for the same reasons as {@link TemplateCall.getQueryString}
 	/**
 	 * Gets a Collection of all query strings defined as values of a given property.
 	 * This will accept strings or SPIN expressions (including template calls).
 	 * The query model is the subject's getModel().
 	 * All sub-properties of property from the query model will also be queried.
+	 *
 	 * @param subject  the subject to get the values of
 	 * @param property  the property to query
 	 * @return a Set of query strings
-	 * @deprecated for the same reasons as {@link TemplateCall.getQueryString}
 	 */
 	public static Collection<String> getQueryStrings(Resource subject, Property property) {
 		JenaUtil.setGraphReadOptimization(true);
@@ -270,6 +280,7 @@ public class SPINUtil {
 	 * All sub-properties of property from the query model will also be queried.
 	 * The resulting Map will associate each query String with the Statement
 	 * that has created it.
+	 *
 	 * @param subject  the subject to get the values of
 	 * @param property  the property to query
 	 * @return a Map of Statements to query strings
@@ -294,6 +305,12 @@ public class SPINUtil {
 	}
 	
 	
+	/**
+	 * <p>getURIResources.</p>
+	 *
+	 * @param query a {@link org.spinrdf.model.print.Printable} object.
+	 * @return a {@link java.util.Set} object.
+	 */
 	public static Set<Resource> getURIResources(Printable query) {
 		final Set<Resource> results = new HashSet<Resource>();
 		StringPrintContext context = new StringPrintContext() {
@@ -318,6 +335,7 @@ public class SPINUtil {
 	 * Checks whether a given Graph is a spin:LibraryOntology.
 	 * This is true for the SP and SPIN namespaces, as well as any Graph that
 	 * has [baseURI] rdf:type spin:LibraryOntology.
+	 *
 	 * @param graph  the Graph to test
 	 * @param baseURI  the base URI of the Graph (to find the library ontology)
 	 * @return true if graph is a library ontology
@@ -338,6 +356,12 @@ public class SPINUtil {
 	}
 	
 	
+	/**
+	 * <p>isRootClass.</p>
+	 *
+	 * @param cls a {@link org.apache.jena.rdf.model.Resource} object.
+	 * @return a boolean.
+	 */
 	public static boolean isRootClass(Resource cls) {
 		return RDFS.Resource.equals(cls) || OWL.Thing.equals(cls);
 	}
@@ -346,6 +370,7 @@ public class SPINUtil {
 	/**
 	 * Converts a map from Properties to RDFNode values to a Map from variable
 	 * names (Strings) to those values, for quicker look up.
+	 *
 	 * @param map  the old Map
 	 * @return the new Map
 	 */

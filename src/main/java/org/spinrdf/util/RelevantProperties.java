@@ -37,6 +37,9 @@ import org.spinrdf.vocabulary.SPIN;
 
 /**
  * Control logic that determines "relevant" properties for given classes or instances.
+ *
+
+ * @version $Id: $Id
  */
 public class RelevantProperties {
 
@@ -69,6 +72,12 @@ public class RelevantProperties {
 	}
 	
 	
+	/**
+	 * <p>getRelevantPropertiesOfClass.</p>
+	 *
+	 * @param cls a {@link org.apache.jena.rdf.model.Resource} object.
+	 * @return a {@link java.util.Set} object.
+	 */
 	public static Set<Property> getRelevantPropertiesOfClass(Resource cls) {
 		Set<Property> results = new HashSet<Property>();
 		
@@ -106,6 +115,12 @@ public class RelevantProperties {
 	}
 
 
+	/**
+	 * <p>getRelevantSPINPropertiesOfInstance.</p>
+	 *
+	 * @param root a {@link org.apache.jena.rdf.model.Resource} object.
+	 * @return a {@link java.util.Set} object.
+	 */
 	public static Set<Property> getRelevantSPINPropertiesOfInstance(Resource root) {
 		if(SP.exists(root.getModel())) {
 			SPINInstance instance = root.as(SPINInstance.class);
@@ -121,6 +136,12 @@ public class RelevantProperties {
 	}
 
 
+	/**
+	 * <p>getRelevantSPINPropertiesOfClass.</p>
+	 *
+	 * @param cls a {@link org.apache.jena.rdf.model.Resource} object.
+	 * @return a {@link java.util.Set} object.
+	 */
 	public static Set<Property> getRelevantSPINPropertiesOfClass(Resource cls) {
 		if(SP.exists(cls.getModel())) {
 			List<QueryOrTemplateCall> qots = new ArrayList<QueryOrTemplateCall>();

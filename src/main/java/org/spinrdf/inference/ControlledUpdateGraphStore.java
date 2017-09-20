@@ -56,6 +56,7 @@ class ControlledUpdateGraphStore implements DatasetGraph {
 	}
 	
 	
+	/** {@inheritDoc} */
 	@Override
 	public void clear() {
 		// TODO Auto-generated method stub
@@ -73,11 +74,17 @@ class ControlledUpdateGraphStore implements DatasetGraph {
 	}
 	
 	
+	/**
+	 * <p>getControlledUpdateGraphs.</p>
+	 *
+	 * @return a {@link java.lang.Iterable} object.
+	 */
 	public Iterable<ControlledUpdateGraph> getControlledUpdateGraphs() {
 		return cugs.values();
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public Graph getDefaultGraph() {
 		Model defaultModel = dataset.getDefaultModel();
@@ -90,6 +97,7 @@ class ControlledUpdateGraphStore implements DatasetGraph {
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public Graph getGraph(Node graphNode) {
 		Model model = dataset.getNamedModel(graphNode.getURI());
@@ -102,27 +110,32 @@ class ControlledUpdateGraphStore implements DatasetGraph {
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public boolean containsGraph(Node graphNode) {
 		return dataset.containsNamedModel(graphNode.getURI());
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public void setDefaultGraph(Graph g) {
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public void addGraph(Node graphName, Graph graph) {
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public void removeGraph(Node graphName) {
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public Iterator<Node> listGraphNodes() {
 		List<Node> results = new LinkedList<Node>();
@@ -134,6 +147,7 @@ class ControlledUpdateGraphStore implements DatasetGraph {
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public void add(Quad quad) {
 		Graph graph;
@@ -149,6 +163,7 @@ class ControlledUpdateGraphStore implements DatasetGraph {
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public void delete(Quad quad) {
 		Graph graph;
@@ -164,6 +179,7 @@ class ControlledUpdateGraphStore implements DatasetGraph {
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public void deleteAny(Node g, Node s, Node p, Node o) {
         Iterator<Quad> iter = find(g, s, p, o) ;
@@ -174,30 +190,35 @@ class ControlledUpdateGraphStore implements DatasetGraph {
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public Iterator<Quad> find() {
 		return null;
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public Iterator<Quad> find(Quad quad) {
 		return null;
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public Iterator<Quad> find(Node g, Node s, Node p, Node o) {
 		return null;
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public Iterator<Quad> findNG(Node g, Node s, Node p, Node o) {
 		return null;
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public boolean contains(Node g, Node s, Node p, Node o) {
 		Graph graph = getGraph(g);
@@ -210,47 +231,55 @@ class ControlledUpdateGraphStore implements DatasetGraph {
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public boolean contains(Quad quad) {
 		return false;
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public boolean isEmpty() {
 		return false;
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public Lock getLock() {
 		return null;
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public Context getContext() {
 		return ARQ.getContext() ;
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public long size() {
 		return 0;
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public void close() {
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public void add(Node g, Node s, Node p, Node o) {
 		add(Quad.create(g, s, p, o));
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public void delete(Node g, Node s, Node p, Node o) {
 		delete(Quad.create(g, s, p, o));

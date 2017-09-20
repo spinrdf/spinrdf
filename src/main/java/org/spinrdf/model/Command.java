@@ -24,11 +24,13 @@ import org.spinrdf.model.print.Printable;
  * Represents instances of sp:Command (Queries or Update requests).
  *
  * @author Holger Knublauch
+ * @version $Id: $Id
  */
 public interface Command extends Printable, Resource {
 	
 	/**
 	 * Gets the comment if any has been stored as rdfs:comment.
+	 *
 	 * @return the comment or null
 	 */
 	String getComment();

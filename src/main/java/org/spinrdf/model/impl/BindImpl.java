@@ -29,13 +29,30 @@ import org.spinrdf.model.visitor.ElementVisitor;
 import org.spinrdf.vocabulary.SP;
 
 
+/**
+ * <p>BindImpl class.</p>
+ *
+
+ * @version $Id: $Id
+ */
 public class BindImpl extends ElementImpl implements Bind {
     
+	/**
+	 * <p>Constructor for BindImpl.</p>
+	 *
+	 * @param node a {@link org.apache.jena.graph.Node} object.
+	 * @param graph a {@link org.apache.jena.enhanced.EnhGraph} object.
+	 */
 	public BindImpl(Node node, EnhGraph graph) {
 		super(node, graph);
 	}
 
 	
+	/**
+	 * <p>getExpression.</p>
+	 *
+	 * @return a {@link org.apache.jena.rdf.model.RDFNode} object.
+	 */
 	public RDFNode getExpression() {
 		Statement s = getProperty(SP.expression);
 		if(s != null) {
@@ -47,6 +64,11 @@ public class BindImpl extends ElementImpl implements Bind {
 	}
 
 	
+	/**
+	 * <p>getVariable.</p>
+	 *
+	 * @return a {@link org.spinrdf.model.Variable} object.
+	 */
 	public Variable getVariable() {
 		Statement s = getProperty(SP.variable);
 		if(s != null && s.getObject().isResource()) {
@@ -58,6 +80,7 @@ public class BindImpl extends ElementImpl implements Bind {
 	}
 	
 	
+	/** {@inheritDoc} */
 	public void print(PrintContext context) {
 		context.printKeyword("BIND");
 		context.print(" (");
@@ -82,6 +105,7 @@ public class BindImpl extends ElementImpl implements Bind {
 	}
 
 
+	/** {@inheritDoc} */
 	public void visit(ElementVisitor visitor) {
 		visitor.visit(this);
 	}

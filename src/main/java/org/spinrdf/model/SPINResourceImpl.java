@@ -32,20 +32,36 @@ import org.spinrdf.util.JenaUtil;
  * Base implementation of SPINResource.
  * This is not in the impl package because the impl package is not
  * part of the public API.
+ *
+
+ * @version $Id: $Id
  */
 public class SPINResourceImpl extends ResourceImpl implements SPINResource {
 
 	
+	/**
+	 * <p>Constructor for SPINResourceImpl.</p>
+	 *
+	 * @param node a {@link org.apache.jena.graph.Node} object.
+	 * @param graph a {@link org.apache.jena.enhanced.EnhGraph} object.
+	 */
 	public SPINResourceImpl(Node node, EnhGraph graph) {
 		super(node, graph);
 	}
 	
 	
+	/**
+	 * <p>getInteger.</p>
+	 *
+	 * @param predicate a {@link org.apache.jena.rdf.model.Property} object.
+	 * @return a {@link java.lang.Integer} object.
+	 */
 	public Integer getInteger(Property predicate) {
 		return JenaUtil.getIntegerProperty(this, predicate);
 	}
 
 	
+	/** {@inheritDoc} */
 	public Literal getLiteral(Property predicate) {
 		Statement s = getProperty(predicate);
 		if(s != null && s.getObject().isLiteral()) {
@@ -57,6 +73,7 @@ public class SPINResourceImpl extends ResourceImpl implements SPINResource {
 	}
 
 
+	/** {@inheritDoc} */
 	public Long getLong(Property predicate) {
 		Literal literal = getLiteral(predicate);
 		if(literal != null) {
@@ -68,6 +85,7 @@ public class SPINResourceImpl extends ResourceImpl implements SPINResource {
 	}
 
 
+	/** {@inheritDoc} */
 	public RDFNode getRDFNode(Property predicate) {
 		Statement s = getProperty(predicate);
 		if(s != null) {
@@ -79,6 +97,7 @@ public class SPINResourceImpl extends ResourceImpl implements SPINResource {
 	}
 
 
+	/** {@inheritDoc} */
 	public Resource getResource(Property predicate) {
 		Statement s = getProperty(predicate);
 		if(s != null && s.getObject().isResource()) {
@@ -90,6 +109,7 @@ public class SPINResourceImpl extends ResourceImpl implements SPINResource {
 	}
 
 
+	/** {@inheritDoc} */
 	public String getString(Property predicate) {
 		Statement s = getProperty(predicate);
 		if(s != null && s.getObject().isLiteral()) {
@@ -101,6 +121,12 @@ public class SPINResourceImpl extends ResourceImpl implements SPINResource {
 	}
 
 
+	/**
+	 * <p>inferRDFNode.</p>
+	 *
+	 * @param predicate a {@link org.apache.jena.rdf.model.Property} object.
+	 * @return a {@link org.apache.jena.rdf.model.RDFNode} object.
+	 */
 	public RDFNode inferRDFNode(Property predicate) {
 		RDFNode existing = getRDFNode(predicate);
 		if(existing != null) {

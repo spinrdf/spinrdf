@@ -28,6 +28,9 @@ import org.spinrdf.model.print.Printable;
 
 /**
  * Part of a SPARQL expression that calls a Function.
+ *
+
+ * @version $Id: $Id
  */
 public interface FunctionCall extends Printable, ModuleCall {
 
@@ -35,6 +38,7 @@ public interface FunctionCall extends Printable, ModuleCall {
 	 * Gets a list of argument RDFNodes, whereby each RDFNode is already cast
 	 * into the most specific subclass possible.  In particular, arguments are
 	 * either instances of Variable, FunctionCall or RDFNode (constant)
+	 *
 	 * @return the List of arguments
 	 */
 	List<RDFNode> getArguments();
@@ -43,6 +47,7 @@ public interface FunctionCall extends Printable, ModuleCall {
 	/**
 	 * Gets a Map from properties (such as sp:arg1, sp:arg2) to their declared
 	 * argument values.  The map will only contain non-null arguments.
+	 *
 	 * @return a Map of arguments
 	 */
 	Map<Property,RDFNode> getArgumentsMap();
@@ -52,6 +57,7 @@ public interface FunctionCall extends Printable, ModuleCall {
 	 * Gets the URI Resource of the Function being called here.
 	 * The resulting Resource will be in the function's defining
 	 * Model, for example if loaded into the library from a .spin. file.
+	 *
 	 * @return the function in its original Model
 	 */
 	Resource getFunction();

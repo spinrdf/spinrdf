@@ -24,11 +24,15 @@ import org.spinrdf.model.visitor.ElementVisitor;
 
 /**
  * The abstract base interface for the various Element types.
+ *
+
+ * @version $Id: $Id
  */
 public interface Element extends Printable, Resource {
 	
 	/**
 	 * Visits this with a given visitor.
+	 *
 	 * @param visitor  the visitor to visit this with
 	 */
 	void visit(ElementVisitor visitor);

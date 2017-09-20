@@ -26,6 +26,9 @@ import org.apache.jena.rdf.model.Resource;
 /**
  * Manages extra prefixes that are always available even if not
  * explicitly declared.  Examples include fn and Jena's afn.
+ *
+
+ * @version $Id: $Id
  */
 public class ExtraPrefixes {
 
@@ -46,6 +49,7 @@ public class ExtraPrefixes {
 	 * prefix.  These are prefixes that are assumed to be valid even if
 	 * they haven't been declared in the current ontology.
 	 * This method has no effect if the prefix was already set before.
+	 *
 	 * @param prefix  the prefix to add
 	 * @param namespace  the namespace to add
 	 */
@@ -59,6 +63,7 @@ public class ExtraPrefixes {
 	/**
 	 * Attempts to add an extra prefix for a given Resource.
 	 * This does nothing if the prefix does not exist or is empty.
+	 *
 	 * @param resource  the resource to get the namespace of
 	 */
 	public static void add(Resource resource) {
@@ -73,6 +78,7 @@ public class ExtraPrefixes {
 	/**
 	 * Gets a Map from prefixes to namespaces.
 	 * The result should be treated as read-only.
+	 *
 	 * @return the extra prefixes
 	 */
 	public static Map<String,String> getExtraPrefixes() {

@@ -22,8 +22,20 @@ import org.apache.jena.graph.Node;
 import org.spinrdf.model.Element;
 
 
+/**
+ * <p>Abstract ElementImpl class.</p>
+ *
+
+ * @version $Id: $Id
+ */
 public abstract class ElementImpl extends AbstractSPINResourceImpl implements Element {
 	
+	/**
+	 * <p>Constructor for ElementImpl.</p>
+	 *
+	 * @param node a {@link org.apache.jena.graph.Node} object.
+	 * @param graph a {@link org.apache.jena.enhanced.EnhGraph} object.
+	 */
 	public ElementImpl(Node node, EnhGraph graph) {
 		super(node, graph);
 	}

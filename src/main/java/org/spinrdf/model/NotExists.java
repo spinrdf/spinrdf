@@ -21,6 +21,7 @@ package org.spinrdf.model;
  * A NOT EXISTS element group.
  *
  * @author Holger Knublauch
+ * @version $Id: $Id
  */
 public interface NotExists extends ElementGroup {
 }

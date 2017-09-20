@@ -50,14 +50,18 @@ import org.spinrdf.vocabulary.SPIN;
 
 /**
  * The built-in magic property spin:construct.
- * 
+ *
  * Executes a given sp:Construct and binds the resulting s,p,o values to
  * the variables on the right hand side.
+ *
+
+ * @version $Id: $Id
  */
 public class ConstructPFunction extends PropertyFunctionBase {
 	
 	private final static String NAME = SPIN.PREFIX + ":" + SPIN.construct.getLocalName();
 
+	/** {@inheritDoc} */
 	@Override
 	public QueryIterator exec(Binding binding, PropFuncArg argSubject,
 			Node predicate, PropFuncArg argObject, ExecutionContext execCxt) {

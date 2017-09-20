@@ -39,19 +39,23 @@ import org.spinrdf.vocabulary.SPL;
 
 /**
  * A native implementation of swa:localRangeAtClass, to optimize performance.
- * 
+ *
  * The original spin:body is
- * 
+ *
  * 		SELECT (COALESCE(
- * 				spif:walkObjects(?class, rdfs:subClassOf, swa:allValuesFromFunctor, ?property), 
- * 				spif:walkObjects(?class, rdfs:subClassOf, swa:splValueTypeFunctor, ?property), 
- * 				swa:globalRange(?property), 
+ * 				spif:walkObjects(?class, rdfs:subClassOf, swa:allValuesFromFunctor, ?property),
+ * 				spif:walkObjects(?class, rdfs:subClassOf, swa:splValueTypeFunctor, ?property),
+ * 				swa:globalRange(?property),
  * 				swa:defaultRange(?property)) AS ?result)
  * 		WHERE {
  *      }
+ *
+
+ * @version $Id: $Id
  */
 public class LocalRangeAtClassNativeFunction extends AbstractFunction2 {
 	
+	/** {@inheritDoc} */
 	@Override
 	protected NodeValue exec(Node cls, Node property, FunctionEnv env) {
 		Graph graph = env.getActiveGraph();
@@ -68,6 +72,15 @@ public class LocalRangeAtClassNativeFunction extends AbstractFunction2 {
 	}
 
 
+	/**
+	 * <p>run.</p>
+	 *
+	 * @param cls a {@link org.apache.jena.graph.Node} object.
+	 * @param property a {@link org.apache.jena.graph.Node} object.
+	 * @param graph a {@link org.apache.jena.graph.Graph} object.
+	 * @param useDefault a boolean.
+	 * @return a {@link org.apache.jena.graph.Node} object.
+	 */
 	public static Node run(Node cls, Node property, Graph graph, boolean useDefault) {
 		Node result = walk(property, cls, graph, new HashSet<Node>());
 		if(result == null) {

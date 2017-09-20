@@ -35,16 +35,32 @@ import org.spinrdf.vocabulary.SP;
 
 abstract class TupleImpl extends AbstractSPINResourceImpl {
 
+	/**
+	 * <p>Constructor for TupleImpl.</p>
+	 *
+	 * @param node a {@link org.apache.jena.graph.Node} object.
+	 * @param graph a {@link org.apache.jena.enhanced.EnhGraph} object.
+	 */
 	public TupleImpl(Node node, EnhGraph graph) {
 		super(node, graph);
 	}
 	
 	
+	/**
+	 * <p>getObject.</p>
+	 *
+	 * @return a {@link org.apache.jena.rdf.model.RDFNode} object.
+	 */
 	public RDFNode getObject() {
 		return getRDFNodeOrVariable(SP.object);
 	}
 
 	
+	/**
+	 * <p>getObjectResource.</p>
+	 *
+	 * @return a {@link org.apache.jena.rdf.model.Resource} object.
+	 */
 	public Resource getObjectResource() {
 		RDFNode node = getRDFNodeOrVariable(SP.object);
 		if(node instanceof Resource) {
@@ -56,11 +72,22 @@ abstract class TupleImpl extends AbstractSPINResourceImpl {
 	}
 	
 	
+	/**
+	 * <p>getSubject.</p>
+	 *
+	 * @return a {@link org.apache.jena.rdf.model.Resource} object.
+	 */
 	public Resource getSubject() {
 		return (Resource) getRDFNodeOrVariable(SP.subject);
 	}
 	
 	
+	/**
+	 * <p>getRDFNodeOrVariable.</p>
+	 *
+	 * @param predicate a {@link org.apache.jena.rdf.model.Property} object.
+	 * @return a {@link org.apache.jena.rdf.model.RDFNode} object.
+	 */
 	protected RDFNode getRDFNodeOrVariable(Property predicate) {
 		RDFNode node = getRDFNode(predicate);
 		if(node != null) {
@@ -78,21 +105,49 @@ abstract class TupleImpl extends AbstractSPINResourceImpl {
 	}
 
 
+	/**
+	 * <p>print.</p>
+	 *
+	 * @param node a {@link org.apache.jena.rdf.model.RDFNode} object.
+	 * @param p a {@link org.spinrdf.model.print.PrintContext} object.
+	 */
 	protected void print(RDFNode node, PrintContext p) {
 		TupleImpl.print(getModel(), node, p);
 	}
 
 
+	/**
+	 * <p>print.</p>
+	 *
+	 * @param node a {@link org.apache.jena.rdf.model.RDFNode} object.
+	 * @param p a {@link org.spinrdf.model.print.PrintContext} object.
+	 * @param abbrevRDFType a boolean.
+	 */
 	protected void print(RDFNode node, PrintContext p, boolean abbrevRDFType) {
 		TupleImpl.print(getModel(), node, p, abbrevRDFType);
 	}
 
 
+	/**
+	 * <p>print.</p>
+	 *
+	 * @param model a {@link org.apache.jena.rdf.model.Model} object.
+	 * @param node a {@link org.apache.jena.rdf.model.RDFNode} object.
+	 * @param p a {@link org.spinrdf.model.print.PrintContext} object.
+	 */
 	public static void print(Model model, RDFNode node, PrintContext p) {
 		print(model, node, p, false);
 	}
 	
 
+	/**
+	 * <p>print.</p>
+	 *
+	 * @param model a {@link org.apache.jena.rdf.model.Model} object.
+	 * @param node a {@link org.apache.jena.rdf.model.RDFNode} object.
+	 * @param p a {@link org.spinrdf.model.print.PrintContext} object.
+	 * @param abbrevRDFType a boolean.
+	 */
 	public static void print(Model model, RDFNode node, PrintContext p, boolean abbrevRDFType) {
 		if(node instanceof Resource) {
 			if(abbrevRDFType && RDF.type.equals(node)) {

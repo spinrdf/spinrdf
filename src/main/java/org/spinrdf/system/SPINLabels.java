@@ -28,9 +28,12 @@ import org.spinrdf.util.JenaUtil;
 
 /**
  * A singleton that is used to render resources into strings.
- * By default this displays qnames (if possible). 
+ * By default this displays qnames (if possible).
  * Can be changed, for example, to switch to displaying rdfs:labels
  * instead of qnames etc.
+ *
+
+ * @version $Id: $Id
  */
 public class SPINLabels {
 	
@@ -39,6 +42,7 @@ public class SPINLabels {
 
 	/**
 	 * Gets the singleton instance of this class.
+	 *
 	 * @return the singleton
 	 */
 	public static SPINLabels get() {
@@ -48,7 +52,8 @@ public class SPINLabels {
 	
 	/**
 	 * Replaces the singleton to a subclass with different behavior.
-	 * This is used by TopBraid, which has its own rendering engine. 
+	 * This is used by TopBraid, which has its own rendering engine.
+	 *
 	 * @param value  the new engine
 	 */
 	public static void set(SPINLabels value) {
@@ -60,7 +65,8 @@ public class SPINLabels {
 	 * Gets a "human-readable" label for a given Resource.
 	 * This checks for any existing rdfs:label, otherwise falls back to
 	 * <code>getLabel()</code>.
-	 * @param resource
+	 *
+	 * @param resource a {@link org.apache.jena.rdf.model.Resource} object.
 	 * @return the label (never null)
 	 */
 	public String getCustomizedLabel(Resource resource) {
@@ -76,6 +82,7 @@ public class SPINLabels {
 
 	/**
 	 * Gets the label for a given Resource.
+	 *
 	 * @param resource  the Resource to get the label of
 	 * @return the label (never null)
 	 */
@@ -98,7 +105,8 @@ public class SPINLabels {
 	/**
 	 * Renders a template call's label template into a label by inserting the
 	 * evaluated SPARQL expressions into appropriate spaces marked with {expression}.
-	 * Currently only simple variables are supported, e.g. {?test }. 
+	 * Currently only simple variables are supported, e.g. {?test }.
+	 *
 	 * @param buffer  the StringBuffer to write to
 	 * @param labelTemplate  the labelTemplate
 	 * @param args  the arguments  a Map of pre-bound variables (supplied arguments)

@@ -30,6 +30,12 @@ import org.apache.jena.sparql.expr.ExprEvalException;
 import org.apache.jena.sparql.pfunction.PropFuncArg;
 import org.spinrdf.model.TemplateCall;
 
+/**
+ * <p>SPINFunctionUtil class.</p>
+ *
+
+ * @version $Id: $Id
+ */
 public class SPINFunctionUtil {
 
 	static void addBindingsFromTemplateCall(QuerySolutionMap initialBinding, TemplateCall templateCall) {
@@ -56,6 +62,12 @@ public class SPINFunctionUtil {
 	}
 
 	
+	/**
+	 * <p>getNodes.</p>
+	 *
+	 * @param arg a {@link org.apache.jena.sparql.pfunction.PropFuncArg} object.
+	 * @return a {@link java.util.List} object.
+	 */
 	public static List<Node> getNodes(PropFuncArg arg) {
 		if(arg.isNode()) {
 			return Collections.singletonList(arg.getArg());

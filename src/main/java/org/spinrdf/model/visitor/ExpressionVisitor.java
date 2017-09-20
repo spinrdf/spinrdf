@@ -25,17 +25,40 @@ import org.spinrdf.model.Variable;
 
 /**
  * A visitor to visit the various types of expression elements.
+ *
+
+ * @version $Id: $Id
  */
 public interface ExpressionVisitor {
 	
+	/**
+	 * <p>visit.</p>
+	 *
+	 * @param aggregation a {@link org.spinrdf.model.Aggregation} object.
+	 */
 	void visit(Aggregation aggregation);
 	
 	
+	/**
+	 * <p>visit.</p>
+	 *
+	 * @param functionCall a {@link org.spinrdf.model.FunctionCall} object.
+	 */
 	void visit(FunctionCall functionCall);
 
 	
+	/**
+	 * <p>visit.</p>
+	 *
+	 * @param node a {@link org.apache.jena.rdf.model.RDFNode} object.
+	 */
 	void visit(RDFNode node);
 	
 	
+	/**
+	 * <p>visit.</p>
+	 *
+	 * @param variable a {@link org.spinrdf.model.Variable} object.
+	 */
 	void visit(Variable variable);
 }

@@ -31,13 +31,26 @@ import org.spinrdf.util.JenaUtil;
 import org.spinrdf.util.SPINUtil;
 
 
+/**
+ * <p>SPINInstanceImpl class.</p>
+ *
+
+ * @version $Id: $Id
+ */
 public class SPINInstanceImpl extends ResourceImpl implements SPINInstance {
 
+	/**
+	 * <p>Constructor for SPINInstanceImpl.</p>
+	 *
+	 * @param node a {@link org.apache.jena.graph.Node} object.
+	 * @param eg a {@link org.apache.jena.enhanced.EnhGraph} object.
+	 */
 	public SPINInstanceImpl(Node node, EnhGraph eg) {
 		super(node, eg);
 	}
 
 	
+	/** {@inheritDoc} */
 	public List<QueryOrTemplateCall> getQueriesAndTemplateCalls(Property predicate) {
 		List<QueryOrTemplateCall> results = new LinkedList<QueryOrTemplateCall>();
 		for(Resource cls : JenaUtil.getAllTypes(this)) {

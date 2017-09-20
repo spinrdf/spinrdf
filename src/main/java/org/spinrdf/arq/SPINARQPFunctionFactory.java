@@ -23,22 +23,39 @@ import org.spinrdf.model.Function;
  * A factory for instances of SPINARQPFunction.
  * This can be overloaded by custom applications to create specific subclasses
  * with different behavior.
- * 
+ *
  * @author Holger Knublauch
+ * @version $Id: $Id
  */
 public class SPINARQPFunctionFactory {
 
 	private static SPINARQPFunctionFactory singleton = new SPINARQPFunctionFactory();
 	
+	/**
+	 * <p>get.</p>
+	 *
+	 * @return a {@link org.spinrdf.arq.SPINARQPFunctionFactory} object.
+	 */
 	public static SPINARQPFunctionFactory get() {
 		return singleton;
 	}
 	
+	/**
+	 * <p>set.</p>
+	 *
+	 * @param value a {@link org.spinrdf.arq.SPINARQPFunctionFactory} object.
+	 */
 	public static void set(SPINARQPFunctionFactory value) {
 		SPINARQPFunctionFactory.singleton = value;
 	}
 	
 	
+	/**
+	 * <p>create.</p>
+	 *
+	 * @param functionCls a {@link org.spinrdf.model.Function} object.
+	 * @return a {@link org.spinrdf.arq.SPINARQPFunction} object.
+	 */
 	public SPINARQPFunction create(Function functionCls) {
 		return new SPINARQPFunction(functionCls);
 	}

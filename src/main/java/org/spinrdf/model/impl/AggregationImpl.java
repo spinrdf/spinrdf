@@ -33,13 +33,30 @@ import org.spinrdf.model.print.Printable;
 import org.spinrdf.vocabulary.SP;
 
 
+/**
+ * <p>AggregationImpl class.</p>
+ *
+
+ * @version $Id: $Id
+ */
 public class AggregationImpl extends AbstractSPINResourceImpl implements Aggregation {
 
+	/**
+	 * <p>Constructor for AggregationImpl.</p>
+	 *
+	 * @param node a {@link org.apache.jena.graph.Node} object.
+	 * @param graph a {@link org.apache.jena.enhanced.EnhGraph} object.
+	 */
 	public AggregationImpl(Node node, EnhGraph graph) {
 		super(node, graph);
 	}
 
 	
+	/**
+	 * <p>getAs.</p>
+	 *
+	 * @return a {@link org.spinrdf.model.Variable} object.
+	 */
 	public Variable getAs() {
 		Resource as = getResource(SP.as);
 		if(as != null) {
@@ -51,16 +68,27 @@ public class AggregationImpl extends AbstractSPINResourceImpl implements Aggrega
 	}
 
 	
+	/**
+	 * <p>getExpression.</p>
+	 *
+	 * @return a {@link org.apache.jena.rdf.model.Resource} object.
+	 */
 	public Resource getExpression() {
 		return getResource(SP.expression);
 	}
 
 	
+	/**
+	 * <p>isDistinct.</p>
+	 *
+	 * @return a boolean.
+	 */
 	public boolean isDistinct() {
 		return hasProperty(SP.distinct, getModel().createTypedLiteral(true));
 	}
 
 	
+	/** {@inheritDoc} */
 	public void print(PrintContext p) {
 		
 		Variable asVar = getAs(); 

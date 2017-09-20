@@ -21,6 +21,7 @@ package org.spinrdf.model;
  * A MINUS element group.
  *
  * @author Holger Knublauch
+ * @version $Id: $Id
  */
 public interface Minus extends ElementGroup {
 }

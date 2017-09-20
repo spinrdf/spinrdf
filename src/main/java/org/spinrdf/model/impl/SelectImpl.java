@@ -40,13 +40,30 @@ import org.spinrdf.model.print.Printable;
 import org.spinrdf.vocabulary.SP;
 
 
+/**
+ * <p>SelectImpl class.</p>
+ *
+
+ * @version $Id: $Id
+ */
 public class SelectImpl extends QueryImpl implements Select {
 	
+	/**
+	 * <p>Constructor for SelectImpl.</p>
+	 *
+	 * @param node a {@link org.apache.jena.graph.Node} object.
+	 * @param eh a {@link org.apache.jena.enhanced.EnhGraph} object.
+	 */
 	public SelectImpl(Node node, EnhGraph eh) {
 		super(node, eh);
 	}
 	
 	
+	/**
+	 * <p>getResultVariableNames.</p>
+	 *
+	 * @return a {@link java.util.List} object.
+	 */
 	public List<String> getResultVariableNames() {
 		if(hasProperty(SP.resultVariables)) {
 			List<String> results = new LinkedList<String>();
@@ -73,6 +90,11 @@ public class SelectImpl extends QueryImpl implements Select {
 	}
 
 	
+	/**
+	 * <p>getResultVariables.</p>
+	 *
+	 * @return a {@link java.util.List} object.
+	 */
 	public List<Resource> getResultVariables() {
 		List<Resource> results = new LinkedList<Resource>();
 		for(RDFNode node : getList(SP.resultVariables)) {
@@ -83,16 +105,27 @@ public class SelectImpl extends QueryImpl implements Select {
 	}
 
 
+	/**
+	 * <p>isDistinct.</p>
+	 *
+	 * @return a boolean.
+	 */
 	public boolean isDistinct() {
 		return hasProperty(SP.distinct, getModel().createTypedLiteral(true));
 	}
 	
 	
+	/**
+	 * <p>isReduced.</p>
+	 *
+	 * @return a boolean.
+	 */
 	public boolean isReduced() {
 		return hasProperty(SP.reduced, getModel().createTypedLiteral(true));
 	}
 
 
+	/** {@inheritDoc} */
 	public void printSPINRDF(PrintContext p) {
 		printComment(p);
 		printPrefixes(p);

@@ -22,6 +22,9 @@ import org.apache.jena.rdf.model.Resource;
 
 /**
  * A named graph element (GRAPH keyword in SPARQL).
+ *
+
+ * @version $Id: $Id
  */
 public interface NamedGraph extends ElementGroup {
 
@@ -29,6 +32,7 @@ public interface NamedGraph extends ElementGroup {
 	 * Gets the URI Resource or Variable that holds the name of this
 	 * named graph.  If it's a Variable, then this method will typecast
 	 * it into an instance of Variable.
+	 *
 	 * @return a Resource or Variable
 	 */
 	Resource getNameNode();

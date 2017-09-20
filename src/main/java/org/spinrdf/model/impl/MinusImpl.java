@@ -23,18 +23,32 @@ import org.spinrdf.model.Minus;
 import org.spinrdf.model.print.PrintContext;
 import org.spinrdf.model.visitor.ElementVisitor;
 
+/**
+ * <p>MinusImpl class.</p>
+ *
+
+ * @version $Id: $Id
+ */
 public class MinusImpl extends ElementImpl implements Minus {
 	
+	/**
+	 * <p>Constructor for MinusImpl.</p>
+	 *
+	 * @param node a {@link org.apache.jena.graph.Node} object.
+	 * @param graph a {@link org.apache.jena.enhanced.EnhGraph} object.
+	 */
 	public MinusImpl(Node node, EnhGraph graph) {
 		super(node, graph);
 	}
 
 	
+	/** {@inheritDoc} */
 	public void visit(ElementVisitor visitor) {
 		visitor.visit(this);
 	}
 
 	
+	/** {@inheritDoc} */
 	public void print(PrintContext p) {
 		p.printKeyword("MINUS");
 		printNestedElementList(p);

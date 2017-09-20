@@ -30,6 +30,9 @@ import org.spinrdf.vocabulary.SPIN;
 /**
  * A helper object that can be used to register SPARQL functions
  * (and property functions) per thread, e.g. per servlet request.
+ *
+
+ * @version $Id: $Id
  */
 public class SPINThreadFunctions {
 	

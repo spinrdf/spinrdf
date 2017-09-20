@@ -27,13 +27,30 @@ import org.spinrdf.model.print.PrintContext;
 import org.spinrdf.model.visitor.ElementVisitor;
 import org.spinrdf.vocabulary.SP;
 
+/**
+ * <p>ServiceImpl class.</p>
+ *
+
+ * @version $Id: $Id
+ */
 public class ServiceImpl extends ElementImpl implements Service {
 	
+	/**
+	 * <p>Constructor for ServiceImpl.</p>
+	 *
+	 * @param node a {@link org.apache.jena.graph.Node} object.
+	 * @param enhGraph a {@link org.apache.jena.enhanced.EnhGraph} object.
+	 */
 	public ServiceImpl(Node node, EnhGraph enhGraph) {
 		super(node, enhGraph);
 	}
 
 	
+	/**
+	 * <p>getServiceURI.</p>
+	 *
+	 * @return a {@link java.lang.String} object.
+	 */
 	public String getServiceURI() {
 		Statement s = getProperty(SP.serviceURI);
 		if(s != null && s.getObject().isURIResource()) {
@@ -46,6 +63,7 @@ public class ServiceImpl extends ElementImpl implements Service {
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public Variable getServiceVariable() {
 		Statement s = getProperty(SP.serviceURI);
@@ -59,6 +77,7 @@ public class ServiceImpl extends ElementImpl implements Service {
 	}
 
 
+	/** {@inheritDoc} */
 	public void print(PrintContext p) {
 		p.printKeyword("SERVICE");
 		Variable var = getServiceVariable();
@@ -77,6 +96,7 @@ public class ServiceImpl extends ElementImpl implements Service {
 	}
 
 
+	/** {@inheritDoc} */
 	public void visit(ElementVisitor visitor) {
 		visitor.visit(this);
 	}

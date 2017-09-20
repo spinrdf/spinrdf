@@ -21,11 +21,13 @@ package org.spinrdf.model;
  * A SERVICE element group.
  *
  * @author Holger Knublauch
+ * @version $Id: $Id
  */
 public interface Service extends ElementGroup {
 
 	/**
 	 * Gets the URI of the SPARQL end point to invoke.
+	 *
 	 * @return the service URI (or null if this is a Variable)
 	 */
 	String getServiceURI();
@@ -33,6 +35,7 @@ public interface Service extends ElementGroup {
 	
 	/**
 	 * The the variable of the SPARQL end point to invoke.
+	 *
 	 * @return the Variable (or null if this is a URI)
 	 */
 	Variable getServiceVariable();

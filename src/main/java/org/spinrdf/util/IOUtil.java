@@ -25,8 +25,21 @@ import java.io.Reader;
 import java.io.UnsupportedEncodingException;
 
 
+/**
+ * <p>IOUtil class.</p>
+ *
+
+ * @version $Id: $Id
+ */
 public class IOUtil {
 
+	/**
+	 * <p>loadString.</p>
+	 *
+	 * @param reader a {@link java.io.Reader} object.
+	 * @return a {@link java.lang.StringBuffer} object.
+	 * @throws java.io.IOException if any.
+	 */
 	public static StringBuffer loadString(Reader reader) throws IOException {
 		StringBuffer sb = new StringBuffer();
 		BufferedReader bis = new BufferedReader(reader);
@@ -41,6 +54,13 @@ public class IOUtil {
 		return sb;
 	}
 
+	/**
+	 * <p>loadStringUTF8.</p>
+	 *
+	 * @param in a {@link java.io.InputStream} object.
+	 * @return a {@link java.lang.StringBuffer} object.
+	 * @throws java.io.IOException if any.
+	 */
 	public static StringBuffer loadStringUTF8(
 			InputStream in) throws IOException {
 		try {

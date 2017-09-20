@@ -47,12 +47,23 @@ import org.spinrdf.vocabulary.SP;
 
 /**
  * Static utilities on SPIN Expressions.
+ *
+
+ * @version $Id: $Id
  */
 public class SPINExpressions {
 	
+	/** Constant <code>emptyPrefixMapping</code> */
 	public static final PrefixMapping emptyPrefixMapping = new PrefixMappingImpl();
 	
 	
+	/**
+	 * <p>checkExpression.</p>
+	 *
+	 * @param str a {@link java.lang.String} object.
+	 * @param model a {@link org.apache.jena.rdf.model.Model} object.
+	 * @return a {@link java.lang.String} object.
+	 */
 	public static String checkExpression(String str, Model model) {
 		String queryString = "ASK WHERE { LET (?xqoe := (" + str + ")) }";
 		try {
@@ -82,6 +93,7 @@ public class SPINExpressions {
 	 * Evaluates a given SPIN expression.
 	 * Prior to calling this, the caller must make sure that the expression has the
 	 * most specific Java type, e.g. using SPINFactory.asExpression().
+	 *
 	 * @param expression  the expression (must be cast into the best possible type)
 	 * @param queryModel  the Model to query
 	 * @param bindings  the initial bindings
@@ -92,6 +104,14 @@ public class SPINExpressions {
 	}
 	
 	
+	/**
+	 * <p>evaluate.</p>
+	 *
+	 * @param expression a {@link org.apache.jena.rdf.model.Resource} object.
+	 * @param dataset a {@link org.apache.jena.query.Dataset} object.
+	 * @param bindings a {@link org.apache.jena.query.QuerySolution} object.
+	 * @return a {@link org.apache.jena.rdf.model.RDFNode} object.
+	 */
 	public static RDFNode evaluate(Resource expression, Dataset dataset, QuerySolution bindings) {
 		if(expression instanceof Variable) {
 			// Optimized case if the expression is just a variable
@@ -110,11 +130,24 @@ public class SPINExpressions {
 	}
 	
 	
+	/**
+	 * <p>getExpressionString.</p>
+	 *
+	 * @param expression a {@link org.apache.jena.rdf.model.RDFNode} object.
+	 * @return a {@link java.lang.String} object.
+	 */
 	public static String getExpressionString(RDFNode expression) {
 		return getExpressionString(expression, true);
 	}
 	
 	
+	/**
+	 * <p>getExpressionString.</p>
+	 *
+	 * @param expression a {@link org.apache.jena.rdf.model.RDFNode} object.
+	 * @param usePrefixes a boolean.
+	 * @return a {@link java.lang.String} object.
+	 */
 	public static String getExpressionString(RDFNode expression, boolean usePrefixes) {
 		if(usePrefixes) {
 			StringPrintContext p = new StringPrintContext();
@@ -132,6 +165,7 @@ public class SPINExpressions {
 	 * Checks whether a given RDFNode is an expression.
 	 * In order to be regarded as expression it must be a well-formed
 	 * function call, aggregation or variable.
+	 *
 	 * @param node  the RDFNode
 	 * @return true if node is an expression
 	 */
@@ -163,6 +197,13 @@ public class SPINExpressions {
 	}
 
 
+	/**
+	 * <p>parseARQExpression.</p>
+	 *
+	 * @param str a {@link java.lang.String} object.
+	 * @param model a {@link org.apache.jena.rdf.model.Model} object.
+	 * @return a {@link org.apache.jena.sparql.expr.Expr} object.
+	 */
 	public static Expr parseARQExpression(String str, Model model) {
 		String queryString = "ASK WHERE { LET (?xqoe := (" + str + ")) }";
 		Query arq = ARQFactory.get().createQuery(model, queryString);
@@ -173,18 +214,41 @@ public class SPINExpressions {
 	}
 	
 	
+	/**
+	 * <p>parseExpression.</p>
+	 *
+	 * @param str a {@link java.lang.String} object.
+	 * @param model a {@link org.apache.jena.rdf.model.Model} object.
+	 * @return a {@link org.apache.jena.rdf.model.RDFNode} object.
+	 */
 	public static RDFNode parseExpression(String str, Model model) {
 		Expr expr = parseARQExpression(str, model);
 		return parseExpression(expr, model);
 	}
 	
 	
+	/**
+	 * <p>parseExpression.</p>
+	 *
+	 * @param expr a {@link org.apache.jena.sparql.expr.Expr} object.
+	 * @param model a {@link org.apache.jena.rdf.model.Model} object.
+	 * @return a {@link org.apache.jena.rdf.model.RDFNode} object.
+	 */
 	public static RDFNode parseExpression(Expr expr, Model model) {
 		ARQ2SPIN a2s = new ARQ2SPIN(model);
 		return a2s.createExpression(expr);
 	}
 	
 
+	/**
+	 * <p>printExpressionString.</p>
+	 *
+	 * @param p a {@link org.spinrdf.model.print.PrintContext} object.
+	 * @param node a {@link org.apache.jena.rdf.model.RDFNode} object.
+	 * @param nested a boolean.
+	 * @param force a boolean.
+	 * @param prefixMapping a {@link org.apache.jena.shared.PrefixMapping} object.
+	 */
 	public static void printExpressionString(PrintContext p, RDFNode node, boolean nested, boolean force, PrefixMapping prefixMapping) {
 		if(node instanceof Resource && SPINFactory.asVariable(node) == null) {
 			Resource resource = (Resource) node;

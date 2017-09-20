@@ -37,11 +37,15 @@ import org.apache.jena.vocabulary.RDF;
 /**
  * A utility to convert RDF graphs between the sp:text syntax and SPIN RDF triples.
  * Can be used as a pre-processor of files so that they only use one syntax.
+ *
+
+ * @version $Id: $Id
  */
 public class SPTextUtil {
 	
 	/**
 	 * Adds an sp:text reflecting the SPIN RDF of a given Command.
+	 *
 	 * @param command  the SPIN Command to convert
 	 */
 	public static void addSPText(Command command) {
@@ -68,6 +72,7 @@ public class SPTextUtil {
 	 * but leave the surrounding sp:Select in place.
 	 * You may want to call {@link #ensureSPTextExists(Model)} beforehand to make
 	 * sure that the resulting SPIN resources remain valid.
+	 *
 	 * @param model  the Model to manipulate
 	 */
 	public static void deleteSPINRDF(Model model) {
@@ -112,6 +117,7 @@ public class SPTextUtil {
 	 * Ensures that each SPIN Command with an sp:text also has the SPIN RDF syntax triples.
 	 * For example this will create the sp:where triple for all sp:Selects, assuming they
 	 * do have sp:text triples.
+	 *
 	 * @param model  the Model to walk through
 	 */
 	public static void ensureSPINRDFExists(Model model) {
@@ -153,6 +159,7 @@ public class SPTextUtil {
 	
 	/**
 	 * Ensures that each SPIN Command (query/update) in a given Model has an sp:text triple.
+	 *
 	 * @param model  the Model to manipulate
 	 */
 	public static void ensureSPTextExists(Model model) {
@@ -169,7 +176,8 @@ public class SPTextUtil {
 	
 	/**
 	 * Checks if a given SPIN Command has at least one other triple beside the rdf:type, sp:text
-	 * and spin:thisUnbound triple.  This indicates whether SPIN RDF triples exist. 
+	 * and spin:thisUnbound triple.  This indicates whether SPIN RDF triples exist.
+	 *
 	 * @param command  the Command to check
 	 * @return true if the command has SPIN RDF triples
 	 */
@@ -195,6 +203,15 @@ public class SPTextUtil {
 	}
 	
 	
+	/**
+	 * <p>replaceQName.</p>
+	 *
+	 * @param text a {@link java.lang.String} object.
+	 * @param qname a {@link java.lang.String} object.
+	 * @param newQName a {@link java.lang.String} object.
+	 * @param newURI a {@link java.lang.String} object.
+	 * @return a {@link java.lang.String} object.
+	 */
 	public static String replaceQName(String text, String qname, String newQName, String newURI) {
 		if(newQName == null) {
 			newQName = "<" + newURI + ">";
@@ -214,6 +231,7 @@ public class SPTextUtil {
 	/**
 	 * Checks if a given SPARQL text contains a given qname - making sure
 	 * that they are true references and not part of another qname.
+	 *
 	 * @param text  the SPARQL text, e.g. "ASK { ?this ex:name ?name }"
 	 * @param qname  the qname, e.g. "ex:name"
 	 * @return true if the qname is contained in text

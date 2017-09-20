@@ -29,17 +29,30 @@ import org.spinrdf.model.Variable;
 /**
  * An ExpressionVisitor that recursively visits all expressions under
  * a given root.
+ *
+
+ * @version $Id: $Id
  */
 public class ExpressionWalker implements ExpressionVisitor {
 
 	private ExpressionVisitor visitor;
 	
 	
+	/**
+	 * <p>Constructor for ExpressionWalker.</p>
+	 *
+	 * @param visitor a {@link org.spinrdf.model.visitor.ExpressionVisitor} object.
+	 */
 	public ExpressionWalker(ExpressionVisitor visitor) {
 		this.visitor = visitor;
 	}
 
 	
+	/**
+	 * <p>visit.</p>
+	 *
+	 * @param aggregation a {@link org.spinrdf.model.Aggregation} object.
+	 */
 	public void visit(Aggregation aggregation) {
 		visitor.visit(aggregation);
 		Variable as = aggregation.getAs();
@@ -53,6 +66,11 @@ public class ExpressionWalker implements ExpressionVisitor {
 	}
 
 
+	/**
+	 * <p>visit.</p>
+	 *
+	 * @param functionCall a {@link org.spinrdf.model.FunctionCall} object.
+	 */
 	public void visit(FunctionCall functionCall) {
 		visitor.visit(functionCall);
 		List<RDFNode> args = functionCall.getArguments();
@@ -62,11 +80,17 @@ public class ExpressionWalker implements ExpressionVisitor {
 	}
 
 	
+	/**
+	 * <p>visit.</p>
+	 *
+	 * @param node a {@link org.apache.jena.rdf.model.RDFNode} object.
+	 */
 	public void visit(RDFNode node) {
 		visitor.visit(node);
 	}
 
 	
+	/** {@inheritDoc} */
 	public void visit(Variable variable) {
 		visitor.visit(variable);
 	}

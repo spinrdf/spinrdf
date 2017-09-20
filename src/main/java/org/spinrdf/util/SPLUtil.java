@@ -40,6 +40,9 @@ import org.spinrdf.vocabulary.SPL;
 
 /**
  * Utilities related to the spl namespace.
+ *
+
+ * @version $Id: $Id
  */
 public class SPLUtil {
 	
@@ -79,6 +82,7 @@ public class SPLUtil {
 	 * Gets any declared spl:Argument that is attached to the types of a given
 	 * subject (or its superclasses) via spin:constraint, that has a given predicate
 	 * as its spl:predicate.
+	 *
 	 * @param subject  the instance to get an Argument of
 	 * @param predicate  the predicate to match
 	 * @return the Argument or null if none found for that type
@@ -163,7 +167,8 @@ public class SPLUtil {
 	/**
 	 * Creates a Map from Properties to RDFNodes based on declared
 	 * spl:InferDefaultValues.
-	 * @param subject
+	 *
+	 * @param subject a {@link org.apache.jena.rdf.model.Resource} object.
 	 * @return a Map from Properties to their default values (no null values)
 	 */
 	public static Map<Property,RDFNode> getDefaultValues(Resource subject) {
@@ -178,7 +183,11 @@ public class SPLUtil {
 
 	/**
 	 * Same as <code>getObject(subject, predicate, false)</code>.
+	 *
 	 * @see #getObject(Resource, Property, boolean)
+	 * @param subject a {@link org.apache.jena.rdf.model.Resource} object.
+	 * @param predicate a {@link org.apache.jena.rdf.model.Property} object.
+	 * @return a {@link org.apache.jena.rdf.model.RDFNode} object.
 	 */
 	public static RDFNode getObject(Resource subject, Property predicate) {
 		return getObject(subject, predicate, false);
@@ -190,6 +199,7 @@ public class SPLUtil {
 	 * If no value exists, then it checks whether any spl:InferDefaultValue
 	 * has been defined for the type(s) of the subject.
 	 * No need to run inferences first.
+	 *
 	 * @param subject  the subject to get the object of
 	 * @param predicate  the predicate
 	 * @param includeSubProperties  true to also check for sub-properties of predicate
@@ -223,6 +233,12 @@ public class SPLUtil {
 	}
 	
 	
+	/**
+	 * <p>getPrimaryKeyProperty.</p>
+	 *
+	 * @param cls a {@link org.apache.jena.rdf.model.Resource} object.
+	 * @return a {@link org.apache.jena.rdf.model.Property} object.
+	 */
 	public static Property getPrimaryKeyProperty(Resource cls) {
 		Node result = JenaUtil.invokeFunction1(SPL.primaryKeyProperty, cls.asNode(), ARQFactory.get().getDataset(cls.getModel()));
 		if(result != null) {
@@ -234,6 +250,12 @@ public class SPLUtil {
 	}
 	
 	
+	/**
+	 * <p>getPrimaryKeyURIStart.</p>
+	 *
+	 * @param cls a {@link org.apache.jena.rdf.model.Resource} object.
+	 * @return a {@link java.lang.String} object.
+	 */
 	public static String getPrimaryKeyURIStart(Resource cls) {
 		Node result = JenaUtil.invokeFunction1(SPL.primaryKeyURIStart, cls.asNode(), ARQFactory.get().getDataset(cls.getModel()));
 		if(result != null) {
@@ -245,6 +267,12 @@ public class SPLUtil {
 	}
 	
 	
+	/**
+	 * <p>hasPrimaryKey.</p>
+	 *
+	 * @param cls a {@link org.apache.jena.rdf.model.Resource} object.
+	 * @return a boolean.
+	 */
 	public static boolean hasPrimaryKey(Resource cls) {
 		return JenaUtil.invokeFunction1(SPL.primaryKeyProperty, cls.asNode(), ARQFactory.get().getDataset(cls.getModel())) != null;
 	}
@@ -253,6 +281,7 @@ public class SPLUtil {
 	/**
 	 * Checks whether a given Resource is an instance of spl:Argument (or a subclass
 	 * thereof.
+	 *
 	 * @param resource  the Resource to test
 	 * @return true if resource is an argument
 	 */
@@ -263,6 +292,7 @@ public class SPLUtil {
 	
 	/**
 	 * Checks if a given Property is a defined spl:Argument of a given subject Resource.
+	 *
 	 * @param subject  the subject
 	 * @param predicate  the Property to test
 	 * @return true  if an spl:Argument exists in the type hierarchy of subject

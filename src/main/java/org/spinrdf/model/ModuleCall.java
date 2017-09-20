@@ -22,11 +22,15 @@ import org.apache.jena.rdf.model.Resource;
 
 /**
  * Abstract base interface of TemplateCall and FunctionCall.
+ *
+
+ * @version $Id: $Id
  */
 public interface ModuleCall extends Resource {
 	
 	/**
 	 * Gets the associated module, i.e. SPIN function or template, derived from the rdf:type.
+	 *
 	 * @return the module
 	 */
 	Module getModule();

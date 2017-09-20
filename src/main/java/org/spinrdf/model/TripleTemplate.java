@@ -20,8 +20,9 @@ package org.spinrdf.model;
 
 /**
  * A triple template used in a Construct header.
- * 
+ *
  * @author Holger Knublauch
+ * @version $Id: $Id
  */
 public interface TripleTemplate extends Triple {
 }

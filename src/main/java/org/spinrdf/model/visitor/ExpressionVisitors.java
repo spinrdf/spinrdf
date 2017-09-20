@@ -25,9 +25,18 @@ import org.spinrdf.model.Variable;
 
 /**
  * Utility functions for ExpressionVisitors.
+ *
+
+ * @version $Id: $Id
  */
 public class ExpressionVisitors {
 
+	/**
+	 * <p>visit.</p>
+	 *
+	 * @param node a {@link org.apache.jena.rdf.model.RDFNode} object.
+	 * @param visitor a {@link org.spinrdf.model.visitor.ExpressionVisitor} object.
+	 */
 	public static void visit(RDFNode node, ExpressionVisitor visitor) {
 		if(node instanceof Variable) {
 			visitor.visit((Variable)node);

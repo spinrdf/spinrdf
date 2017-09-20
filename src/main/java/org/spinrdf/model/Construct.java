@@ -22,13 +22,15 @@ import java.util.List;
 
 /**
  * A CONSTRUCT Query.
- * 
+ *
  * @author Holger Knublauch
+ * @version $Id: $Id
  */
 public interface Construct extends SolutionModifierQuery {
 
 	/**
 	 * Gets the list of TripleTemplates in the head of the query.
+	 *
 	 * @return the templates
 	 */
 	List<TripleTemplate> getTemplates();

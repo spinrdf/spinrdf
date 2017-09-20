@@ -32,25 +32,44 @@ import org.spinrdf.util.JenaUtil;
 /**
  * A singleton that is used by SPINARQFunction to check whether all supplied arguments
  * match the definition of the declared spl:Arguments.
- * 
+ *
  * By default the singleton is null (indicating a no-op), but implementors can install a
  * subclass of this to report warnings, throw exceptions or whatever they like.
- * 
+ *
  * Note that activating this will have a severe performance impact.
+ *
+
+ * @version $Id: $Id
  */
 public abstract class SPINArgumentChecker {
 
 	private static SPINArgumentChecker singleton;
 	
+	/**
+	 * <p>get.</p>
+	 *
+	 * @return a {@link org.spinrdf.system.SPINArgumentChecker} object.
+	 */
 	public static SPINArgumentChecker get() {
 		return singleton;
 	}
 	
+	/**
+	 * <p>set.</p>
+	 *
+	 * @param value a {@link org.spinrdf.system.SPINArgumentChecker} object.
+	 */
 	public static void set(SPINArgumentChecker value) {
 		singleton = value;
 	}
 	
 
+	/**
+	 * <p>check.</p>
+	 *
+	 * @param module a {@link org.spinrdf.model.Module} object.
+	 * @param bindings a {@link org.apache.jena.query.QuerySolutionMap} object.
+	 */
 	public void check(Module module, QuerySolutionMap bindings) {
 		List<String> errors = new LinkedList<String>();
 		for(Argument arg : module.getArguments(false)) {
@@ -97,5 +116,12 @@ public abstract class SPINArgumentChecker {
 	}
 	
 	
+	/**
+	 * <p>handleErrors.</p>
+	 *
+	 * @param module a {@link org.spinrdf.model.Module} object.
+	 * @param bindings a {@link org.apache.jena.query.QuerySolutionMap} object.
+	 * @param errors a {@link java.util.List} object.
+	 */
 	protected abstract void handleErrors(Module module, QuerySolutionMap bindings, List<String> errors);
 }

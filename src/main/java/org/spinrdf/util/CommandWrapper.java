@@ -27,10 +27,13 @@ import org.spinrdf.model.Command;
 
 /**
  * Wraps a (pre-compiled) Jena Query or UpdateRequest with its source SPIN object and
- * a human-readable string representation. 
- * 
+ * a human-readable string representation.
+ *
  * Also needed to work around the issue of Query.equals/hashCode: Otherwise
  * multiple distinct template calls will be merged into one in HashMaps.
+ *
+
+ * @version $Id: $Id
  */
 public abstract class CommandWrapper {
 	
@@ -50,6 +53,16 @@ public abstract class CommandWrapper {
 	private boolean thisUnbound;
 	
 	
+	/**
+	 * <p>Constructor for CommandWrapper.</p>
+	 *
+	 * @param source a {@link org.apache.jena.rdf.model.Resource} object.
+	 * @param text a {@link java.lang.String} object.
+	 * @param label a {@link java.lang.String} object.
+	 * @param statement a {@link org.apache.jena.rdf.model.Statement} object.
+	 * @param thisUnbound a boolean.
+	 * @param thisDepth a {@link java.lang.Integer} object.
+	 */
 	public CommandWrapper(Resource source, String text, String label, Statement statement, boolean thisUnbound, Integer thisDepth) {
 		this.label = label;
 		this.statement = statement;
@@ -60,26 +73,47 @@ public abstract class CommandWrapper {
 	}
 	
 	
+	/**
+	 * <p>Getter for the field <code>templateBinding</code>.</p>
+	 *
+	 * @return a {@link java.util.Map} object.
+	 */
 	public Map<String,RDFNode> getTemplateBinding() {
 		return templateBinding;
 	}
 	
 	
+	/**
+	 * <p>Getter for the field <code>label</code>.</p>
+	 *
+	 * @return a {@link java.lang.String} object.
+	 */
 	public String getLabel() {
 		return label;
 	}
 	
 	
+	/**
+	 * <p>getSPINCommand.</p>
+	 *
+	 * @return a {@link org.spinrdf.model.Command} object.
+	 */
 	public abstract Command getSPINCommand();
 	
 	
+	/**
+	 * <p>Getter for the field <code>statement</code>.</p>
+	 *
+	 * @return a {@link org.apache.jena.rdf.model.Statement} object.
+	 */
 	public Statement getStatement() {
 		return statement;
 	}
 	
 	
 	/**
-	 * Gets the SPIN Query or template call that has created this QueryWrapper. 
+	 * Gets the SPIN Query or template call that has created this QueryWrapper.
+	 *
 	 * @return the source
 	 */
 	public Resource getSource() {
@@ -87,6 +121,11 @@ public abstract class CommandWrapper {
 	}
 	
 	
+	/**
+	 * <p>Getter for the field <code>text</code>.</p>
+	 *
+	 * @return a {@link java.lang.String} object.
+	 */
 	public String getText() {
 		return text;
 	}
@@ -95,6 +134,7 @@ public abstract class CommandWrapper {
 	/**
 	 * Gets the maximum depth of ?this in the element tree.
 	 * May be null if either not computed (?thisUnbound) or ?this does not exist.
+	 *
 	 * @return the max depth of ?this or null
 	 */
 	public Integer getThisDepth() {
@@ -102,16 +142,31 @@ public abstract class CommandWrapper {
 	}
 	
 	
+	/**
+	 * <p>isThisDeep.</p>
+	 *
+	 * @return a boolean.
+	 */
 	public boolean isThisDeep() {
 		return thisDepth != null && thisDepth > 1;
 	}
 	
 	
+	/**
+	 * <p>isThisUnbound.</p>
+	 *
+	 * @return a boolean.
+	 */
 	public boolean isThisUnbound() {
 		return thisUnbound;
 	}
 	
 	
+	/**
+	 * <p>Setter for the field <code>templateBinding</code>.</p>
+	 *
+	 * @param value a {@link java.util.Map} object.
+	 */
 	public void setTemplateBinding(Map<String,RDFNode> value) {
 		this.templateBinding = value;
 	}

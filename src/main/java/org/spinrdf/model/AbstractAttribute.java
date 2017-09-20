@@ -23,11 +23,15 @@ import org.apache.jena.rdf.model.Resource;
 
 /**
  * Shared base class for Argument and Attribute.
+ *
+
+ * @version $Id: $Id
  */
 public abstract interface AbstractAttribute extends Resource {
 	
 	/**
 	 * Gets the description (stored in rdfs:comment) of this.
+	 *
 	 * @return the description (if any exists)
 	 */
 	String getComment();
@@ -35,6 +39,7 @@ public abstract interface AbstractAttribute extends Resource {
 	
 	/**
 	 * Gets the specified sp:argProperty (if any).
+	 *
 	 * @return the argProperty
 	 */
 	Property getPredicate();
@@ -42,6 +47,7 @@ public abstract interface AbstractAttribute extends Resource {
 
 	/**
 	 * Gets the specified spl:valueType (if any).
+	 *
 	 * @return the value type
 	 */
 	Resource getValueType();
@@ -51,6 +57,7 @@ public abstract interface AbstractAttribute extends Resource {
 	 * Checks if this argument has been declared to be optional.
 	 * For Arguments this means spl:optional = true.
 	 * For Attributes this means spl:minCardinality = 0
+	 *
 	 * @return  true if optional
 	 */
 	boolean isOptional();

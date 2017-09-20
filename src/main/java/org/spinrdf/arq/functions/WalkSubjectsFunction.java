@@ -24,14 +24,19 @@ import org.apache.jena.util.iterator.ExtendedIterator;
 
 /**
  * The implementation of sh:walkSubjects.
+ *
+
+ * @version $Id: $Id
  */
 public class WalkSubjectsFunction extends AbstractWalkFunction {
 
+	/** {@inheritDoc} */
 	protected ExtendedIterator<Triple> createIterator(Graph graph, Node node, Node predicate) {
 		return graph.find(null, predicate, node);
 	}
 
 	
+	/** {@inheritDoc} */
 	protected Node getNext(Triple triple) {
 		return triple.getSubject();
 	}

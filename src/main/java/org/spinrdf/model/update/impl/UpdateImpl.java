@@ -37,13 +37,30 @@ import org.spinrdf.util.JenaDatatypes;
 import org.spinrdf.util.JenaUtil;
 import org.spinrdf.vocabulary.SP;
 
+/**
+ * <p>Abstract UpdateImpl class.</p>
+ *
+
+ * @version $Id: $Id
+ */
 public abstract class UpdateImpl extends AbstractSPINResourceImpl implements Update {
 
+	/**
+	 * <p>Constructor for UpdateImpl.</p>
+	 *
+	 * @param node a {@link org.apache.jena.graph.Node} object.
+	 * @param graph a {@link org.apache.jena.enhanced.EnhGraph} object.
+	 */
 	public UpdateImpl(Node node, EnhGraph graph) {
 		super(node, graph);
 	}
 
 
+	/**
+	 * <p>getWhere.</p>
+	 *
+	 * @return a {@link org.spinrdf.model.ElementList} object.
+	 */
 	public ElementList getWhere() {
 		Statement whereS = getProperty(SP.where);
 		if(whereS != null) {
@@ -56,11 +73,17 @@ public abstract class UpdateImpl extends AbstractSPINResourceImpl implements Upd
 	}
 
 	
+	/**
+	 * <p>isSilent.</p>
+	 *
+	 * @return a boolean.
+	 */
 	public boolean isSilent() {
 		return hasProperty(SP.silent, JenaDatatypes.TRUE);
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public void print(PrintContext p) {
 		String text = ARQ2SPIN.getTextOnly(this);
@@ -73,9 +96,19 @@ public abstract class UpdateImpl extends AbstractSPINResourceImpl implements Upd
 	}
 	
 	
+	/**
+	 * <p>printSPINRDF.</p>
+	 *
+	 * @param p a {@link org.spinrdf.model.print.PrintContext} object.
+	 */
 	protected abstract void printSPINRDF(PrintContext p);
 
 
+	/**
+	 * <p>printGraphDefaultNamedOrAll.</p>
+	 *
+	 * @param p a {@link org.spinrdf.model.print.PrintContext} object.
+	 */
 	protected void printGraphDefaultNamedOrAll(PrintContext p) {
 		Resource graph = JenaUtil.getResourceProperty(this, SP.graphIRI);
 		if(graph != null) {
@@ -95,6 +128,12 @@ public abstract class UpdateImpl extends AbstractSPINResourceImpl implements Upd
 	}
 
 
+	/**
+	 * <p>printGraphIRIs.</p>
+	 *
+	 * @param p a {@link org.spinrdf.model.print.PrintContext} object.
+	 * @param keyword a {@link java.lang.String} object.
+	 */
 	protected void printGraphIRIs(PrintContext p, String keyword) {
 		List<String> graphIRIs = new ArrayList<String>();
 		{
@@ -118,6 +157,11 @@ public abstract class UpdateImpl extends AbstractSPINResourceImpl implements Upd
 	}
 
 
+	/**
+	 * <p>printSilent.</p>
+	 *
+	 * @param p a {@link org.spinrdf.model.print.PrintContext} object.
+	 */
 	protected void printSilent(PrintContext p) {
 		if(isSilent()) {
 			p.printKeyword("SILENT");
@@ -126,6 +170,16 @@ public abstract class UpdateImpl extends AbstractSPINResourceImpl implements Upd
 	}
 	
 	
+	/**
+	 * <p>printTemplates.</p>
+	 *
+	 * @param p a {@link org.spinrdf.model.print.PrintContext} object.
+	 * @param predicate a {@link org.apache.jena.rdf.model.Property} object.
+	 * @param keyword a {@link java.lang.String} object.
+	 * @param force a boolean.
+	 * @param graphIRI a {@link org.apache.jena.rdf.model.Resource} object.
+	 * @return a boolean.
+	 */
 	protected boolean printTemplates(PrintContext p, Property predicate, String keyword, boolean force, Resource graphIRI) {
 		List<RDFNode> nodes = getList(predicate);
 		if(!nodes.isEmpty() || force) {
@@ -177,6 +231,11 @@ public abstract class UpdateImpl extends AbstractSPINResourceImpl implements Upd
 	}
 
 
+	/**
+	 * <p>printWhere.</p>
+	 *
+	 * @param p a {@link org.spinrdf.model.print.PrintContext} object.
+	 */
 	protected void printWhere(PrintContext p) {
 		p.printIndentation(p.getIndentation());
 		p.printKeyword("WHERE");

@@ -60,7 +60,10 @@ import org.spinrdf.vocabulary.SPIN;
 
 /**
  * An ARQ function that delegates its functionality into a user-defined
- * SPIN function. 
+ * SPIN function.
+ *
+
+ * @version $Id: $Id
  */
 public class SPINARQFunction implements org.apache.jena.sparql.function.Function, SPINFunctionFactory {
 	
@@ -81,6 +84,7 @@ public class SPINARQFunction implements org.apache.jena.sparql.function.Function
 	 * Constructs a new SPINARQFunction based on a given SPIN Function.
 	 * The spinFunction model be associated with the Model containing
 	 * the triples of its definition.
+	 *
 	 * @param spinFunction  the SPIN function
 	 */
 	public SPINARQFunction(Function spinFunction) {
@@ -117,15 +121,18 @@ public class SPINARQFunction implements org.apache.jena.sparql.function.Function
 	}
 	
 
+	/** {@inheritDoc} */
 	public void build(String uri, ExprList args) {
 	}
 
 	
+	/** {@inheritDoc} */
 	public org.apache.jena.sparql.function.Function create(String uri) {
 		return this;
 	}
 
 	
+	/** {@inheritDoc} */
 	public NodeValue exec(Binding binding, ExprList args, String uri, FunctionEnv env) {
 		
 		Graph activeGraph = env.getActiveGraph();
@@ -230,11 +237,26 @@ public class SPINARQFunction implements org.apache.jena.sparql.function.Function
 	}
 
 
+	/**
+	 * <p>executeBody.</p>
+	 *
+	 * @param model a {@link org.apache.jena.rdf.model.Model} object.
+	 * @param bindings a {@link org.apache.jena.query.QuerySolution} object.
+	 * @return a {@link org.apache.jena.sparql.expr.NodeValue} object.
+	 */
 	public NodeValue executeBody(Model model, QuerySolution bindings) {
 		return executeBody(null, model, bindings);
 	}
 	
 	
+	/**
+	 * <p>executeBody.</p>
+	 *
+	 * @param dataset a {@link org.apache.jena.query.Dataset} object.
+	 * @param defaultModel a {@link org.apache.jena.rdf.model.Model} object.
+	 * @param bindings a {@link org.apache.jena.query.QuerySolution} object.
+	 * @return a {@link org.apache.jena.sparql.expr.NodeValue} object.
+	 */
 	public NodeValue executeBody(Dataset dataset, Model defaultModel, QuerySolution bindings) {
 		QueryExecution qexec;
 		if(dataset != null) {
@@ -276,6 +298,7 @@ public class SPINARQFunction implements org.apache.jena.sparql.function.Function
 	
 	/**
 	 * Gets the names of the declared arguments, in order from left to right.
+	 *
 	 * @return the arguments
 	 */
 	public String[] getArgNames() {
@@ -283,6 +306,11 @@ public class SPINARQFunction implements org.apache.jena.sparql.function.Function
 	}
 	
 	
+	/**
+	 * <p>getArgPropertyNodes.</p>
+	 *
+	 * @return an array of {@link org.apache.jena.graph.Node} objects.
+	 */
 	public Node[] getArgPropertyNodes() {
 		return argNodes.toArray(new Node[0]);
 	}
@@ -290,6 +318,7 @@ public class SPINARQFunction implements org.apache.jena.sparql.function.Function
 
 	/**
 	 * Gets the Jena Query object for execution.
+	 *
 	 * @return the Jena Query
 	 */
 	public org.apache.jena.query.Query getBodyQuery() {
@@ -297,6 +326,11 @@ public class SPINARQFunction implements org.apache.jena.sparql.function.Function
 	}
 	
 	
+	/**
+	 * <p>getSPINFunction.</p>
+	 *
+	 * @return a {@link org.spinrdf.model.Function} object.
+	 */
 	public Function getSPINFunction() {
 		return spinFunction;
 	}

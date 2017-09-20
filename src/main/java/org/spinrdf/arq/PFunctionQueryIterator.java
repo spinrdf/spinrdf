@@ -61,18 +61,21 @@ class PFunctionQueryIterator extends QueryIteratorBase {
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	protected void closeIterator() {
 		qexec.close();
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	protected boolean hasNextBinding() {
 		return rs.hasNext();
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	protected Binding moveToNextBinding() {
 		QuerySolution s = rs.nextSolution();
@@ -90,10 +93,12 @@ class PFunctionQueryIterator extends QueryIteratorBase {
 	}
 
 
+	/** {@inheritDoc} */
 	public void output(IndentedWriter out, SerializationContext sCxt) {
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	protected void requestCancel() {
 		// TODO: what needs to happen here?

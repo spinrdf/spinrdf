@@ -35,14 +35,22 @@ import org.spinrdf.model.QueryOrTemplateCall;
 import org.spinrdf.progress.NullProgressMonitor;
 import org.spinrdf.progress.ProgressMonitor;
 
+/**
+ * <p>ViolatesConstraintsFunction class.</p>
+ *
+
+ * @version $Id: $Id
+ */
 public class ViolatesConstraintsFunction extends AbstractFunction2  implements FunctionFactory {
 	
+	/** {@inheritDoc} */
 	@Override
 	public Function create(String uri) {
 		return this;
 	}
 
 	
+	/** {@inheritDoc} */
 	@Override
 	protected NodeValue exec(Node instanceNode, Node classNode, FunctionEnv env) {
 		

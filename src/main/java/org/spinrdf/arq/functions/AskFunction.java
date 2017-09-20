@@ -39,17 +39,22 @@ import org.spinrdf.model.TemplateCall;
 
 /**
  * The built-in function spin:ask.
- * 
+ *
  * Can be used to invoke a given sp:Ask query.
+ *
+
+ * @version $Id: $Id
  */
 public class AskFunction extends AbstractFunction implements FunctionFactory {
 	
+	/** {@inheritDoc} */
 	@Override
 	public Function create(String uri) {
 		return this;
 	}
 
 	
+	/** {@inheritDoc} */
 	@Override
 	protected NodeValue exec(Node[] nodes, FunctionEnv env) {
 		if(nodes.length == 0) {

@@ -24,15 +24,25 @@ import org.spinrdf.model.Function;
 /**
  * A (default) SPINFunctionDriver using spin:body to find an executable
  * body for a SPIN function.
+ *
+
+ * @version $Id: $Id
  */
 public class SPINBodyFunctionDriver implements SPINFunctionDriver {
 
+	/** {@inheritDoc} */
 	@Override
 	public SPINFunctionFactory create(Resource spinFunction) {
 		return doCreate(spinFunction.as(Function.class));
 	}
 	
 	
+	/**
+	 * <p>doCreate.</p>
+	 *
+	 * @param spinFunction a {@link org.spinrdf.model.Function} object.
+	 * @return a {@link org.spinrdf.arq.SPINFunctionFactory} object.
+	 */
 	public static SPINFunctionFactory doCreate(Function spinFunction) {
 		return new SPINARQFunction(spinFunction);
 	}

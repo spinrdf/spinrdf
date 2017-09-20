@@ -29,13 +29,30 @@ import org.spinrdf.vocabulary.SP;
 
 
 
+/**
+ * <p>SubQueryImpl class.</p>
+ *
+
+ * @version $Id: $Id
+ */
 public class SubQueryImpl extends ElementImpl implements SubQuery {
     
+	/**
+	 * <p>Constructor for SubQueryImpl.</p>
+	 *
+	 * @param node a {@link org.apache.jena.graph.Node} object.
+	 * @param graph a {@link org.apache.jena.enhanced.EnhGraph} object.
+	 */
 	public SubQueryImpl(Node node, EnhGraph graph) {
 		super(node, graph);
 	}
 
 	
+	/**
+	 * <p>getQuery.</p>
+	 *
+	 * @return a {@link org.spinrdf.model.Query} object.
+	 */
 	public Query getQuery() {
 		Resource r = getResource(SP.query);
 		if(r != null) {
@@ -47,6 +64,7 @@ public class SubQueryImpl extends ElementImpl implements SubQuery {
 	}
 
 	
+	/** {@inheritDoc} */
 	public void print(PrintContext p) {
 		p.print("{");
 		p.println();
@@ -68,6 +86,7 @@ public class SubQueryImpl extends ElementImpl implements SubQuery {
 	}
 
 	
+	/** {@inheritDoc} */
 	public void visit(ElementVisitor visitor) {
 		visitor.visit(this);
 	}

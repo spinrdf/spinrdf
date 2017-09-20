@@ -23,14 +23,32 @@ import org.spinrdf.model.print.PrintContext;
 import org.spinrdf.model.update.Delete;
 import org.spinrdf.vocabulary.SP;
 
+/**
+ *
+
+ * @deprecated
+ */
 @Deprecated
+/**
+ * <p>DeleteImpl class.</p>
+ *
+
+ * @version $Id: $Id
+ */
 public class DeleteImpl extends UpdateImpl implements Delete {
 
+	/**
+	 * <p>Constructor for DeleteImpl.</p>
+	 *
+	 * @param node a {@link org.apache.jena.graph.Node} object.
+	 * @param graph a {@link org.apache.jena.enhanced.EnhGraph} object.
+	 */
 	public DeleteImpl(Node node, EnhGraph graph) {
 		super(node, graph);
 	}
 
 	
+	/** {@inheritDoc} */
 	public void printSPINRDF(PrintContext p) {
 		printComment(p);
 		printPrefixes(p);

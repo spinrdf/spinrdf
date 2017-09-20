@@ -31,29 +31,57 @@ import org.apache.jena.graph.Node;
  * values to avoid costly function calls.
  *
  * @author Holger Knublauch
+ * @version $Id: $Id
  */
 public class MagicPropertyPolicy {
 
 	private static MagicPropertyPolicy singleton = new MagicPropertyPolicy();
 	
+	/**
+	 * <p>get.</p>
+	 *
+	 * @return a {@link org.spinrdf.system.MagicPropertyPolicy} object.
+	 */
 	public static MagicPropertyPolicy get() {
 		return singleton;
 	}
 	
+	/**
+	 * <p>set.</p>
+	 *
+	 * @param value a {@link org.spinrdf.system.MagicPropertyPolicy} object.
+	 */
 	public static void set(MagicPropertyPolicy value) {
 		singleton = value;
 	}
 	
-	
-	public enum Policy {
-		TRIPLES_ONLY, QUERY_RESULTS_ONLY, BOTH
+    /**
+     *
+     */
+    public enum Policy {
+
+            /**
+             *
+             */
+            TRIPLES_ONLY,
+
+            /**
+             *
+             */
+            QUERY_RESULTS_ONLY,
+
+            /**
+             *
+             */
+            BOTH
 	};
 	
 	
 	/**
 	 * Checks whether a given magic property call should return asserted
 	 * triples, dynamically computed query results, or both for a given
-	 * subject/object combination.  
+	 * subject/object combination.
+	 *
 	 * @param functionURI  the URI of the function
 	 * @param graph  the Graph to query
 	 * @param matchSubject  the subject Node or null

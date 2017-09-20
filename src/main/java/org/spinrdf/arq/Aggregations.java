@@ -29,6 +29,9 @@ import org.spinrdf.vocabulary.SP;
 /**
  * Manages the registered SPARQL aggregations (such as SUM).
  * These are loaded from the sp system ontology.
+ *
+
+ * @version $Id: $Id
  */
 public class Aggregations {
 
@@ -50,6 +53,7 @@ public class Aggregations {
 	
 	/**
 	 * If registered, returns the display name of a given aggregation type.
+	 *
 	 * @param aggType  the aggregation type, e.g. sp:Sum
 	 * @return the name (e.g., "SUM") or null if not registered
 	 */
@@ -59,7 +63,8 @@ public class Aggregations {
 	
 	
 	/**
-	 * If registered, returns the aggregation Resource for a given display name. 
+	 * If registered, returns the aggregation Resource for a given display name.
+	 *
 	 * @param name  the name (e.g., "SUM")
 	 * @return the type or null if not registered
 	 */
@@ -72,6 +77,7 @@ public class Aggregations {
 	 * Programatically adds a new aggregation type.  This is usually only
 	 * populated from the sp system ontology, but API users may want to
 	 * bypass (and extend) this mechanism.
+	 *
 	 * @param aggType  the type to register
 	 * @param name  the display name
 	 */

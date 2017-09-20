@@ -22,8 +22,9 @@ import org.spinrdf.model.CommandWithWhere;
 
 /**
  * A SPARQL Update DELETE WHERE operation.
- * 
+ *
  * @author Holger Knublauch
+ * @version $Id: $Id
  */
 public interface DeleteWhere extends Update, CommandWithWhere {
 }

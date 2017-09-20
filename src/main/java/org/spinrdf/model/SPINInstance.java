@@ -27,11 +27,15 @@ import org.apache.jena.rdf.model.Resource;
  * A Resource that also may have spin constraints or rules attached to it.
  * This is basically a convenience layer that can be used to access those
  * constraints and rules more easily.
+ *
+
+ * @version $Id: $Id
  */
 public interface SPINInstance extends Resource {
 
 	/**
 	 * Gets the queries and template calls associated with this.
+	 *
 	 * @param predicate  the predicate such as <code>spin:rule</code>
 	 * @return a List of QueryOrTemplateCall instances
 	 */

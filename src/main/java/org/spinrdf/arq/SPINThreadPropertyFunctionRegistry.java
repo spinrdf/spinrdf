@@ -26,24 +26,33 @@ import org.apache.jena.sparql.pfunction.PropertyFunctionRegistry;
  * An ARQ PropertyFunctionRegistry that can be used to associate functions
  * with Threads, so that additional functions from a given Model can
  * be made visible depending on the SPARQL query thread.
- * 
+ *
  * Note that this concept only works if ARQ has been set to single
  * threading, which is done by the static block below.
- * 
+ *
  * The contract of this class is very strict to prevent memory leaks:
  * Users always need to make sure that unregister is called as soon
  * as a query (block) ends.
+ *
+
+ * @version $Id: $Id
  */
 public class SPINThreadPropertyFunctionRegistry extends PropertyFunctionRegistry {
 	
 	private PropertyFunctionRegistry base;
 	
 	
+	/**
+	 * <p>Constructor for SPINThreadPropertyFunctionRegistry.</p>
+	 *
+	 * @param base a {@link org.apache.jena.sparql.pfunction.PropertyFunctionRegistry} object.
+	 */
 	public SPINThreadPropertyFunctionRegistry(PropertyFunctionRegistry base) {
 		this.base = base;
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public PropertyFunctionFactory get(String uri) {
 		PropertyFunctionFactory b = base.get(uri);
@@ -61,6 +70,7 @@ public class SPINThreadPropertyFunctionRegistry extends PropertyFunctionRegistry
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public boolean isRegistered(String uri) {
 		if(base.isRegistered(uri)) {
@@ -70,6 +80,7 @@ public class SPINThreadPropertyFunctionRegistry extends PropertyFunctionRegistry
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public Iterator<String> keys() {
 		// Note: only includes base keys
@@ -77,6 +88,7 @@ public class SPINThreadPropertyFunctionRegistry extends PropertyFunctionRegistry
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public boolean manages(String uri) {
 		if(base.manages(uri)) {
@@ -88,18 +100,21 @@ public class SPINThreadPropertyFunctionRegistry extends PropertyFunctionRegistry
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public void put(String uri, Class<?> extClass) {
 		base.put(uri, extClass);
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public void put(String uri, PropertyFunctionFactory factory) {
 		base.put(uri, factory);
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public PropertyFunctionFactory remove(String uri) {
 		return base.remove(uri);

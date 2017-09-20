@@ -43,9 +43,13 @@ import org.spinrdf.vocabulary.SPL;
 
 /**
  * The function sh:invoke (and spif:invoke).
+ *
+
+ * @version $Id: $Id
  */
 public class InvokeFunction	extends AbstractFunction {
 
+	/** {@inheritDoc} */
 	@Override
 	protected NodeValue exec(Node[] nodes, FunctionEnv env) {
 		if(nodes.length == 0) {

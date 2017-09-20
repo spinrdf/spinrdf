@@ -43,18 +43,32 @@ import org.spinrdf.util.JenaUtil;
 import org.spinrdf.vocabulary.SP;
 
 
+/**
+ * <p>TriplePathImpl class.</p>
+ *
+
+ * @version $Id: $Id
+ */
 public class TriplePathImpl extends TupleImpl implements TriplePath {
 
+	/**
+	 * <p>Constructor for TriplePathImpl.</p>
+	 *
+	 * @param node a {@link org.apache.jena.graph.Node} object.
+	 * @param graph a {@link org.apache.jena.enhanced.EnhGraph} object.
+	 */
 	public TriplePathImpl(Node node, EnhGraph graph) {
 		super(node, graph);
 	}
 
 	
+	/** {@inheritDoc} */
 	public void visit(ElementVisitor visitor) {
 		visitor.visit(this);
 	}
 
 	
+	/** {@inheritDoc} */
 	public void print(PrintContext p) {
 		print(getSubject(), p);
 		p.print(" ");

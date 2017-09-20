@@ -37,29 +37,61 @@ import org.spinrdf.util.JenaUtil;
 import org.spinrdf.vocabulary.SP;
 
 
+/**
+ * <p>Abstract QueryImpl class.</p>
+ *
+
+ * @version $Id: $Id
+ */
 public abstract class QueryImpl extends AbstractSPINResourceImpl implements SolutionModifierQuery {
 	
 	
+	/**
+	 * <p>Constructor for QueryImpl.</p>
+	 *
+	 * @param node a {@link org.apache.jena.graph.Node} object.
+	 * @param graph a {@link org.apache.jena.enhanced.EnhGraph} object.
+	 */
 	public QueryImpl(Node node, EnhGraph graph) {
 		super(node, graph);
 	}
 
 
+	/**
+	 * <p>getFrom.</p>
+	 *
+	 * @return a {@link java.util.List} object.
+	 */
 	public List<String> getFrom() {
 		return getStringList(SP.from);
 	}
 
 
+	/**
+	 * <p>getFromNamed.</p>
+	 *
+	 * @return a {@link java.util.List} object.
+	 */
 	public List<String> getFromNamed() {
 		return getStringList(SP.fromNamed);
 	}
 	
 	
+	/**
+	 * <p>getLimit.</p>
+	 *
+	 * @return a {@link java.lang.Long} object.
+	 */
 	public Long getLimit() {
 		return getLong(SP.limit);
 	}
 
 
+	/**
+	 * <p>getOffset.</p>
+	 *
+	 * @return a {@link java.lang.Long} object.
+	 */
 	public Long getOffset() {
 		return getLong(SP.offset);
 	}
@@ -81,6 +113,7 @@ public abstract class QueryImpl extends AbstractSPINResourceImpl implements Solu
 	}
 	
 	
+	/** {@inheritDoc} */
 	@Override
 	public Values getValues() {
 		Resource values = JenaUtil.getResourceProperty(this, SP.values);
@@ -93,6 +126,11 @@ public abstract class QueryImpl extends AbstractSPINResourceImpl implements Solu
 	}
 
 
+	/**
+	 * <p>getWhere.</p>
+	 *
+	 * @return a {@link org.spinrdf.model.ElementList} object.
+	 */
 	public ElementList getWhere() {
 		Statement whereS = getProperty(SP.where);
 		if(whereS != null) {
@@ -105,11 +143,17 @@ public abstract class QueryImpl extends AbstractSPINResourceImpl implements Solu
 	}
 
 
+	/**
+	 * <p>getWhereElements.</p>
+	 *
+	 * @return a {@link java.util.List} object.
+	 */
 	public List<Element> getWhereElements() {
 		return getElements(SP.where);
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public void print(PrintContext p) {
 		String text = ARQ2SPIN.getTextOnly(this);
@@ -127,9 +171,19 @@ public abstract class QueryImpl extends AbstractSPINResourceImpl implements Solu
 	}
 	
 	
+	/**
+	 * <p>printSPINRDF.</p>
+	 *
+	 * @param p a {@link org.spinrdf.model.print.PrintContext} object.
+	 */
 	protected abstract void printSPINRDF(PrintContext p);
 
 
+	/**
+	 * <p>printStringFrom.</p>
+	 *
+	 * @param context a {@link org.spinrdf.model.print.PrintContext} object.
+	 */
 	protected void printStringFrom(PrintContext context) {
 		for(String from : getFrom()) {
 			context.println();
@@ -148,6 +202,11 @@ public abstract class QueryImpl extends AbstractSPINResourceImpl implements Solu
 	}
 	
 	
+	/**
+	 * <p>printSolutionModifiers.</p>
+	 *
+	 * @param context a {@link org.spinrdf.model.print.PrintContext} object.
+	 */
 	protected void printSolutionModifiers(PrintContext context) {
 		List<RDFNode> orderBy = getList(SP.orderBy);
 		if(!orderBy.isEmpty()) {
@@ -217,6 +276,11 @@ public abstract class QueryImpl extends AbstractSPINResourceImpl implements Solu
 	}
 
 
+	/**
+	 * <p>printValues.</p>
+	 *
+	 * @param p a {@link org.spinrdf.model.print.PrintContext} object.
+	 */
 	protected void printValues(PrintContext p) {
 		Values values = getValues();
 		if(values != null) {
@@ -226,6 +290,11 @@ public abstract class QueryImpl extends AbstractSPINResourceImpl implements Solu
 	}
 
 
+	/**
+	 * <p>printWhere.</p>
+	 *
+	 * @param p a {@link org.spinrdf.model.print.PrintContext} object.
+	 */
 	protected void printWhere(PrintContext p) {
 		p.printIndentation(p.getIndentation());
 		p.printKeyword("WHERE");

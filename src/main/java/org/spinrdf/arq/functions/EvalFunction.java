@@ -56,14 +56,17 @@ import org.spinrdf.vocabulary.SPIN;
 
 /**
  * The SPARQL function spin:eval.
- * 
+ *
  * The first argument is a SPIN expression, e.g. a function call or variable.
  * All other arguments must come in pairs, alternating between an argument property
  * and its value, e.g.
- * 
+ *
  *  	spin:eval(ex:myInstance, sp:arg3, "value")
- *  
+ *
  * The expression will be evaluated with all bindings from the property-value pairs above.
+ *
+
+ * @version $Id: $Id
  */
 public class EvalFunction extends AbstractFunction implements FunctionFactory {
 
@@ -93,12 +96,14 @@ public class EvalFunction extends AbstractFunction implements FunctionFactory {
 	}
 
 	
+	/** {@inheritDoc} */
 	@Override
 	public Function create(String uri) {
 		return this;
 	}
 
 	
+	/** {@inheritDoc} */
 	@Override
 	public NodeValue exec(Node[] nodes, FunctionEnv env) {
 

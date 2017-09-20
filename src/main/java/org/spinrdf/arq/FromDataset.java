@@ -33,6 +33,9 @@ import org.spinrdf.util.JenaUtil;
  * A Dataset that wraps another Dataset but changes its default and
  * named graphs based on the FROM and FROM NAMED clauses of a given
  * Query.
+ *
+
+ * @version $Id: $Id
  */
 public class FromDataset extends DelegatingDataset {
 	
@@ -43,6 +46,12 @@ public class FromDataset extends DelegatingDataset {
 	private Set<String> namedGraphs;
 	
 	
+	/**
+	 * <p>Constructor for FromDataset.</p>
+	 *
+	 * @param delegate a {@link org.apache.jena.query.Dataset} object.
+	 * @param query a {@link org.apache.jena.query.Query} object.
+	 */
 	public FromDataset(Dataset delegate, Query query) {
 		super(delegate);
 		defaultGraphs = new HashSet<String>(query.getGraphURIs());
@@ -50,6 +59,7 @@ public class FromDataset extends DelegatingDataset {
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public boolean containsNamedModel(String uri) {
 		if(namedGraphs.isEmpty()) {
@@ -61,6 +71,7 @@ public class FromDataset extends DelegatingDataset {
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public Model getDefaultModel() {
 		if(defaultGraphs.isEmpty()) {
@@ -86,6 +97,7 @@ public class FromDataset extends DelegatingDataset {
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public Iterator<String> listNames() {
 		if(namedGraphs.isEmpty()) {

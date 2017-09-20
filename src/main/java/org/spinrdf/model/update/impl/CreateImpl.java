@@ -25,13 +25,26 @@ import org.spinrdf.util.JenaUtil;
 import org.spinrdf.vocabulary.SP;
 
 
+/**
+ * <p>CreateImpl class.</p>
+ *
+
+ * @version $Id: $Id
+ */
 public class CreateImpl extends UpdateImpl implements Create {
 
+	/**
+	 * <p>Constructor for CreateImpl.</p>
+	 *
+	 * @param node a {@link org.apache.jena.graph.Node} object.
+	 * @param graph a {@link org.apache.jena.enhanced.EnhGraph} object.
+	 */
 	public CreateImpl(Node node, EnhGraph graph) {
 		super(node, graph);
 	}
 
 	
+	/** {@inheritDoc} */
 	@Override
 	public void printSPINRDF(PrintContext p) {
 		p.printKeyword("CREATE");

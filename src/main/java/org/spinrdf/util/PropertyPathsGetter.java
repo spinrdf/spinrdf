@@ -40,6 +40,9 @@ import org.spinrdf.vocabulary.SPIN;
 /**
  * A utility that can be used to find all SimplePropertyPaths encoded in a
  * SPIN element where either subject or object is ?this.
+ *
+
+ * @version $Id: $Id
  */
 public class PropertyPathsGetter extends AbstractTriplesVisitor {
 	
@@ -50,6 +53,12 @@ public class PropertyPathsGetter extends AbstractTriplesVisitor {
 	private Model targetModel;
 	
 	
+	/**
+	 * <p>Constructor for PropertyPathsGetter.</p>
+	 *
+	 * @param element a {@link org.spinrdf.model.Element} object.
+	 * @param initialBindings a {@link java.util.Map} object.
+	 */
 	public PropertyPathsGetter(Element element, Map<Property,RDFNode> initialBindings) {
 		super(element, initialBindings);
 		this.targetModel = element.getModel();
@@ -57,11 +66,17 @@ public class PropertyPathsGetter extends AbstractTriplesVisitor {
 	}
 	
 	
+	/**
+	 * <p>Getter for the field <code>results</code>.</p>
+	 *
+	 * @return a {@link java.util.Set} object.
+	 */
 	public Set<SimplePropertyPath> getResults() {
 		return results;
 	}
 
 	
+	/** {@inheritDoc} */
 	@Override
 	protected void handleTriplePattern(TriplePattern triplePattern, Map<Property, RDFNode> bindings) {
 		if(SPIN._this.equals(triplePattern.getSubject())) {

@@ -32,13 +32,30 @@ import org.spinrdf.model.print.PrintContext;
 import org.spinrdf.vocabulary.SP;
 
 
+/**
+ * <p>DescribeImpl class.</p>
+ *
+
+ * @version $Id: $Id
+ */
 public class DescribeImpl extends QueryImpl implements Describe {
 
+	/**
+	 * <p>Constructor for DescribeImpl.</p>
+	 *
+	 * @param node a {@link org.apache.jena.graph.Node} object.
+	 * @param eh a {@link org.apache.jena.enhanced.EnhGraph} object.
+	 */
 	public DescribeImpl(Node node, EnhGraph eh) {
 		super(node, eh);
 	}
 
 	
+	/**
+	 * <p>getResultNodes.</p>
+	 *
+	 * @return a {@link java.util.List} object.
+	 */
 	public List<Resource> getResultNodes() {
 		List<Resource> results = new LinkedList<Resource>();
 		for(RDFNode node : getList(SP.resultNodes)) {
@@ -54,6 +71,7 @@ public class DescribeImpl extends QueryImpl implements Describe {
 	}
 	
 	
+	/** {@inheritDoc} */
 	public void printSPINRDF(PrintContext context) {
 		printComment(context);
 		printPrefixes(context);

@@ -25,6 +25,9 @@ import org.apache.jena.graph.Node;
 
 /**
  * An extension of the Jena polymorphism mechanism.
+ *
+
+ * @version $Id: $Id
  */
 public class SimpleImplementation extends ImplementationByType {
 
@@ -32,6 +35,12 @@ public class SimpleImplementation extends ImplementationByType {
 	private Constructor constructor;
 
 
+	/**
+	 * <p>Constructor for SimpleImplementation.</p>
+	 *
+	 * @param type a {@link org.apache.jena.graph.Node} object.
+	 * @param implClass a {@link java.lang.Class} object.
+	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public SimpleImplementation(Node type, Class implClass) {
 		super(type);
@@ -44,6 +53,7 @@ public class SimpleImplementation extends ImplementationByType {
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public EnhNode wrap(Node node, EnhGraph eg) {
 		try {

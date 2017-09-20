@@ -20,11 +20,15 @@ package org.spinrdf.model;
 
 /**
  * A template class definition.
+ *
+
+ * @version $Id: $Id
  */
 public interface Template extends Module {
 
 	/**
 	 * Gets the declared spin:labelTemplate (if any exists).
+	 *
 	 * @return the label template string or null
 	 */
 	String getLabelTemplate();
@@ -32,6 +36,7 @@ public interface Template extends Module {
 	
 	/**
 	 * Gets the declared spin:labelTemplate (if any exists), using a preferred language.
+	 *
 	 * @param lang  the preferred language tag, e.g. "de"
 	 * @return the label template string or null
 	 */

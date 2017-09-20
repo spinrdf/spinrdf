@@ -34,11 +34,16 @@ import org.spinrdf.vocabulary.RDFx;
 
 /**
  * Some static utilities dealing with datatypes and literals.
+ *
+
+ * @version $Id: $Id
  */
 public class JenaDatatypes {
 	
+	/** Constant <code>FALSE</code> */
 	public static final Literal FALSE = ResourceFactory.createTypedLiteral("false", TypeMapper.getInstance().getSafeTypeByName(XSD.xboolean.getURI()));
 	
+	/** Constant <code>TRUE</code> */
 	public static final Literal TRUE = ResourceFactory.createTypedLiteral("true", TypeMapper.getInstance().getSafeTypeByName(XSD.xboolean.getURI()));
 
 	private static Set<String> numericDatatypeURIs = new HashSet<String>();
@@ -97,6 +102,12 @@ public class JenaDatatypes {
 	}
 
 	
+	/**
+	 * <p>createInteger.</p>
+	 *
+	 * @param value a int.
+	 * @return a {@link org.apache.jena.rdf.model.Literal} object.
+	 */
 	public static Literal createInteger(int value) {
 		return ResourceFactory.createTypedLiteral("" + value, TypeMapper.getInstance()
 				.getSafeTypeByName(XSD.integer.getURI()));
@@ -105,6 +116,7 @@ public class JenaDatatypes {
 
 	/**
 	 * Gets a List of all datatype URIs.
+	 *
 	 * @return a List the datatype URIs
 	 */
 	public static List<String> getDatatypeURIs() {
@@ -118,6 +130,7 @@ public class JenaDatatypes {
 
 	/**
 	 * Checks if a given URI is a numeric datatype URI.
+	 *
 	 * @param datatypeURI  the URI of the datatype to test
 	 * @return true if so
 	 */
@@ -129,6 +142,7 @@ public class JenaDatatypes {
 	/**
 	 * Checks if a given RDFNode represents a system XSD datatype such as xsd:int.
 	 * Note: this will not return true on user-defined datatypes or rdfs:Literal.
+	 *
 	 * @param node  the node to test
 	 * @return true if node is a datatype
 	 */

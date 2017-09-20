@@ -25,8 +25,18 @@ import org.apache.jena.rdf.model.Resource;
 /**
  * An interface for objects that can convert a SPARQL ResultSet
  * into a SPR table.
+ *
+
+ * @version $Id: $Id
  */
 public interface TableEngine {
 
+	/**
+	 * <p>createTable.</p>
+	 *
+	 * @param model a {@link org.apache.jena.rdf.model.Model} object.
+	 * @param rs a {@link org.apache.jena.query.ResultSet} object.
+	 * @return a {@link org.apache.jena.rdf.model.Resource} object.
+	 */
 	Resource createTable(Model model, ResultSet rs);
 }
