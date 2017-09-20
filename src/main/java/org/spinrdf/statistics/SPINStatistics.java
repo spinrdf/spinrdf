@@ -23,6 +23,9 @@ import org.apache.jena.graph.Node;
 /**
  * A wrapper to record the execution time of a given Query
  * for statistical purposes.
+ *
+
+ * @version $Id: $Id
  */
 public class SPINStatistics {
 	
@@ -39,6 +42,7 @@ public class SPINStatistics {
 	
 	/**
 	 * Creates a new SPINStatistics object.
+	 *
 	 * @param label  the label of the action that has been measured
 	 * @param queryText  the text of the query that was executed
 	 * @param duration  the total duration in ms
@@ -54,26 +58,51 @@ public class SPINStatistics {
 	}
 	
 	
+	/**
+	 * <p>Getter for the field <code>context</code>.</p>
+	 *
+	 * @return a {@link org.apache.jena.graph.Node} object.
+	 */
 	public Node getContext() {
 		return context;
 	}
 	
 	
+	/**
+	 * <p>Getter for the field <code>duration</code>.</p>
+	 *
+	 * @return a long.
+	 */
 	public long getDuration() {
 		return duration;
 	}
 	
 	
+	/**
+	 * <p>Getter for the field <code>label</code>.</p>
+	 *
+	 * @return a {@link java.lang.String} object.
+	 */
 	public String getLabel() {
 		return label;
 	}
 	
 	
+	/**
+	 * <p>Getter for the field <code>queryText</code>.</p>
+	 *
+	 * @return a {@link java.lang.String} object.
+	 */
 	public String getQueryText() {
 		return queryText;
 	}
 	
 	
+	/**
+	 * <p>Getter for the field <code>startTime</code>.</p>
+	 *
+	 * @return a long.
+	 */
 	public long getStartTime() {
 		return startTime;
 	}

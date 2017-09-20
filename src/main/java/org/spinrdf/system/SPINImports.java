@@ -42,19 +42,24 @@ import org.spinrdf.vocabulary.SPL;
 
 /**
  * A singleton managing spin:imports.
- * 
+ *
  * Subclasses can be installed that implement different loaders or
  * otherwise change the default behavior.
+ *
+
+ * @version $Id: $Id
  */
 public class SPINImports {
 	
 	private Set<String> registeredURIs = new HashSet<String>();
 
+	/** Constant <code>singleton</code> */
 	public static SPINImports singleton = new SPINImports();
 	
 	
 	/**
 	 * Gets the singleton instance of this class.
+	 *
 	 * @return the singleton
 	 */
 	public static SPINImports get() {
@@ -66,10 +71,11 @@ public class SPINImports {
 	 * Attempts to load a graph with a given URI.
 	 * In the default implementation, this uses the Jena
 	 * OntDocumentManager and default loading mechanisms.
-	 * Subclasses can override this. 
+	 * Subclasses can override this.
+	 *
 	 * @param uri  the base URI of the graph to load
 	 * @return the Graph or null to ignore this
-	 * @throws IOException 
+	 * @throws java.io.IOException if any.
 	 */
 	protected Graph getImportedGraph(String uri) throws IOException   {
 		Model model = OntDocumentManager.getInstance().getModel(uri);
@@ -87,9 +93,10 @@ public class SPINImports {
 	 * Checks if spin:imports have been declared and adds them to a union model.
 	 * Will also register any SPIN modules defined in those imports that haven't
 	 * been loaded before.
+	 *
 	 * @param model  the base Model to operate on
 	 * @return either model or the union of model and its spin:imports
-	 * @ 
+	 * @throws java.io.IOException if any.
 	 */
 	public Model getImportsModel(Model model) throws IOException  {
 		Set<String> uris = new HashSet<String>();
@@ -145,6 +152,7 @@ public class SPINImports {
 
 	/**
 	 * Installs a different SPINImports singleton.
+	 *
 	 * @param value  the new singleton
 	 */
 	public static void set(SPINImports value) {

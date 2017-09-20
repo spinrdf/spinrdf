@@ -24,9 +24,13 @@ import org.apache.jena.sparql.function.FunctionEnv;
 
 /**
  * An abstract superclass for Functions with 3 arguments.
+ *
+
+ * @version $Id: $Id
  */
 public abstract class AbstractFunction3 extends AbstractFunction {
 
+	/** {@inheritDoc} */
 	@Override
 	protected NodeValue exec(Node[] nodes, FunctionEnv env) {
 		Node arg1 = nodes.length > 0 ? nodes[0] : null;
@@ -36,5 +40,6 @@ public abstract class AbstractFunction3 extends AbstractFunction {
 	}
 	
 	
+	/** {@inheritDoc} */
 	protected abstract NodeValue exec(Node arg1, Node arg2, Node arg3, FunctionEnv env);
 }

@@ -23,13 +23,26 @@ import org.spinrdf.model.Ask;
 import org.spinrdf.model.print.PrintContext;
 
 
+/**
+ * <p>AskImpl class.</p>
+ *
+
+ * @version $Id: $Id
+ */
 public class AskImpl extends QueryImpl implements Ask {
 
+	/**
+	 * <p>Constructor for AskImpl.</p>
+	 *
+	 * @param node a {@link org.apache.jena.graph.Node} object.
+	 * @param eh a {@link org.apache.jena.enhanced.EnhGraph} object.
+	 */
 	public AskImpl(Node node, EnhGraph eh) {
 		super(node, eh);
 	}
 	
 	
+	/** {@inheritDoc} */
 	public void printSPINRDF(PrintContext context) {
 		printComment(context);
 		printPrefixes(context);

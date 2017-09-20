@@ -23,6 +23,9 @@ import org.spinrdf.system.SPINLabels;
 
 /**
  * A wrapper of either a Query or a TemplateCall.
+ *
+
+ * @version $Id: $Id
  */
 public class QueryOrTemplateCall {
 	
@@ -35,6 +38,7 @@ public class QueryOrTemplateCall {
 	
 	/**
 	 * Constructs an instance representing a plain Query.
+	 *
 	 * @param cls  the class the query is attached to
 	 * @param query  the SPIN Query
 	 */
@@ -46,6 +50,7 @@ public class QueryOrTemplateCall {
 	
 	/**
 	 * Constructs an instance representing a template call.
+	 *
 	 * @param cls  the class the template call is attached to
 	 * @param templateCall  the template call
 	 */
@@ -57,6 +62,7 @@ public class QueryOrTemplateCall {
 	
 	/**
 	 * If this is a Query, then get it.
+	 *
 	 * @return the Query or null
 	 */
 	public Query getQuery() {
@@ -65,7 +71,8 @@ public class QueryOrTemplateCall {
 	
 	
 	/**
-	 * Gets the associated subject, e.g. the rdfs:Class that holds the spin:rule. 
+	 * Gets the associated subject, e.g. the rdfs:Class that holds the spin:rule.
+	 *
 	 * @return the subject
 	 */
 	public Resource getCls() {
@@ -75,6 +82,7 @@ public class QueryOrTemplateCall {
 
 	/**
 	 * If this is a TemplateCall, then return it.
+	 *
 	 * @return the TemplateCall or null
 	 */
 	public TemplateCall getTemplateCall() {
@@ -85,6 +93,8 @@ public class QueryOrTemplateCall {
 	/**
 	 * Gets a human-readable text of either the query or the template call.
 	 * Can also be used for sorting alphabetically.
+	 *
+	 * @return a {@link java.lang.String} object.
 	 */
 	public String toString() {
 		if(getTemplateCall() != null) {

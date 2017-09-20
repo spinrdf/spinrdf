@@ -20,8 +20,9 @@ package org.spinrdf.model;
 
 /**
  * A UNION element.
- * 
+ *
  * @author Holger Knublauch
+ * @version $Id: $Id
  */
 public interface Union extends ElementGroup {
 }

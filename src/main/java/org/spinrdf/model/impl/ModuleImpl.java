@@ -45,14 +45,27 @@ import org.spinrdf.vocabulary.SPIN;
 import org.spinrdf.vocabulary.SPL;
 
 
+/**
+ * <p>ModuleImpl class.</p>
+ *
+
+ * @version $Id: $Id
+ */
 public class ModuleImpl extends AbstractSPINResourceImpl implements Module {
 	
 	
+	/**
+	 * <p>Constructor for ModuleImpl.</p>
+	 *
+	 * @param node a {@link org.apache.jena.graph.Node} object.
+	 * @param eg a {@link org.apache.jena.enhanced.EnhGraph} object.
+	 */
 	public ModuleImpl(Node node, EnhGraph eg) {
 		super(node, eg);
 	}
 
 	
+	/** {@inheritDoc} */
 	public List<Argument> getArguments(boolean ordered) {
 		List<Argument> results = new ArrayList<Argument>();
 		StmtIterator it = null;
@@ -122,6 +135,11 @@ public class ModuleImpl extends AbstractSPINResourceImpl implements Module {
 	}
 
 
+	/**
+	 * <p>getArgumentsMap.</p>
+	 *
+	 * @return a {@link java.util.Map} object.
+	 */
 	public Map<String, Argument> getArgumentsMap() {
 		Map<String,Argument> results = new HashMap<String,Argument>();
 		for(Argument argument : getArguments(false)) {
@@ -134,6 +152,11 @@ public class ModuleImpl extends AbstractSPINResourceImpl implements Module {
 	}
 
 
+	/**
+	 * <p>getBody.</p>
+	 *
+	 * @return a {@link org.spinrdf.model.Command} object.
+	 */
 	public Command getBody() {
 		RDFNode node = ModulesUtil.getBody(this);
 		if(node instanceof Resource) {
@@ -145,16 +168,27 @@ public class ModuleImpl extends AbstractSPINResourceImpl implements Module {
 	}
 	
 	
+	/**
+	 * <p>getComment.</p>
+	 *
+	 * @return a {@link java.lang.String} object.
+	 */
 	public String getComment() {
 		return getString(RDFS.comment);
 	}
 
 
+	/**
+	 * <p>isAbstract.</p>
+	 *
+	 * @return a boolean.
+	 */
 	public boolean isAbstract() {
 		return SPINFactory.isAbstract(this);
 	}
 
 
+	/** {@inheritDoc} */
 	public void print(PrintContext p) {
 		// TODO Auto-generated method stub
 

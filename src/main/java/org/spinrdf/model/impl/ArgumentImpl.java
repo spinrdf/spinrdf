@@ -27,13 +27,30 @@ import org.spinrdf.vocabulary.SP;
 import org.spinrdf.vocabulary.SPL;
 
 
+/**
+ * <p>ArgumentImpl class.</p>
+ *
+
+ * @version $Id: $Id
+ */
 public class ArgumentImpl extends AbstractAttributeImpl implements Argument {
 	
+	/**
+	 * <p>Constructor for ArgumentImpl.</p>
+	 *
+	 * @param node a {@link org.apache.jena.graph.Node} object.
+	 * @param eg a {@link org.apache.jena.enhanced.EnhGraph} object.
+	 */
 	public ArgumentImpl(Node node, EnhGraph eg) {
 		super(node, eg);
 	}
 	
 	
+	/**
+	 * <p>getArgIndex.</p>
+	 *
+	 * @return a {@link java.lang.Integer} object.
+	 */
 	public Integer getArgIndex() {
 		String varName = getVarName();
 		if(varName != null) {
@@ -45,6 +62,11 @@ public class ArgumentImpl extends AbstractAttributeImpl implements Argument {
 	}
 
 
+	/**
+	 * <p>getDefaultValue.</p>
+	 *
+	 * @return a {@link org.apache.jena.rdf.model.RDFNode} object.
+	 */
 	public RDFNode getDefaultValue() {
 		Statement s = getProperty(SPL.defaultValue);
 		if(s != null) {
@@ -56,6 +78,11 @@ public class ArgumentImpl extends AbstractAttributeImpl implements Argument {
 	}
 
 
+	/**
+	 * <p>getVarName.</p>
+	 *
+	 * @return a {@link java.lang.String} object.
+	 */
 	public String getVarName() {
 		Property argProperty = getPredicate();
 		if(argProperty != null) {
@@ -67,6 +94,11 @@ public class ArgumentImpl extends AbstractAttributeImpl implements Argument {
 	}
 
 
+	/**
+	 * <p>isOptional.</p>
+	 *
+	 * @return a boolean.
+	 */
 	public boolean isOptional() {
 		Statement s = getProperty(SPL.optional);
 		if(s != null && s.getObject().isLiteral()) {

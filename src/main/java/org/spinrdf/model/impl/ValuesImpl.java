@@ -35,13 +35,26 @@ import org.spinrdf.model.visitor.ElementVisitor;
 import org.spinrdf.util.JenaUtil;
 import org.spinrdf.vocabulary.SP;
 
+/**
+ * <p>ValuesImpl class.</p>
+ *
+
+ * @version $Id: $Id
+ */
 public class ValuesImpl extends ElementImpl implements Values {
 	
+	/**
+	 * <p>Constructor for ValuesImpl.</p>
+	 *
+	 * @param node a {@link org.apache.jena.graph.Node} object.
+	 * @param graph a {@link org.apache.jena.enhanced.EnhGraph} object.
+	 */
 	public ValuesImpl(Node node, EnhGraph graph) {
 		super(node, graph);
 	}
 
 	
+	/** {@inheritDoc} */
 	@Override
 	public List<Binding> getBindings() {
 		List<String> varNames = getVarNames();
@@ -66,6 +79,7 @@ public class ValuesImpl extends ElementImpl implements Values {
 	}
 
 	
+	/** {@inheritDoc} */
 	@Override
 	public List<String> getVarNames() {
 		List<String> results = new LinkedList<String>();
@@ -77,6 +91,7 @@ public class ValuesImpl extends ElementImpl implements Values {
 	}
 
 	
+	/** {@inheritDoc} */
 	@Override
 	public void print(PrintContext p) {
 		p.printKeyword("VALUES");
@@ -130,6 +145,7 @@ public class ValuesImpl extends ElementImpl implements Values {
 	}
 
 	
+	/** {@inheritDoc} */
 	@Override
 	public void visit(ElementVisitor visitor) {
 		visitor.visit(this);

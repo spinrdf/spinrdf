@@ -20,8 +20,9 @@ package org.spinrdf.model.update;
 
 /**
  * A SPARQL Update DELETE DATA operation.
- * 
+ *
  * @author Holger Knublauch
+ * @version $Id: $Id
  */
 public interface DeleteData extends Update {
 }

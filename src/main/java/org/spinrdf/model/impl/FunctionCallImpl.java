@@ -46,16 +46,33 @@ import org.spinrdf.vocabulary.SP;
 import org.spinrdf.vocabulary.SPIN;
 
 
+/**
+ * <p>FunctionCallImpl class.</p>
+ *
+
+ * @version $Id: $Id
+ */
 public class FunctionCallImpl extends ModuleCallImpl implements FunctionCall {
 	
 	private static final String SP_ARG = SP.arg.getURI();
 	
 	
+	/**
+	 * <p>Constructor for FunctionCallImpl.</p>
+	 *
+	 * @param node a {@link org.apache.jena.graph.Node} object.
+	 * @param graph a {@link org.apache.jena.enhanced.EnhGraph} object.
+	 */
 	public FunctionCallImpl(Node node, EnhGraph graph) {
 		super(node, graph);
 	}
 	
 	
+	/**
+	 * <p>getArguments.</p>
+	 *
+	 * @return a {@link java.util.List} object.
+	 */
 	public List<RDFNode> getArguments() {
 		Map<Property,RDFNode> values = getArgumentsMap();
 		Property[] ps = getArgumentProperties(values);
@@ -98,6 +115,11 @@ public class FunctionCallImpl extends ModuleCallImpl implements FunctionCall {
 	}
 	
 	
+	/**
+	 * <p>getArgumentsMap.</p>
+	 *
+	 * @return a {@link java.util.Map} object.
+	 */
 	public Map<Property, RDFNode> getArgumentsMap() {
 		final Map<Property,RDFNode> values = new HashMap<Property,RDFNode>();
 		StmtIterator it = listProperties();
@@ -111,6 +133,11 @@ public class FunctionCallImpl extends ModuleCallImpl implements FunctionCall {
 	}
 	
 	
+	/**
+	 * <p>getFunction.</p>
+	 *
+	 * @return a {@link org.apache.jena.rdf.model.Resource} object.
+	 */
 	public Resource getFunction() {
 		
 		// Need to iterate over rdf:types - some may have been inferred
@@ -151,6 +178,7 @@ public class FunctionCallImpl extends ModuleCallImpl implements FunctionCall {
 	}
 	
 	
+	/** {@inheritDoc} */
 	@Override
 	public Module getModule() {
 		Resource function = getFunction();
@@ -174,11 +202,18 @@ public class FunctionCallImpl extends ModuleCallImpl implements FunctionCall {
 	}
 	
 	
+	/**
+	 * <p>isSetOperator.</p>
+	 *
+	 * @param symbol a {@link java.lang.String} object.
+	 * @return a boolean.
+	 */
 	public static boolean isSetOperator(String symbol) {
 		return "IN".equals(symbol) || "NOT IN".equals(symbol);
 	}
 	
 	
+	/** {@inheritDoc} */
 	public void print(PrintContext p) {
 		Resource function = getFunction();
 		List<RDFNode> args = getArguments();

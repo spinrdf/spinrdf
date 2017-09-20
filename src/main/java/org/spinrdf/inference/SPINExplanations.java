@@ -28,6 +28,9 @@ import org.apache.jena.graph.Triple;
  * A service that can be used to provide "explanations" of inferred
  * triples.  This is populated by the TopSPIN engine and will keep
  * a Map from Triples to the strings of the query.
+ *
+
+ * @version $Id: $Id
  */
 public class SPINExplanations {
 	
@@ -40,6 +43,7 @@ public class SPINExplanations {
 	
 	/**
 	 * Stores a Triple - query assignment.
+	 *
 	 * @param triple  the inferred Triple
 	 * @param text  the query text to associate with the triple
 	 * @param cls  the class that was holding the rule
@@ -56,6 +60,7 @@ public class SPINExplanations {
 	
 	/**
 	 * Gets the class node that holds the rule that inferred a given inferred triple.
+	 *
 	 * @param triple  the Triple to explain
 	 * @return the class or null if none found for triple
 	 */
@@ -66,6 +71,7 @@ public class SPINExplanations {
 	
 	/**
 	 * Gets the rule resource defining the rule that inferred a given triple.
+	 *
 	 * @param triple  the inferred Triple
 	 * @return the rule Node or null if this info is not available
 	 */
@@ -76,6 +82,7 @@ public class SPINExplanations {
 	
 	/**
 	 * Gets the explanation text for a given inferred triple.
+	 *
 	 * @param triple  the Triple to explain
 	 * @return the explanation or null if none found for triple
 	 */

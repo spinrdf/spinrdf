@@ -23,6 +23,9 @@ import org.apache.jena.rdf.model.RDFNode;
 
 /**
  * Jena wrapper for instances of spl:Argument.
+ *
+
+ * @version $Id: $Id
  */
 public interface Argument extends AbstractAttribute {
 	
@@ -30,6 +33,7 @@ public interface Argument extends AbstractAttribute {
 	/**
 	 * If this is an ordered arg (sp:arg1, sp:arg2, ...) then this returns
 	 * the index of this, otherwise null.
+	 *
 	 * @return the arg index or null if this does not have an index
 	 */
 	Integer getArgIndex();
@@ -37,6 +41,7 @@ public interface Argument extends AbstractAttribute {
 	
 	/**
 	 * Returns any declared spl:defaultValue.
+	 *
 	 * @return the default value or null
 	 */
 	RDFNode getDefaultValue();
@@ -46,6 +51,7 @@ public interface Argument extends AbstractAttribute {
 	 * Gets the variable name associated with this Argument.
 	 * This is the local name of the predicate, i.e. implementations
 	 * can assume that this value is not null iff getPredicate() != null.
+	 *
 	 * @return the variable name
 	 */
 	String getVarName();

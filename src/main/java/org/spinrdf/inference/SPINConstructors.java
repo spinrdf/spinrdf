@@ -55,11 +55,15 @@ import org.spinrdf.vocabulary.SPIN;
 /**
  * Static methods to find and execute spin:constructors for a given
  * set of Resources.
+ *
+
+ * @version $Id: $Id
  */
 public class SPINConstructors {
 	 
 	/**
 	 * Runs the constructors on a List of Resources.
+	 *
 	 * @param queryModel  the model to query over
 	 * @param instances  the instances to run the constructors of
 	 * @param targetModel  the model that shall receive the new triples
@@ -73,11 +77,13 @@ public class SPINConstructors {
 	
 	/**
 	 * Runs the constructors on a List of Resources.
+	 *
 	 * @param queryModel  the model to query over
 	 * @param instances  the instances to run the constructors of
 	 * @param targetModel  the model that shall receive the new triples
 	 * @param reached  the Set of already reached Resources
 	 * @param monitor  an optional progress monitor
+	 * @param class2Constructor a {@link java.util.Map} object.
 	 */
 	public static void construct(
 			Model queryModel, 
@@ -92,12 +98,15 @@ public class SPINConstructors {
 	
 	/**
 	 * Runs the constructors on a List of Resources.
+	 *
 	 * @param queryModel  the model to query over
 	 * @param instances  the instances to run the constructors of
 	 * @param targetModel  the model that shall receive the new triples
-	 * @param reached  the Set of already reached Resources 
+	 * @param reached  the Set of already reached Resources
 	 * @param explanations  an (optional) explanations object
 	 * @param monitor  an optional progress monitor
+	 * @param class2Constructor a {@link java.util.Map} object.
+	 * @param statistics a {@link java.util.List} object.
 	 */
 	public static void construct(
 			Model queryModel, 
@@ -123,11 +132,15 @@ public class SPINConstructors {
 
 	/**
 	 * Runs constructors for a single instance.
+	 *
 	 * @param queryModel  the model to query
 	 * @param instance  the instance to run the constructors of
 	 * @param targetModel  the model that will receive the new triples
 	 * @param newResources  will hold the newly constructed instances
 	 * @param monitor  an optional progress monitor
+	 * @param class2Constructor a {@link java.util.Map} object.
+	 * @param statistics a {@link java.util.List} object.
+	 * @param explanations a {@link org.spinrdf.inference.SPINExplanations} object.
 	 */
 	public static void constructInstance(
 			Model queryModel, 
@@ -147,6 +160,7 @@ public class SPINConstructors {
 
 	/**
 	 * Runs all constructors defined for a given type on a given instance.
+	 *
 	 * @param queryModel  the model to query
 	 * @param instance  the instance to run the constructors of
 	 * @param type  the class to run the constructors of
@@ -155,6 +169,8 @@ public class SPINConstructors {
 	 * @param reachedTypes  contains the already reached types
 	 * @param explanations  the explanations (optional)
 	 * @param monitor  an optional progress monitor
+	 * @param class2Constructor a {@link java.util.Map} object.
+	 * @param statistics a {@link java.util.List} object.
 	 */
 	public static void constructInstance(
 			Model queryModel, 
@@ -305,6 +321,7 @@ public class SPINConstructors {
 	
 	/**
 	 * Runs all constructors on all instances in a given model.
+	 *
 	 * @param queryModel  the query model
 	 * @param targetModel  the model to write the new triples to
 	 * @param monitor  an optional progress monitor
@@ -324,6 +341,7 @@ public class SPINConstructors {
 	/**
 	 * Finds all classes that directly have a spin:constructor attached
 	 * to it.
+	 *
 	 * @param model  the Model to operate on
 	 * @return a Set of classes
 	 */
@@ -361,6 +379,7 @@ public class SPINConstructors {
 	/**
 	 * Checks whether a given class or a superclass thereof has a
 	 * constructor.
+	 *
 	 * @param cls  the class to check
 	 * @return true if cls has a constructor
 	 */

@@ -26,18 +26,36 @@ import org.spinrdf.model.Template;
 import org.spinrdf.vocabulary.SPIN;
 
 
+/**
+ * <p>TemplateImpl class.</p>
+ *
+
+ * @version $Id: $Id
+ */
 public class TemplateImpl extends ModuleImpl implements Template {
 
+	/**
+	 * <p>Constructor for TemplateImpl.</p>
+	 *
+	 * @param node a {@link org.apache.jena.graph.Node} object.
+	 * @param eg a {@link org.apache.jena.enhanced.EnhGraph} object.
+	 */
 	public TemplateImpl(Node node, EnhGraph eg) {
 		super(node, eg);
 	}
 
 	
+	/**
+	 * <p>getLabelTemplate.</p>
+	 *
+	 * @return a {@link java.lang.String} object.
+	 */
 	public String getLabelTemplate() {
 		return getString(SPIN.labelTemplate);
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public String getLabelTemplate(String matchLang) {
 		

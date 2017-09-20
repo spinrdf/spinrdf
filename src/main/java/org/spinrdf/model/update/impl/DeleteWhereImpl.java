@@ -24,13 +24,26 @@ import org.spinrdf.model.update.DeleteWhere;
 import org.spinrdf.vocabulary.SP;
 
 
+/**
+ * <p>DeleteWhereImpl class.</p>
+ *
+
+ * @version $Id: $Id
+ */
 public class DeleteWhereImpl extends UpdateImpl implements DeleteWhere {
 
+	/**
+	 * <p>Constructor for DeleteWhereImpl.</p>
+	 *
+	 * @param node a {@link org.apache.jena.graph.Node} object.
+	 * @param graph a {@link org.apache.jena.enhanced.EnhGraph} object.
+	 */
 	public DeleteWhereImpl(Node node, EnhGraph graph) {
 		super(node, graph);
 	}
 
 	
+	/** {@inheritDoc} */
 	@Override
 	public void printSPINRDF(PrintContext p) {
 		printComment(p);

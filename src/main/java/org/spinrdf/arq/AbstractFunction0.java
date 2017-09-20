@@ -24,14 +24,24 @@ import org.apache.jena.sparql.function.FunctionEnv;
 
 /**
  * An abstract superclass for functions with 0 arguments.
+ *
+
+ * @version $Id: $Id
  */
 public abstract class AbstractFunction0 extends AbstractFunction {
 
+	/** {@inheritDoc} */
 	@Override
 	protected NodeValue exec(Node[] nodes, FunctionEnv env) {
 		return exec(env);
 	}
 	
 	
+	/**
+	 * <p>exec.</p>
+	 *
+	 * @param env a {@link org.apache.jena.sparql.function.FunctionEnv} object.
+	 * @return a {@link org.apache.jena.sparql.expr.NodeValue} object.
+	 */
 	protected abstract NodeValue exec(FunctionEnv env);
 }

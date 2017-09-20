@@ -22,10 +22,19 @@ import org.apache.jena.rdf.model.Resource;
 
 
 /**
- * A SimplePropertyPath of the form SP->O.
+ * A SimplePropertyPath of the form SP-&gt;O.
+ *
+
+ * @version $Id: $Id
  */
 public class ObjectPropertyPath extends SimplePropertyPath {
 	
+	/**
+	 * <p>Constructor for ObjectPropertyPath.</p>
+	 *
+	 * @param subject a {@link org.apache.jena.rdf.model.Resource} object.
+	 * @param predicate a {@link org.apache.jena.rdf.model.Property} object.
+	 */
 	public ObjectPropertyPath(Resource subject, Property predicate) {
 		super(subject, predicate);
 	}

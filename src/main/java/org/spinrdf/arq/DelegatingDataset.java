@@ -31,68 +31,90 @@ import org.spinrdf.util.DatasetWrappingDatasetGraph;
 /**
  * A Dataset that simply delegates all its calls, allowing to wrap an existing
  * Dataset (e.g. the TopBraid Dataset).
+ *
+
+ * @version $Id: $Id
  */
 public abstract class DelegatingDataset implements Dataset {
 
 	private Dataset delegate;
 	
+	/**
+	 * <p>Constructor for DelegatingDataset.</p>
+	 *
+	 * @param delegate a {@link org.apache.jena.query.Dataset} object.
+	 */
 	public DelegatingDataset(Dataset delegate) {
 		this.delegate = delegate;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public DatasetGraph asDatasetGraph() {
 		return new DatasetWrappingDatasetGraph(this);
 	}
 
 	
+	/** {@inheritDoc} */
 	@Override
 	public void close() {
 		delegate.close();
 	}
 
 	
+	/** {@inheritDoc} */
 	@Override
 	public boolean containsNamedModel(String uri) {
 		return delegate.containsNamedModel(uri);
 	}
 
 	
+	/** {@inheritDoc} */
 	@Override
 	public Model getDefaultModel() {
 		return delegate.getDefaultModel();
 	}
 	
 	
+	/**
+	 * <p>Getter for the field <code>delegate</code>.</p>
+	 *
+	 * @return a {@link org.apache.jena.query.Dataset} object.
+	 */
 	public Dataset getDelegate() {
 		return delegate;
 	}
 
 	
+	/** {@inheritDoc} */
 	@Override
 	public Lock getLock() {
 		return delegate.getLock();
 	}
 
 	
+	/** {@inheritDoc} */
 	@Override
 	public Model getNamedModel(String uri) {
 		return delegate.getNamedModel(uri);
 	}
 
 	
+	/** {@inheritDoc} */
 	@Override
 	public Iterator<String> listNames() {
 		return delegate.listNames();
 	}
 
 	
+	/** {@inheritDoc} */
 	@Override
 	public void setDefaultModel(Model model) {
 		delegate.setDefaultModel(model);
 	}
 
 	
+	/** {@inheritDoc} */
 	@Override
 	public void addNamedModel(String uri, Model model)
 			throws LabelExistsException {
@@ -100,53 +122,62 @@ public abstract class DelegatingDataset implements Dataset {
 	}
 
 	
+	/** {@inheritDoc} */
 	@Override
 	public void removeNamedModel(String uri) {
 		delegate.removeNamedModel(uri);
 	}
 
 	
+	/** {@inheritDoc} */
 	@Override
 	public void replaceNamedModel(String uri, Model model) {
 		delegate.replaceNamedModel(uri, model);
 	}
 
 	
+	/** {@inheritDoc} */
 	@Override
 	public Context getContext() {
 		return delegate.getContext();
 	}
 
 	
+	/** {@inheritDoc} */
 	@Override
 	public boolean supportsTransactions() {
 		return delegate.supportsTransactions();
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void begin(ReadWrite readWrite) {
 		delegate.begin(readWrite);
 	}
 
 	
+	/** {@inheritDoc} */
 	@Override
 	public void commit() {
 		delegate.commit();
 	}
 
 	
+	/** {@inheritDoc} */
 	@Override
 	public void abort() {
 		delegate.abort();
 	}
 
 	
+	/** {@inheritDoc} */
 	@Override
 	public boolean isInTransaction() {
 		return delegate.isInTransaction();
 	}
 
 	
+	/** {@inheritDoc} */
 	@Override
 	public void end() {
 		delegate.end();

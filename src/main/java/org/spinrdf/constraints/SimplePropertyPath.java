@@ -24,7 +24,10 @@ import org.apache.jena.rdf.model.Resource;
 /**
  * A property path that describes a mechanism to get values starting
  * from a given RDF node (root) by following a given predicate.
- * There are two subclasses for SP->O and OP->S paths.
+ * There are two subclasses for SP-&gt;O and OP-&gt;S paths.
+ *
+
+ * @version $Id: $Id
  */
 public abstract class SimplePropertyPath {
 
@@ -33,17 +36,33 @@ public abstract class SimplePropertyPath {
 	private Resource root;
 	
 	
+	/**
+	 * <p>Constructor for SimplePropertyPath.</p>
+	 *
+	 * @param root a {@link org.apache.jena.rdf.model.Resource} object.
+	 * @param predicate a {@link org.apache.jena.rdf.model.Property} object.
+	 */
 	public SimplePropertyPath(Resource root, Property predicate) {
 		this.predicate = predicate;
 		this.root = root;
 	}
 	
 	
+	/**
+	 * <p>Getter for the field <code>predicate</code>.</p>
+	 *
+	 * @return a {@link org.apache.jena.rdf.model.Property} object.
+	 */
 	public Property getPredicate() {
 		return predicate;
 	}
 	
 	
+	/**
+	 * <p>Getter for the field <code>root</code>.</p>
+	 *
+	 * @return a {@link org.apache.jena.rdf.model.Resource} object.
+	 */
 	public Resource getRoot() {
 		return root;
 	}

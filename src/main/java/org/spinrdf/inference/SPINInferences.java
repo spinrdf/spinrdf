@@ -53,6 +53,9 @@ import org.spinrdf.vocabulary.SPIN;
 
 /**
  * A service to execute inference rules based on the spin:rule property.
+ *
+
+ * @version $Id: $Id
  */
 public class SPINInferences { 
 	
@@ -61,10 +64,20 @@ public class SPINInferences {
 	 */
 	private static List<SPINInferencesOptimizer> optimizers = new LinkedList<SPINInferencesOptimizer>();
 	
+	/**
+	 * <p>addOptimizer.</p>
+	 *
+	 * @param optimizer a {@link org.spinrdf.inference.SPINInferencesOptimizer} object.
+	 */
 	public static void addOptimizer(SPINInferencesOptimizer optimizer) {
 		optimizers.add(optimizer);
 	}
 	
+	/**
+	 * <p>removeOptimizer.</p>
+	 *
+	 * @param optimizer a {@link org.spinrdf.inference.SPINInferencesOptimizer} object.
+	 */
 	public static void removeOptimizer(SPINInferencesOptimizer optimizer) {
 		optimizers.remove(optimizer);
 	}
@@ -75,6 +88,7 @@ public class SPINInferences {
 	 * This is (currently) defined as a property that has type spin:RuleProperty
 	 * or is a sub-property of spin:rule.  The latter condition may be removed
 	 * at some later stage after people have upgraded to SPIN 1.1 conventions.
+	 *
 	 * @param property  the property to check
 	 * @return true if property is a rule property
 	 */
@@ -93,8 +107,9 @@ public class SPINInferences {
 	
 	/**
 	 * See the other run method for help - this is using spin:rule as rulePredicate.
+	 *
 	 * @param queryModel  the Model to query
-	 * @param newTriples  the Model to add the new triples to 
+	 * @param newTriples  the Model to add the new triples to
 	 * @param explanations  an optional object to write explanations to
 	 * @param statistics  optional list to add statistics about which queries were slow
 	 * @param singlePass  true to just do a single pass (don't iterate)
@@ -121,9 +136,10 @@ public class SPINInferences {
 	 * must be a sub-model of the queryModel (which likely has to be an OntModel).
 	 * The supplied rulePredicate is usually spin:rule, but can also be a sub-
 	 * property of spin:rule to exercise finer control over which rules to fire.
+	 *
 	 * @param queryModel  the Model to query
 	 * @param rulePredicate  the rule predicate (spin:rule or a sub-property thereof)
-	 * @param newTriples  the Model to add the new triples to 
+	 * @param newTriples  the Model to add the new triples to
 	 * @param explanations  an optional object to write explanations to
 	 * @param statistics  optional list to add statistics about which queries were slow
 	 * @param singlePass  true to just do a single pass (don't iterate)
@@ -151,8 +167,9 @@ public class SPINInferences {
 	 * made within one iteration.
 	 * Note that in order to iterate more than single pass, the newTriples Model
 	 * must be a sub-model of the queryModel (which likely has to be an OntModel).
+	 *
 	 * @param queryModel  the Model to query
-	 * @param newTriples  the Model to add the new triples to 
+	 * @param newTriples  the Model to add the new triples to
 	 * @param class2Query  the map of queries to run (see SPINQueryFinder)
 	 * @param class2Constructor  the map of constructors to run
 	 * @param explanations  an optional object to write explanations to
@@ -414,6 +431,7 @@ public class SPINInferences {
 	/**
 	 * Runs a given Jena Query on a given instance and adds the inferred triples
 	 * to a given Model.
+	 *
 	 * @param queryWrapper  the wrapper of the CONSTRUCT query to execute
 	 * @param queryModel  the query Model
 	 * @param newTriples  the Model to write the triples to

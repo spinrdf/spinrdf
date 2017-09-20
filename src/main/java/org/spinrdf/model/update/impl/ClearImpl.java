@@ -23,13 +23,26 @@ import org.spinrdf.model.print.PrintContext;
 import org.spinrdf.model.update.Clear;
 
 
+/**
+ * <p>ClearImpl class.</p>
+ *
+
+ * @version $Id: $Id
+ */
 public class ClearImpl extends UpdateImpl implements Clear {
 
+	/**
+	 * <p>Constructor for ClearImpl.</p>
+	 *
+	 * @param node a {@link org.apache.jena.graph.Node} object.
+	 * @param graph a {@link org.apache.jena.enhanced.EnhGraph} object.
+	 */
 	public ClearImpl(Node node, EnhGraph graph) {
 		super(node, graph);
 	}
 
 	
+	/** {@inheritDoc} */
 	@Override
 	public void printSPINRDF(PrintContext p) {
 		p.printKeyword("CLEAR");

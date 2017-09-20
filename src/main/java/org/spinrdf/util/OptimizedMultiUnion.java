@@ -23,14 +23,32 @@ import org.apache.jena.graph.Node;
 
 /**
  * A Graph interface providing additional optimization features.
+ *
+
+ * @version $Id: $Id
  */
 public interface OptimizedMultiUnion {
 	
+	/**
+	 * <p>getIncludesSHACL.</p>
+	 *
+	 * @return a boolean.
+	 */
 	boolean getIncludesSHACL();
 	
 	
+	/**
+	 * <p>getIncludesSPIN.</p>
+	 *
+	 * @return a boolean.
+	 */
 	boolean getIncludesSPIN();
 	
 	
+	/**
+	 * <p>getLabelProperties.</p>
+	 *
+	 * @return a {@link java.util.List} object.
+	 */
 	List<Node> getLabelProperties();
 }

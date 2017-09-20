@@ -24,13 +24,26 @@ import org.spinrdf.model.update.DeleteData;
 import org.spinrdf.vocabulary.SP;
 
 
+/**
+ * <p>DeleteDataImpl class.</p>
+ *
+
+ * @version $Id: $Id
+ */
 public class DeleteDataImpl extends UpdateImpl implements DeleteData {
 
+	/**
+	 * <p>Constructor for DeleteDataImpl.</p>
+	 *
+	 * @param node a {@link org.apache.jena.graph.Node} object.
+	 * @param graph a {@link org.apache.jena.enhanced.EnhGraph} object.
+	 */
 	public DeleteDataImpl(Node node, EnhGraph graph) {
 		super(node, graph);
 	}
 
 	
+	/** {@inheritDoc} */
 	@Override
 	public void printSPINRDF(PrintContext p) {
 		p.printKeyword("DELETE");

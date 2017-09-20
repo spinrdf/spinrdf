@@ -37,6 +37,9 @@ import org.spinrdf.vocabulary.SPIN;
  * A utility that can be used to find all properties that occur as object
  * in a triple pattern with ?this as subject.  The system also walks into
  * calls to SPIN Functions such as spl:cardinality and SPIN Templates.
+ *
+
+ * @version $Id: $Id
  */
 public class ObjectPropertiesGetter extends AbstractTriplesVisitor {
 	
@@ -45,17 +48,30 @@ public class ObjectPropertiesGetter extends AbstractTriplesVisitor {
 	private Model targetModel;
 	
 	
+	/**
+	 * <p>Constructor for ObjectPropertiesGetter.</p>
+	 *
+	 * @param targetModel a {@link org.apache.jena.rdf.model.Model} object.
+	 * @param element a {@link org.spinrdf.model.Element} object.
+	 * @param initialBindings a {@link java.util.Map} object.
+	 */
 	public ObjectPropertiesGetter(Model targetModel, Element element, Map<Property,RDFNode> initialBindings) {
 		super(element, initialBindings);
 		this.targetModel = targetModel;
 	}
 	
 	
+	/**
+	 * <p>getResults.</p>
+	 *
+	 * @return a {@link java.util.Set} object.
+	 */
 	public Set<Property> getResults() {
 		return properties;
 	}
 
 	
+	/** {@inheritDoc} */
 	@Override
 	protected void handleTriplePattern(TriplePattern triplePattern, Map<Property, RDFNode> bindings) {
 		boolean valid = false;

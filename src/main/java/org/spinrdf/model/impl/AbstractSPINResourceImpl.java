@@ -48,6 +48,12 @@ import org.spinrdf.util.SPINUtil;
 import org.spinrdf.vocabulary.SP;
 
 
+/**
+ * <p>Abstract AbstractSPINResourceImpl class.</p>
+ *
+
+ * @version $Id: $Id
+ */
 public abstract class AbstractSPINResourceImpl extends org.spinrdf.model.SPINResourceImpl implements Printable {
 	
 	/**
@@ -56,21 +62,43 @@ public abstract class AbstractSPINResourceImpl extends org.spinrdf.model.SPINRes
 	public static final String INDENTATION = " ";
 
 	
+	/**
+	 * <p>Constructor for AbstractSPINResourceImpl.</p>
+	 *
+	 * @param node a {@link org.apache.jena.graph.Node} object.
+	 * @param graph a {@link org.apache.jena.enhanced.EnhGraph} object.
+	 */
 	public AbstractSPINResourceImpl(Node node, EnhGraph graph) {
 		super(node, graph);
 	}
 	
 	
+	/**
+	 * <p>getComment.</p>
+	 *
+	 * @return a {@link java.lang.String} object.
+	 */
 	public String getComment() {
 		return getString(RDFS.comment);
 	}
 
 	
+	/**
+	 * <p>getElements.</p>
+	 *
+	 * @return a {@link java.util.List} object.
+	 */
 	public List<Element> getElements() {
 		return getElements(SP.elements);
 	}
 	
 
+	/**
+	 * <p>getElements.</p>
+	 *
+	 * @param predicate a {@link org.apache.jena.rdf.model.Property} object.
+	 * @return a {@link java.util.List} object.
+	 */
 	public List<Element> getElements(Property predicate) {
 		List<Element> results = new LinkedList<Element>();
 		for(RDFNode node : getList(predicate)) {
@@ -82,6 +110,12 @@ public abstract class AbstractSPINResourceImpl extends org.spinrdf.model.SPINRes
 	}
 
 	
+	/**
+	 * <p>getList.</p>
+	 *
+	 * @param predicate a {@link org.apache.jena.rdf.model.Property} object.
+	 * @return a {@link java.util.List} object.
+	 */
 	public List<RDFNode> getList(Property predicate) {
 		Resource rawList = getResource(predicate);
 		List<RDFNode> results = new LinkedList<RDFNode>();
@@ -111,11 +145,24 @@ public abstract class AbstractSPINResourceImpl extends org.spinrdf.model.SPINRes
 	}
 
 	
+	/**
+	 * <p>hasRDFType.</p>
+	 *
+	 * @param node a {@link org.apache.jena.graph.Node} object.
+	 * @param graph a {@link org.apache.jena.enhanced.EnhGraph} object.
+	 * @param type a {@link org.apache.jena.rdf.model.Resource} object.
+	 * @return a boolean.
+	 */
 	public static boolean hasRDFType(Node node, EnhGraph graph, Resource type) {
 		return graph.asGraph().contains(node, RDF.type.asNode(), type.asNode());
 	}
 	
 	
+	/**
+	 * <p>printComment.</p>
+	 *
+	 * @param context a {@link org.spinrdf.model.print.PrintContext} object.
+	 */
 	protected void printComment(PrintContext context) {
 		String str = getComment();
 		if(str != null) {
@@ -129,11 +176,22 @@ public abstract class AbstractSPINResourceImpl extends org.spinrdf.model.SPINRes
 	}
 
 
+	/**
+	 * <p>printNestedElementList.</p>
+	 *
+	 * @param p a {@link org.spinrdf.model.print.PrintContext} object.
+	 */
 	protected void printNestedElementList(PrintContext p) {
 		printNestedElementList(p, SP.elements);
 	}
 	
 
+	/**
+	 * <p>printNestedElementList.</p>
+	 *
+	 * @param p a {@link org.spinrdf.model.print.PrintContext} object.
+	 * @param predicate a {@link org.apache.jena.rdf.model.Property} object.
+	 */
 	protected void printNestedElementList(PrintContext p, Property predicate) {
 		p.print(" {");
 		p.println();
@@ -149,16 +207,34 @@ public abstract class AbstractSPINResourceImpl extends org.spinrdf.model.SPINRes
 	}
 
 	
+	/**
+	 * <p>printNestedExpressionString.</p>
+	 *
+	 * @param context a {@link org.spinrdf.model.print.PrintContext} object.
+	 * @param node a {@link org.apache.jena.rdf.model.RDFNode} object.
+	 */
 	protected void printNestedExpressionString(PrintContext context, RDFNode node) {
 		printNestedExpressionString(context, node, false);
 	}
 	
 	
+	/**
+	 * <p>printNestedExpressionString.</p>
+	 *
+	 * @param p a {@link org.spinrdf.model.print.PrintContext} object.
+	 * @param node a {@link org.apache.jena.rdf.model.RDFNode} object.
+	 * @param force a boolean.
+	 */
 	protected void printNestedExpressionString(PrintContext p, RDFNode node, boolean force) {
 		SPINExpressions.printExpressionString(p, node, true, force, getModel().getGraph().getPrefixMapping());
 	}
 	
 	
+	/**
+	 * <p>printPrefixes.</p>
+	 *
+	 * @param context a {@link org.spinrdf.model.print.PrintContext} object.
+	 */
 	protected void printPrefixes(PrintContext context) {
 		if(context.getPrintPrefixes()) {
 			Set<Resource> uriResources = SPINUtil.getURIResources(this);
@@ -190,6 +266,11 @@ public abstract class AbstractSPINResourceImpl extends org.spinrdf.model.SPINRes
 	}
 
 	
+	/**
+	 * <p>toString.</p>
+	 *
+	 * @return a {@link java.lang.String} object.
+	 */
 	public String toString() {
 		StringPrintContext p = new StringPrintContext();
 		print(p);
@@ -197,6 +278,12 @@ public abstract class AbstractSPINResourceImpl extends org.spinrdf.model.SPINRes
 	}
 
 
+	/**
+	 * <p>printVarOrResource.</p>
+	 *
+	 * @param p a {@link org.spinrdf.model.print.PrintContext} object.
+	 * @param resource a {@link org.apache.jena.rdf.model.Resource} object.
+	 */
 	public static void printVarOrResource(PrintContext p, Resource resource) {
 		Variable variable = SPINFactory.asVariable(resource);
 		if(variable != null) {

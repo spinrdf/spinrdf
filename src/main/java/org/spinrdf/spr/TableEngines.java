@@ -27,15 +27,28 @@ import org.spinrdf.vocabulary.SPRA;
 
 /**
  * A Singleton managing the registered TableEngines.
+ *
+
+ * @version $Id: $Id
  */
 public class TableEngines {
 
 	private static TableEngines singleton = new TableEngines();
 	
+	/**
+	 * <p>get.</p>
+	 *
+	 * @return a {@link org.spinrdf.spr.TableEngines} object.
+	 */
 	public static TableEngines get() {
 		return singleton;
 	}
 	
+	/**
+	 * <p>set.</p>
+	 *
+	 * @param value a {@link org.spinrdf.spr.TableEngines} object.
+	 */
 	public static void set(TableEngines value) {
 		TableEngines.singleton = value;
 	}
@@ -44,21 +57,41 @@ public class TableEngines {
 	
 	private Map<Resource,TableEngine> map = new HashMap<Resource,TableEngine>();
 	
+	/**
+	 * <p>Constructor for TableEngines.</p>
+	 */
 	public TableEngines() {
 		map.put(SPRA.Table, defaultTableEngine);
 	}
 	
 	
+	/**
+	 * <p>Getter for the field <code>defaultTableEngine</code>.</p>
+	 *
+	 * @return a {@link org.spinrdf.spr.TableEngine} object.
+	 */
 	public TableEngine getDefaultTableEngine() {
 		return defaultTableEngine;
 	}
 	
 	
+	/**
+	 * <p>getForType.</p>
+	 *
+	 * @param type a {@link org.apache.jena.rdf.model.Resource} object.
+	 * @return a {@link org.spinrdf.spr.TableEngine} object.
+	 */
 	public TableEngine getForType(Resource type) {
 		return map.get(type);
 	}
 	
 	
+	/**
+	 * <p>register.</p>
+	 *
+	 * @param type a {@link org.apache.jena.rdf.model.Resource} object.
+	 * @param tableEngine a {@link org.spinrdf.spr.TableEngine} object.
+	 */
 	public void register(Resource type, TableEngine tableEngine) {
 		map.put(type, tableEngine);
 	}

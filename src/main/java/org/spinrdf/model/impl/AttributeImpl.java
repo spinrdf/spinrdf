@@ -25,23 +25,50 @@ import org.spinrdf.model.Attribute;
 import org.spinrdf.vocabulary.SPL;
 
 
+/**
+ * <p>AttributeImpl class.</p>
+ *
+
+ * @version $Id: $Id
+ */
 public class AttributeImpl extends AbstractAttributeImpl implements Attribute {
 	
+	/**
+	 * <p>Constructor for AttributeImpl.</p>
+	 *
+	 * @param node a {@link org.apache.jena.graph.Node} object.
+	 * @param eg a {@link org.apache.jena.enhanced.EnhGraph} object.
+	 */
 	public AttributeImpl(Node node, EnhGraph eg) {
 		super(node, eg);
 	}
 
 
+	/**
+	 * <p>isOptional.</p>
+	 *
+	 * @return a boolean.
+	 */
 	public boolean isOptional() {
 		return getMinCount() == 0;
 	}
 
 
+	/**
+	 * <p>getDefaultValue.</p>
+	 *
+	 * @return a {@link org.apache.jena.rdf.model.RDFNode} object.
+	 */
 	public RDFNode getDefaultValue() {
 		return getRDFNode(SPL.defaultValue);
 	}
 
 
+	/**
+	 * <p>getMaxCount.</p>
+	 *
+	 * @return a {@link java.lang.Integer} object.
+	 */
 	public Integer getMaxCount() {
 		Statement s = getProperty(SPL.maxCount);
 		if(s != null && s.getObject().isLiteral()) {
@@ -53,6 +80,11 @@ public class AttributeImpl extends AbstractAttributeImpl implements Attribute {
 	}
 
 
+	/**
+	 * <p>getMinCount.</p>
+	 *
+	 * @return a int.
+	 */
 	public int getMinCount() {
 		Statement s = getProperty(SPL.minCount);
 		if(s != null && s.getObject().isLiteral()) {

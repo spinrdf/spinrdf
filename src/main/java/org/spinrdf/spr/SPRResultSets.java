@@ -35,6 +35,9 @@ import org.spinrdf.vocabulary.SPR;
 
 /**
  * Static utilities on SPR tables.
+ *
+
+ * @version $Id: $Id
  */
 public class SPRResultSets {
 	
@@ -59,6 +62,14 @@ public class SPRResultSets {
 			"}");
 	
 	
+	/**
+	 * <p>getCell.</p>
+	 *
+	 * @param table a {@link org.apache.jena.rdf.model.Resource} object.
+	 * @param row a int.
+	 * @param col a int.
+	 * @return a {@link org.apache.jena.rdf.model.RDFNode} object.
+	 */
 	public static RDFNode getCell(Resource table, int row, int col) {
 		Model model = table.getModel();
 		QueryExecution qexec = ARQFactory.get().createQueryExecution(cellQuery, model);
@@ -83,11 +94,24 @@ public class SPRResultSets {
 	}
 
 	
+	/**
+	 * <p>getColCount.</p>
+	 *
+	 * @param table a {@link org.apache.jena.rdf.model.Resource} object.
+	 * @return a int.
+	 */
 	public static int getColCount(Resource table) {
 		return getIntFromFunction(table, colCountQuery);
 	}
 	
 	
+	/**
+	 * <p>getColName.</p>
+	 *
+	 * @param table a {@link org.apache.jena.rdf.model.Resource} object.
+	 * @param col a int.
+	 * @return a {@link java.lang.String} object.
+	 */
 	public static String getColName(Resource table, int col) {
 		Model model = table.getModel();
 		QueryExecution qexec = ARQFactory.get().createQueryExecution(colNameQuery, model);
@@ -111,6 +135,12 @@ public class SPRResultSets {
 	}
 	
 
+	/**
+	 * <p>getColNames.</p>
+	 *
+	 * @param table a {@link org.apache.jena.rdf.model.Resource} object.
+	 * @return a {@link java.util.List} object.
+	 */
 	public static List<String> getColNames(Resource table) {
 		List<String> results = new LinkedList<String>();
 		int colCount = getColCount(table);
@@ -146,6 +176,12 @@ public class SPRResultSets {
 	}
 
 	
+	/**
+	 * <p>getRowCount.</p>
+	 *
+	 * @param table a {@link org.apache.jena.rdf.model.Resource} object.
+	 * @return a int.
+	 */
 	public static int getRowCount(Resource table) {
 		return getIntFromFunction(table, rowCountQuery);
 	}

@@ -25,27 +25,55 @@ import org.apache.jena.rdf.model.Resource;
 
 /**
  * An extension of the Jena Resource interface with additional
- * convenience methods to easier access property values. 
+ * convenience methods to easier access property values.
+ *
+
+ * @version $Id: $Id
  */
 public interface SPINResource extends Resource {
 
 	/**
 	 * Gets the "first" property value of this but only if it's a Literal.
-	 * Returns null if the value is a Resource. 
+	 * Returns null if the value is a Resource.
+	 *
 	 * @param predicate  the predicate
 	 * @return the "first" property value or null
 	 */
 	Literal getLiteral(Property predicate);
 	
 	
+	/**
+	 * <p>getLong.</p>
+	 *
+	 * @param predicate a {@link org.apache.jena.rdf.model.Property} object.
+	 * @return a {@link java.lang.Long} object.
+	 */
 	Long getLong(Property predicate);
 	
 	
+	/**
+	 * <p>getRDFNode.</p>
+	 *
+	 * @param predicate a {@link org.apache.jena.rdf.model.Property} object.
+	 * @return a {@link org.apache.jena.rdf.model.RDFNode} object.
+	 */
 	RDFNode getRDFNode(Property predicate);
 	
 	
+	/**
+	 * <p>getResource.</p>
+	 *
+	 * @param predicate a {@link org.apache.jena.rdf.model.Property} object.
+	 * @return a {@link org.apache.jena.rdf.model.Resource} object.
+	 */
 	Resource getResource(Property predicate);
 	
 	
+	/**
+	 * <p>getString.</p>
+	 *
+	 * @param predicate a {@link org.apache.jena.rdf.model.Property} object.
+	 * @return a {@link java.lang.String} object.
+	 */
 	String getString(Property predicate);
 }

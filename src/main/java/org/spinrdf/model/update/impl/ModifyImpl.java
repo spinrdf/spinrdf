@@ -27,23 +27,46 @@ import org.spinrdf.model.update.Modify;
 import org.spinrdf.util.JenaUtil;
 import org.spinrdf.vocabulary.SP;
 
+/**
+ * <p>ModifyImpl class.</p>
+ *
+
+ * @version $Id: $Id
+ */
 public class ModifyImpl extends UpdateImpl implements Modify {
 
+	/**
+	 * <p>Constructor for ModifyImpl.</p>
+	 *
+	 * @param node a {@link org.apache.jena.graph.Node} object.
+	 * @param graph a {@link org.apache.jena.enhanced.EnhGraph} object.
+	 */
 	public ModifyImpl(Node node, EnhGraph graph) {
 		super(node, graph);
 	}
 	
 	
+	/**
+	 * <p>getUsing.</p>
+	 *
+	 * @return a {@link java.util.List} object.
+	 */
 	public List<Resource> getUsing() {
 		return JenaUtil.getResourceProperties(this, SP.using);
 	}
 	
 	
+	/**
+	 * <p>getUsingNamed.</p>
+	 *
+	 * @return a {@link java.util.List} object.
+	 */
 	public List<Resource> getUsingNamed() {
 		return JenaUtil.getResourceProperties(this, SP.usingNamed);
 	}
 
 	
+	/** {@inheritDoc} */
 	public void printSPINRDF(PrintContext p) {
 		printComment(p);
 		printPrefixes(p);

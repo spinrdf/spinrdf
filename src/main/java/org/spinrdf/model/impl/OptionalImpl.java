@@ -24,19 +24,33 @@ import org.spinrdf.model.print.PrintContext;
 import org.spinrdf.model.visitor.ElementVisitor;
 
 
+/**
+ * <p>OptionalImpl class.</p>
+ *
+
+ * @version $Id: $Id
+ */
 public class OptionalImpl extends ElementImpl implements Optional {
 	
+	/**
+	 * <p>Constructor for OptionalImpl.</p>
+	 *
+	 * @param node a {@link org.apache.jena.graph.Node} object.
+	 * @param graph a {@link org.apache.jena.enhanced.EnhGraph} object.
+	 */
 	public OptionalImpl(Node node, EnhGraph graph) {
 		super(node, graph);
 	}
 
 
+	/** {@inheritDoc} */
 	public void print(PrintContext p) {
 		p.printKeyword("OPTIONAL");
 		printNestedElementList(p);
 	}
 
 
+	/** {@inheritDoc} */
 	public void visit(ElementVisitor visitor) {
 		visitor.visit(this);
 	}

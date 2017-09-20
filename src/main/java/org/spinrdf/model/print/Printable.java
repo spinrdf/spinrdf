@@ -21,14 +21,16 @@ package org.spinrdf.model.print;
 /**
  * An interface for objects that can be printed into a PrintContext.
  * This is implemented by SPIN Queries and Elements.
- * 
+ *
  * @author Holger Knublauch
+ * @version $Id: $Id
  */
 public interface Printable {
 
 	/**
 	 * Instructs this to print itself into a given PrintContext.
 	 * Implementations need to use the provided functions of p.
+	 *
 	 * @param p  the context
 	 */
 	void print(PrintContext p);

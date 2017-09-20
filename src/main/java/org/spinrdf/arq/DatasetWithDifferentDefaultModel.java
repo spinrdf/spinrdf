@@ -22,18 +22,28 @@ import org.apache.jena.rdf.model.Model;
 
 /**
  * A DelegatingDataset that uses a different default model than the delegate.
+ *
+
+ * @version $Id: $Id
  */
 public class DatasetWithDifferentDefaultModel extends DelegatingDataset {
 
 	private Model defaultModel;
 	
 	
+	/**
+	 * <p>Constructor for DatasetWithDifferentDefaultModel.</p>
+	 *
+	 * @param defaultModel a {@link org.apache.jena.rdf.model.Model} object.
+	 * @param delegate a {@link org.apache.jena.query.Dataset} object.
+	 */
 	public DatasetWithDifferentDefaultModel(Model defaultModel, Dataset delegate) {
 		super(delegate);
 		this.defaultModel = defaultModel;
 	}
 
 	
+	/** {@inheritDoc} */
 	@Override
 	public Model getDefaultModel() {
 		return defaultModel;

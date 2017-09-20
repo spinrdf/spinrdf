@@ -21,8 +21,9 @@ package org.spinrdf.statistics;
 /**
  * An interface for objects interested in updates to the SPINStatisticsManager.
  * This can be used to track the execution of SPIN with real-time updates.
- * 
+ *
  * @author Holger Knublauch
+ * @version $Id: $Id
  */
 public interface SPINStatisticsListener {
 

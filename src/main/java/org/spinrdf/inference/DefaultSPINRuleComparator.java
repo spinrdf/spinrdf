@@ -31,12 +31,18 @@ import org.spinrdf.vocabulary.SPIN;
  * A SPINRuleComparator using the spin:nextRuleProperty property.
  *
  * @author Holger Knublauch
+ * @version $Id: $Id
  */
 public class DefaultSPINRuleComparator implements SPINRuleComparator {
 	
 	private List<Resource> properties;
 	
 	
+	/**
+	 * <p>Constructor for DefaultSPINRuleComparator.</p>
+	 *
+	 * @param model a {@link org.apache.jena.rdf.model.Model} object.
+	 */
 	public DefaultSPINRuleComparator(Model model) {
 		// Pre-build properties list
 		Property spinRule = model.getProperty(SPIN.rule.getURI());
@@ -62,6 +68,13 @@ public class DefaultSPINRuleComparator implements SPINRuleComparator {
 	}
 	
 
+	/**
+	 * <p>compare.</p>
+	 *
+	 * @param w1 a {@link org.spinrdf.util.CommandWrapper} object.
+	 * @param w2 a {@link org.spinrdf.util.CommandWrapper} object.
+	 * @return a int.
+	 */
 	public int compare(CommandWrapper w1, CommandWrapper w2) {
 		if(properties.size() > 1) {
 			Property p1 = w1.getStatement() != null ? w1.getStatement().getPredicate() : SPIN.rule;

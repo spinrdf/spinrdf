@@ -28,13 +28,30 @@ import org.spinrdf.model.visitor.ElementVisitor;
 import org.spinrdf.vocabulary.SP;
 
 
+/**
+ * <p>NamedGraphImpl class.</p>
+ *
+
+ * @version $Id: $Id
+ */
 public class NamedGraphImpl extends ElementImpl implements NamedGraph {
 	
+	/**
+	 * <p>Constructor for NamedGraphImpl.</p>
+	 *
+	 * @param node a {@link org.apache.jena.graph.Node} object.
+	 * @param graph a {@link org.apache.jena.enhanced.EnhGraph} object.
+	 */
 	public NamedGraphImpl(Node node, EnhGraph graph) {
 		super(node, graph);
 	}
 	
 	
+	/**
+	 * <p>getNameNode.</p>
+	 *
+	 * @return a {@link org.apache.jena.rdf.model.Resource} object.
+	 */
 	public Resource getNameNode() {
 		Resource r = getResource(SP.graphNameNode);
 		if(r != null) {
@@ -52,6 +69,7 @@ public class NamedGraphImpl extends ElementImpl implements NamedGraph {
 	}
 
 
+	/** {@inheritDoc} */
 	public void print(PrintContext p) {
 		p.printKeyword("GRAPH");
 		p.print(" ");
@@ -60,6 +78,7 @@ public class NamedGraphImpl extends ElementImpl implements NamedGraph {
 	}
 
 
+	/** {@inheritDoc} */
 	public void visit(ElementVisitor visitor) {
 		visitor.visit(this);
 	}

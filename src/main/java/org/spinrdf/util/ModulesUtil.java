@@ -36,13 +36,17 @@ import org.spinrdf.vocabulary.SPIN;
 
 /**
  * Utilities on SPIN modules.
+ *
+
+ * @version $Id: $Id
  */
 public class ModulesUtil {
 	
 
 	/**
 	 * Gets the spin:body of a module, including inherited ones if the
-	 * direct body is null. 
+	 * direct body is null.
+	 *
 	 * @param module  the module to get the body of
 	 * @return the body or null
 	 */
@@ -61,6 +65,7 @@ public class ModulesUtil {
 	 * Attempts to find "good" default bindings for a collection of RDFNode values
 	 * at a given module.  For each argument, this algorithm checks whether each
 	 * value would match the argument's type.
+	 *
 	 * @param module  the module Resource to check
 	 * @param values  the potential values
 	 * @return a Map of argProperty properties to a subset of the values

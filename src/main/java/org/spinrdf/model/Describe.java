@@ -24,12 +24,16 @@ import org.apache.jena.rdf.model.Resource;
 
 /**
  * A DESCRIBE query.
+ *
+
+ * @version $Id: $Id
  */
 public interface Describe extends SolutionModifierQuery {
 
 	/**
 	 * Gets the result nodes of this query.  The resulting Resources will be
 	 * automatically typecast into Variable if they are variables.
+	 *
 	 * @return a List of Resources (or Variables)
 	 */
 	List<Resource> getResultNodes();

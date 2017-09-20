@@ -22,11 +22,15 @@ import org.apache.jena.rdf.model.Resource;
 
 /**
  * A SPIN Function module (not: FunctionCall).
+ *
+
+ * @version $Id: $Id
  */
 public interface Function extends Module {
 	
 	/**
 	 * Gets the value of the spin:returnType property, if any.
+	 *
 	 * @return the return type or null
 	 */
 	Resource getReturnType();
@@ -35,6 +39,7 @@ public interface Function extends Module {
 	/**
 	 * Checks if this function is a magic property, marked by having
 	 * rdf:type spin:MagicProperty.
+	 *
 	 * @return true  if this is a magic property
 	 */
 	boolean isMagicProperty();
@@ -42,6 +47,7 @@ public interface Function extends Module {
 	
 	/**
 	 * Indicates if spin:private is set to true for this function.
+	 *
 	 * @return true  if marked private
 	 */
 	boolean isPrivate();

@@ -26,13 +26,26 @@ import org.spinrdf.util.JenaUtil;
 import org.spinrdf.vocabulary.SP;
 
 
+/**
+ * <p>LoadImpl class.</p>
+ *
+
+ * @version $Id: $Id
+ */
 public class LoadImpl extends UpdateImpl implements Load {
 
+	/**
+	 * <p>Constructor for LoadImpl.</p>
+	 *
+	 * @param node a {@link org.apache.jena.graph.Node} object.
+	 * @param graph a {@link org.apache.jena.enhanced.EnhGraph} object.
+	 */
 	public LoadImpl(Node node, EnhGraph graph) {
 		super(node, graph);
 	}
 
 	
+	/** {@inheritDoc} */
 	@Override
 	public void printSPINRDF(PrintContext p) {
 		p.printKeyword("LOAD");

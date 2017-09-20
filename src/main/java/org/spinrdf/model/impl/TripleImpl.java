@@ -25,18 +25,36 @@ import org.spinrdf.model.print.PrintContext;
 import org.spinrdf.vocabulary.SP;
 
 
+/**
+ * <p>Abstract TripleImpl class.</p>
+ *
+
+ * @version $Id: $Id
+ */
 public abstract class TripleImpl extends TupleImpl implements Triple {
 
+	/**
+	 * <p>Constructor for TripleImpl.</p>
+	 *
+	 * @param node a {@link org.apache.jena.graph.Node} object.
+	 * @param graph a {@link org.apache.jena.enhanced.EnhGraph} object.
+	 */
 	public TripleImpl(Node node, EnhGraph graph) {
 		super(node, graph);
 	}
 
 
+	/**
+	 * <p>getPredicate.</p>
+	 *
+	 * @return a {@link org.apache.jena.rdf.model.Resource} object.
+	 */
 	public Resource getPredicate() {
 		return (Resource) getRDFNodeOrVariable(SP.predicate);
 	}
 	
 	
+	/** {@inheritDoc} */
 	public void print(PrintContext p) {
 		print(getSubject(), p);
 		p.print(" ");

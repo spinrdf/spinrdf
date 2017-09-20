@@ -48,6 +48,9 @@ import org.spinrdf.vocabulary.SPL;
 /**
  * The singleton that is used to convert plain Jena objects into
  * SPIN API resources, and to do corresponding tests.
+ *
+
+ * @version $Id: $Id
  */
 @SuppressWarnings("deprecation")
 public class SPINFactory {
@@ -56,6 +59,7 @@ public class SPINFactory {
 	 * Attempts to cast a given Resource into an Aggregation.
 	 * Resources that have an aggregation type as their rdf:type
 	 * are recognized as well-formed aggregations.
+	 *
 	 * @param resource  the Resource to cast
 	 * @return the Aggregation or null if Resource is not a well-formed aggregation
 	 */
@@ -83,6 +87,7 @@ public class SPINFactory {
 	/**
 	 * Attempts to cast a given Resource into the most specific
 	 * subclass of Command, esp Update or Query.
+	 *
 	 * @param resource  the Resource to cast
 	 * @return resource cast into the best possible type or null
 	 */
@@ -100,6 +105,7 @@ public class SPINFactory {
 	/**
 	 * Checks whether a given Resource represents a SPARQL element, and returns
 	 * an instance of a subclass of Element if so.
+	 *
 	 * @param resource  the Resource to check
 	 * @return Resource as an Element or null if resource is not an element
 	 */
@@ -161,6 +167,7 @@ public class SPINFactory {
 	 * FunctionCall.
 	 * If it's a Variable, the Variable will be returned.
 	 * Otherwise the node itself will be returned.
+	 *
 	 * @param node  the node to cast
 	 * @return node or node as a Function or Variable
 	 */
@@ -186,6 +193,7 @@ public class SPINFactory {
 	/**
 	 * Converts a given Resource into a Function instance.
 	 * No other tests are done.
+	 *
 	 * @param resource  the Resource to convert
 	 * @return the Function
 	 */
@@ -202,7 +210,8 @@ public class SPINFactory {
 	 * assumed that this function is called after other options have been
 	 * exhausted.  For example, in order to test whether a resource is a
 	 * variable or a function call, the variable test must be done first
-	 * as it is more specific than these test conditions 
+	 * as it is more specific than these test conditions
+	 *
 	 * @param resource  the Resource to test
 	 * @return resource as a Function or null if resource cannot be cast
 	 */
@@ -219,7 +228,8 @@ public class SPINFactory {
 	
 	/**
 	 * Checks if a given Resource is a SPIN query, and returns an
-	 * instance of a subclass of Query if so. 
+	 * instance of a subclass of Query if so.
+	 *
 	 * @param resource  the Resource to test
 	 * @return resource as a Query or null
 	 */
@@ -245,6 +255,7 @@ public class SPINFactory {
 	/**
 	 * Converts a given Resource into a Template instance.
 	 * No other tests are done.
+	 *
 	 * @param resource  the Resource to convert
 	 * @return the Template
 	 */
@@ -256,6 +267,7 @@ public class SPINFactory {
 	/**
 	 * Checks whether a given RDFNode can be cast into TemplateCall, and returns
 	 * it as a TemplateCall instance if so.
+	 *
 	 * @param node  the node to convert
 	 * @return an instance of TemplateCall or null
 	 */
@@ -277,6 +289,7 @@ public class SPINFactory {
 	/**
 	 * Checks whether a given RDFNode can be converted into a TriplePattern, and if yes,
 	 * returns an instance of TriplePattern.
+	 *
 	 * @param node  the node to test
 	 * @return node as TriplePattern or null
 	 */
@@ -293,6 +306,7 @@ public class SPINFactory {
 	/**
 	 * Checks if a given Resource is a subclass of sp:Update and
 	 * casts it into the most specific Java class possible.
+	 *
 	 * @param resource  the Resource to cast
 	 * @return the Update or null if resource cannot be cast
 	 */
@@ -337,6 +351,7 @@ public class SPINFactory {
 	 * Checks whether a given RDFNode can be cast into a Variable and - if yes -
 	 * converts it into an instance of Variable.  The Resource must have a value
 	 * for spin:varName.
+	 *
 	 * @param node  the node to check
 	 * @return resource as a Variable or null
 	 */
@@ -353,6 +368,7 @@ public class SPINFactory {
 	/**
 	 * Creates an spl:Argument with a given property and value type.
 	 * The new Argument resource will be a blank node in a given Model.
+	 *
 	 * @param model  the Model
 	 * @param argProperty  the property or null
 	 * @param argType  the value type or null
@@ -376,6 +392,7 @@ public class SPINFactory {
 
 	/**
 	 * Creates a new spl:Attribute as a blank node in a given Model.
+	 *
 	 * @param model  the Model to create the attribute in
 	 * @param argProperty  the predicate or null
 	 * @param argType  the value type or null
@@ -403,6 +420,7 @@ public class SPINFactory {
 	
 	/**
 	 * Creates an Ask query for a given WHERE clause.
+	 *
 	 * @param model  the Model to create the Ask (blank node) in
 	 * @param where  the elements of the WHERE clause
 	 * @return the new Ask query
@@ -416,6 +434,7 @@ public class SPINFactory {
 
 	/**
 	 * Creates a Bind in a given Model as a blank node.
+	 *
 	 * @param model  the Model to create the Bind in
 	 * @param variable  the Variable to assign
 	 * @param expression  the expression
@@ -435,6 +454,7 @@ public class SPINFactory {
 
 	/**
 	 * Creates a new ElementList in a given Model.
+	 *
 	 * @param model  the Model to create the ElementList in
 	 * @param elements  the elements (may be empty)
 	 * @return a new ElementList (may be rdf:nil)
@@ -451,6 +471,7 @@ public class SPINFactory {
 	
 	/**
 	 * Creates a new ElementList in a given Model.
+	 *
 	 * @param model  the Model to create the ElementList in
 	 * @param elements  the elements (may be empty)
 	 * @return a new ElementList (may be rdf:nil)
@@ -467,6 +488,7 @@ public class SPINFactory {
 	
 	/**
 	 * Creates a new Exists as a blank node in a given Model.
+	 *
 	 * @param model  the Model to create the EXISTS in
 	 * @param elements  the elements of the EXISTS
 	 * @return a new Exists
@@ -480,6 +502,7 @@ public class SPINFactory {
 
 	/**
 	 * Creates a Filter from a given expression.
+	 *
 	 * @param model  the Model to create the (blank node) Filter in
 	 * @param expression  the expression node (not null)
 	 * @return a new Filter
@@ -494,6 +517,7 @@ public class SPINFactory {
 	/**
 	 * Creates a new Function call, which is basically an instance of the
 	 * function's class.
+	 *
 	 * @param model  the Model to create the function call in
 	 * @param function  the function class (must be a URI resource)
 	 * @return a new instance of function
@@ -505,6 +529,7 @@ public class SPINFactory {
 	
 	/**
 	 * Creates a new Minus as a blank node in a given Model.
+	 *
 	 * @param model  the Model to create the MINUS in
 	 * @param elements  the elements of the MINUS
 	 * @return a new Minus
@@ -518,6 +543,7 @@ public class SPINFactory {
 
 	/**
 	 * Creates a new NamedGraph element as a blank node in a given Model.
+	 *
 	 * @param model  the Model to generate the NamedGraph in
 	 * @param graphNameNode  the URI resource of the graph name
 	 * @param elements  the elements in the NamedGraph
@@ -533,6 +559,7 @@ public class SPINFactory {
 	
 	/**
 	 * Creates a new NotExists as a blank node in a given Model.
+	 *
 	 * @param model  the Model to create the NOT EXISTS in
 	 * @param elements  the elements of the NOT EXISTS
 	 * @return a new NotExists
@@ -545,7 +572,8 @@ public class SPINFactory {
 	
 
 	/**
-	 * Creates a new Optional as a blank node in a given Model. 
+	 * Creates a new Optional as a blank node in a given Model.
+	 *
 	 * @param model  the Model to create the OPTIONAL in
 	 * @param elements  the elements of the OPTIONAL
 	 * @return a new Optional
@@ -557,6 +585,14 @@ public class SPINFactory {
 	}
 	
 	
+	/**
+	 * <p>createService.</p>
+	 *
+	 * @param model a {@link org.apache.jena.rdf.model.Model} object.
+	 * @param serviceURI a {@link org.apache.jena.rdf.model.Resource} object.
+	 * @param elements a {@link org.spinrdf.model.ElementList} object.
+	 * @return a {@link org.spinrdf.model.Service} object.
+	 */
 	public static Service createService(Model model, Resource serviceURI, ElementList elements) {
 		Service service = model.createResource(SP.Service).as(Service.class);
 		service.addProperty(SP.serviceURI, serviceURI);
@@ -567,6 +603,7 @@ public class SPINFactory {
 
 	/**
 	 * Creates a new SubQuery as a blank node in a given Model.
+	 *
 	 * @param model  the Model to create the SubQuery in
 	 * @param subQuery  the nested query
 	 * @return a new SubQuery
@@ -580,6 +617,7 @@ public class SPINFactory {
 	
 	/**
 	 * Creates a new TemplateCall as a blank node instance of a given template.
+	 *
 	 * @param model  the Model to create a template call in
 	 * @param template  the template class
 	 * @return the new TemplateCall or null
@@ -592,6 +630,7 @@ public class SPINFactory {
 
 	/**
 	 * Creates a new TriplePath as a blank node in a given Model.
+	 *
 	 * @param model  the Model to create the path in
 	 * @param subject  the subject (not null)
 	 * @param path  the path (not null)
@@ -609,6 +648,7 @@ public class SPINFactory {
 
 	/**
 	 * Creates a new TriplePattern as a blank node in a given Model.
+	 *
 	 * @param model  the Model to create the pattern in
 	 * @param subject  the subject (not null)
 	 * @param predicate  the predicate (not null)
@@ -627,6 +667,7 @@ public class SPINFactory {
 
 	/**
 	 * Creates a new UNION element as a blank node in a given Model.
+	 *
 	 * @param model  the Model to create the Union in
 	 * @param elements  the elements
 	 * @return a new Union
@@ -640,9 +681,11 @@ public class SPINFactory {
 
 	/**
 	 * Creates a new Values element.
+	 *
 	 * @param model  the Model to create the Values in
 	 * @param data  the Table providing the actual data
 	 * @return a new Values
+	 * @param untyped a boolean.
 	 */
 	public static Values createValues(Model model, Table data, boolean untyped) {
 		
@@ -682,6 +725,7 @@ public class SPINFactory {
 	
 	/**
 	 * Creates a new Variable as a blank node in a given Model.
+	 *
 	 * @param model  the Model
 	 * @param varName  the name of the variable
 	 * @return the Variable
@@ -696,6 +740,7 @@ public class SPINFactory {
 	/**
 	 * Gets an spl:Attribute defined for a given property on a given class.
 	 * The spl:Attribute must be a direct spin:constraint on the class.
+	 *
 	 * @param cls  the class
 	 * @param property  the property
 	 * @return the Attribute or null if none is found
@@ -719,6 +764,7 @@ public class SPINFactory {
 	/**
 	 * Gets the most appopriate metaclass to wrap a given Command into a
 	 * Template.  For example, for an Ask query, this will return spin:AskTemplate.
+	 *
 	 * @param command  the Command, cast into the best possible subclass
 	 * @return the Template metaclass
 	 */
@@ -743,7 +789,8 @@ public class SPINFactory {
 
 	/**
 	 * Checks whether a given module has been declared abstract using
-	 * <code>spin:abstract</code.
+	 * <code>spin:abstract</code>.
+	 *
 	 * @param module  the module to test
 	 * @return true if abstract
 	 */
@@ -756,6 +803,7 @@ public class SPINFactory {
 	 * Checks if a given Resource can be cast into an ElementList.
 	 * It must be either rdf:nil or an rdf:List where the first
 	 * list item is an element using <code>asElement()</code>.
+	 *
 	 * @param resource  the resource to test
 	 * @return true if resource is an element list
 	 */
@@ -779,6 +827,7 @@ public class SPINFactory {
 	/**
 	 * Checks if a given Resource is an instance of a class that has
 	 * type spin:Module (or its subclasses such as spin:Function).
+	 *
 	 * @param resource  the Resource to check
 	 * @return true  if resource is a Module
 	 */
@@ -795,6 +844,7 @@ public class SPINFactory {
 
 	/**
 	 * Checks if a given Property is spin:query or a sub-property of it.
+	 *
 	 * @param predicate  the Property to test
 	 * @return true if predicate is a query property
 	 */
@@ -808,6 +858,7 @@ public class SPINFactory {
 	 * is stricter than for <code>asTemplateCall</code> as the node also must have
 	 * a valid template assigned to it, i.e. the type of the node must be an
 	 * instance of spin:Template.
+	 *
 	 * @param node  the RDFNode to check
 	 * @return true if node is a TemplateCall
 	 */
@@ -819,6 +870,7 @@ public class SPINFactory {
 	
 	/**
 	 * Checks whether a given RDFNode is a variable.
+	 *
 	 * @param node  the node to check
 	 * @return true if node is a variable
 	 */

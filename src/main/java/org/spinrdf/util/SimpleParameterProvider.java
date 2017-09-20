@@ -25,17 +25,28 @@ import java.util.Map;
 /**
  * A simple implementation of the ParameterProvider interface, based
  * on a HashMap.
+ *
+
+ * @version $Id: $Id
  */
 public class SimpleParameterProvider implements ParameterProvider {
 
 	private final Map<String,String> map;
 
 
+	/**
+	 * <p>Constructor for SimpleParameterProvider.</p>
+	 */
 	public SimpleParameterProvider() {
 		this(new HashMap<String,String>());
 	}
 
 
+	/**
+	 * <p>Constructor for SimpleParameterProvider.</p>
+	 *
+	 * @param map a {@link java.util.Map} object.
+	 */
 	public SimpleParameterProvider(Map<String,String> map) {
 		this.map = map;
 	}
@@ -45,6 +56,7 @@ public class SimpleParameterProvider implements ParameterProvider {
 	 * Adds a new entry to the internal Map.
 	 * This is typically used in conjunction with the constructor
 	 * without arguments.
+	 *
 	 * @param key  the parameter key
 	 * @param value  the value
 	 */
@@ -53,11 +65,17 @@ public class SimpleParameterProvider implements ParameterProvider {
 	}
 
 
+	/** {@inheritDoc} */
 	public String getParameter(String key) {
 		return map.get(key);
 	}
 
 
+	/**
+	 * <p>listParameterNames.</p>
+	 *
+	 * @return a {@link java.util.Iterator} object.
+	 */
 	public Iterator<String> listParameterNames() {
 		return map.keySet().iterator();
 	}

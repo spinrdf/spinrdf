@@ -24,10 +24,15 @@ import org.apache.jena.vocabulary.RDF;
 
 /**
  * Defines RDF resources that are not yet in the corresponding Jena class.
+ *
+
+ * @version $Id: $Id
  */
 public class RDFx {
 
+	/** Constant <code>HTML</code> */
 	public final static Resource HTML = ResourceFactory.createResource(RDF.getURI() + "HTML");
 
+	/** Constant <code>PlainLiteral</code> */
 	public final static Resource PlainLiteral = ResourceFactory.createResource(RDF.getURI() + "PlainLiteral");
 }

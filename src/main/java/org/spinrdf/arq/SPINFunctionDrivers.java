@@ -35,15 +35,28 @@ import org.spinrdf.vocabulary.SPIN;
  * The singleton that creates ARQ FunctionFactories from SPIN and SHACL functions.
  * Can be used by applications to install a different singleton with support
  * for different kinds of functions, such as SPINx.
+ *
+
+ * @version $Id: $Id
  */
 public class SPINFunctionDrivers implements SPINFunctionDriver {
 
 	private static SPINFunctionDrivers singleton = new SPINFunctionDrivers();
 	
+	/**
+	 * <p>get.</p>
+	 *
+	 * @return a {@link org.spinrdf.arq.SPINFunctionDrivers} object.
+	 */
 	public static SPINFunctionDrivers get() {
 		return singleton;
 	}
 	
+	/**
+	 * <p>set.</p>
+	 *
+	 * @param value a {@link org.spinrdf.arq.SPINFunctionDrivers} object.
+	 */
 	public static void set(SPINFunctionDrivers value) {
 		singleton = value;
 	}
@@ -56,6 +69,7 @@ public class SPINFunctionDrivers implements SPINFunctionDriver {
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public SPINFunctionFactory create(Resource function) {
 		SPINFunctionDriver driver = getDriver(function);
@@ -72,6 +86,7 @@ public class SPINFunctionDrivers implements SPINFunctionDriver {
 	 * Registers a new SPINFunctionDriver for a given key predicate.
 	 * For example, SPARQLMotion functions are recognized via sm:body.
 	 * Any previous entry will be overwritten.
+	 *
 	 * @param predicate  the key predicate
 	 * @param driver  the driver to register
 	 */

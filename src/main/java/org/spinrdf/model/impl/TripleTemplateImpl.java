@@ -23,13 +23,26 @@ import org.spinrdf.model.TripleTemplate;
 import org.spinrdf.model.print.PrintContext;
 
 
+/**
+ * <p>TripleTemplateImpl class.</p>
+ *
+
+ * @version $Id: $Id
+ */
 public class TripleTemplateImpl extends TripleImpl implements TripleTemplate {
 
+	/**
+	 * <p>Constructor for TripleTemplateImpl.</p>
+	 *
+	 * @param node a {@link org.apache.jena.graph.Node} object.
+	 * @param eh a {@link org.apache.jena.enhanced.EnhGraph} object.
+	 */
 	public TripleTemplateImpl(Node node, EnhGraph eh) {
 		super(node, eh);
 	}
 
 	
+	/** {@inheritDoc} */
 	@Override
 	public void print(PrintContext p) {
 		p.setNamedBNodeMode(true);

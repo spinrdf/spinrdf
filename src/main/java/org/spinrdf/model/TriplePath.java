@@ -23,11 +23,15 @@ import org.apache.jena.rdf.model.Resource;
 
 /**
  * A triple path element.
+ *
+
+ * @version $Id: $Id
  */
 public interface TriplePath extends Element {
 
 	/**
 	 * Gets the subject.
+	 *
 	 * @return the subject
 	 */
 	Resource getSubject();
@@ -35,6 +39,7 @@ public interface TriplePath extends Element {
 	
 	/**
 	 * Gets the object.
+	 *
 	 * @return the object
 	 */
 	RDFNode getObject();

@@ -23,13 +23,15 @@ import java.util.List;
 /**
  * Base interface of the various SPARQL query types such as
  * Ask, Construct, Describe and Select.
- * 
+ *
  * @author Holger Knublauch
+ * @version $Id: $Id
  */
 public interface Query extends CommandWithWhere {
 	
 	/**
 	 * Gets the list of URIs specified in FROM clauses.
+	 *
 	 * @return a List of URI Strings
 	 */
 	List<String> getFrom();
@@ -37,13 +39,15 @@ public interface Query extends CommandWithWhere {
 	
 	/**
 	 * Gets the list of URIs specified in FROM NAMED clauses.
+	 *
 	 * @return a List of URI Strings
 	 */
 	List<String> getFromNamed();
 	
 	
 	/**
-	 * Gets the VALUES block at the end of the query if it exists. 
+	 * Gets the VALUES block at the end of the query if it exists.
+	 *
 	 * @return the Values or null
 	 */
 	Values getValues();
@@ -52,6 +56,7 @@ public interface Query extends CommandWithWhere {
 	/**
 	 * Gets the elements in the WHERE clause of this query.
 	 * The Elements will be typecast into the best suitable subclass.
+	 *
 	 * @return a List of Elements
 	 */
 	List<Element> getWhereElements();

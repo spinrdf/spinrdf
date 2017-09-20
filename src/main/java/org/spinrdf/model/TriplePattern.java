@@ -20,8 +20,9 @@ package org.spinrdf.model;
 
 /**
  * A triple pattern element.
- * 
+ *
  * @author Holger Knublauch
+ * @version $Id: $Id
  */
 public interface TriplePattern extends Element, Triple {
 }

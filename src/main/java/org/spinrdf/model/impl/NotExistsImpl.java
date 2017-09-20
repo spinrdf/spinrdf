@@ -23,18 +23,32 @@ import org.spinrdf.model.NotExists;
 import org.spinrdf.model.print.PrintContext;
 import org.spinrdf.model.visitor.ElementVisitor;
 
+/**
+ * <p>NotExistsImpl class.</p>
+ *
+
+ * @version $Id: $Id
+ */
 public class NotExistsImpl extends ElementImpl implements NotExists {
 	
+	/**
+	 * <p>Constructor for NotExistsImpl.</p>
+	 *
+	 * @param node a {@link org.apache.jena.graph.Node} object.
+	 * @param graph a {@link org.apache.jena.enhanced.EnhGraph} object.
+	 */
 	public NotExistsImpl(Node node, EnhGraph graph) {
 		super(node, graph);
 	}
 
 	
+	/** {@inheritDoc} */
 	public void visit(ElementVisitor visitor) {
 		visitor.visit(this);
 	}
 
 	
+	/** {@inheritDoc} */
 	public void print(PrintContext p) {
 		p.printKeyword("NOT EXISTS");
 		printNestedElementList(p);

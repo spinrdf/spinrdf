@@ -34,14 +34,19 @@ import org.apache.jena.update.Update;
 
 /**
  * Utility on SPARQL Update operations.
+ *
+
+ * @version $Id: $Id
  */
 public class UpdateUtil {
 	
 	/**
 	 * Gets all Graphs that are potentially updated in a given Update request.
+	 *
 	 * @param update  the Update (UpdateModify and UpdateDeleteWhere are supported)
 	 * @param dsg  the Dataset to get the Graphs from
 	 * @return the Graphs
+	 * @param templateBindings a {@link java.util.Map} object.
 	 */
 	public static Collection<Graph> getUpdatedGraphs(Update update, DatasetGraph dsg, Map<String,RDFNode> templateBindings) {
 		Set<Graph> results = new HashSet<Graph>();

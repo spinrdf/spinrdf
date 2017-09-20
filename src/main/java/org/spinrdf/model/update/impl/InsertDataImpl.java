@@ -24,13 +24,26 @@ import org.spinrdf.model.update.InsertData;
 import org.spinrdf.vocabulary.SP;
 
 
+/**
+ * <p>InsertDataImpl class.</p>
+ *
+
+ * @version $Id: $Id
+ */
 public class InsertDataImpl extends UpdateImpl implements InsertData {
 
+	/**
+	 * <p>Constructor for InsertDataImpl.</p>
+	 *
+	 * @param node a {@link org.apache.jena.graph.Node} object.
+	 * @param graph a {@link org.apache.jena.enhanced.EnhGraph} object.
+	 */
 	public InsertDataImpl(Node node, EnhGraph graph) {
 		super(node, graph);
 	}
 
 	
+	/** {@inheritDoc} */
 	@Override
 	public void printSPINRDF(PrintContext p) {
 		p.printKeyword("INSERT");

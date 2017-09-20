@@ -23,14 +23,32 @@ import org.spinrdf.model.print.Printable;
 
 /**
  * Part of a SPARQL expression that calls an Aggregation (such as SUM).
+ *
+
+ * @version $Id: $Id
  */
 public interface Aggregation extends Printable, Resource {
 	
+	/**
+	 * <p>getAs.</p>
+	 *
+	 * @return a {@link org.spinrdf.model.Variable} object.
+	 */
 	Variable getAs();
 	
 
+	/**
+	 * <p>getExpression.</p>
+	 *
+	 * @return a {@link org.apache.jena.rdf.model.Resource} object.
+	 */
 	Resource getExpression();
 	
 	
+	/**
+	 * <p>isDistinct.</p>
+	 *
+	 * @return a boolean.
+	 */
 	boolean isDistinct();
 }

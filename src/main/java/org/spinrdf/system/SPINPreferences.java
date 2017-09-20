@@ -23,16 +23,20 @@ package org.spinrdf.system;
  * The singleton can be replaced to install different default settings.
  * For example, TopBraid Composer stores these settings in the Eclipse
  * preferences.
- * 
+ *
  * @author Holger Knublauch
+ * @version $Id: $Id
  */
 public class SPINPreferences {
 
 	private static SPINPreferences singleton = new SPINPreferences();
+        
+        private boolean _createURIVariables = false;
 	
 
 	/**
 	 * Gets the singleton instance of this class.
+	 *
 	 * @return the singleton
 	 */
 	public static SPINPreferences get() {
@@ -42,20 +46,30 @@ public class SPINPreferences {
 	
 	/**
 	 * Changes the singleton to some subclass.
+	 *
 	 * @param value  the new singleton (not null)
 	 */
 	public static void set(SPINPreferences value) {
 		SPINPreferences.singleton = value;
 	}
-	
+        
+        /**
+        * Set true whether the SPIN generator shall convert variables into
+        * URI nodes, so that they can be shared between multiple queries.
+        * @param createURIVariables (default: false)
+        */
+        public void setCreateURIVariables(boolean createURIVariables) {
+            this._createURIVariables = createURIVariables;
+        }	
 
 	/**
 	 * Indicates whether the SPIN generator shall convert variables into
 	 * URI nodes, so that they can be shared between multiple queries.
+	 *
 	 * @return true  to create shared URI variables (default: false)
 	 */
 	public boolean isCreateURIVariables() {
-		return false;
+		return this._createURIVariables;
 	}
 	
 	
@@ -63,6 +77,7 @@ public class SPINPreferences {
 	 * Indicates whether the SPIN generator shall reuse the same blank node
 	 * for a variable multiple times within the same query.
 	 * This is off by default to make bnode structures more self-contained.
+	 *
 	 * @return true  to reuse blank nodes
 	 */
 	public boolean isReuseLocalVariables() {

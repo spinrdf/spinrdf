@@ -26,6 +26,9 @@ import org.spinrdf.model.Command;
 /**
  * A CommandWrapper that wraps SPARQL UPDATE requests
  * (in contrast to QueryWrapper for SPARQL queries).
+ *
+
+ * @version $Id: $Id
  */
 public class UpdateWrapper extends CommandWrapper {
 	
@@ -34,6 +37,18 @@ public class UpdateWrapper extends CommandWrapper {
 	private org.spinrdf.model.update.Update spinUpdate;
 	
 	
+	/**
+	 * <p>Constructor for UpdateWrapper.</p>
+	 *
+	 * @param update a {@link org.apache.jena.update.Update} object.
+	 * @param source a {@link org.apache.jena.rdf.model.Resource} object.
+	 * @param text a {@link java.lang.String} object.
+	 * @param spinUpdate a {@link org.spinrdf.model.update.Update} object.
+	 * @param label a {@link java.lang.String} object.
+	 * @param statement a {@link org.apache.jena.rdf.model.Statement} object.
+	 * @param thisUnbound a boolean.
+	 * @param thisDepth a {@link java.lang.Integer} object.
+	 */
 	public UpdateWrapper(Update update, Resource source, String text, org.spinrdf.model.update.Update spinUpdate, String label, Statement statement, boolean thisUnbound, Integer thisDepth) {
 		super(source, text, label, statement, thisUnbound, thisDepth);
 		this.update = update;
@@ -41,17 +56,28 @@ public class UpdateWrapper extends CommandWrapper {
 	}
 	
 	
+	/**
+	 * <p>Getter for the field <code>update</code>.</p>
+	 *
+	 * @return a {@link org.apache.jena.update.Update} object.
+	 */
 	public Update getUpdate() {
 		return update;
 	}
 	
 	
+	/** {@inheritDoc} */
 	@Override
 	public Command getSPINCommand() {
 		return getSPINUpdate();
 	}
 
 
+	/**
+	 * <p>getSPINUpdate.</p>
+	 *
+	 * @return a {@link org.spinrdf.model.update.Update} object.
+	 */
 	public org.spinrdf.model.update.Update getSPINUpdate() {
 		return spinUpdate;
 	}

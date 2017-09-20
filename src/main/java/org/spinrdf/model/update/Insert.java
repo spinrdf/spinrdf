@@ -21,6 +21,7 @@ package org.spinrdf.model.update;
  * Deprecated: for old SPIN files only.
  *
  * @author Holger Knublauch
+ * @version $Id: $Id
  */
 @Deprecated
 public interface Insert extends Update {

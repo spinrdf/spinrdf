@@ -22,8 +22,20 @@ import org.apache.jena.graph.Node;
 import org.spinrdf.model.ModuleCall;
 
 
+/**
+ * <p>Abstract ModuleCallImpl class.</p>
+ *
+
+ * @version $Id: $Id
+ */
 public abstract class ModuleCallImpl extends AbstractSPINResourceImpl implements ModuleCall {
 	
+	/**
+	 * <p>Constructor for ModuleCallImpl.</p>
+	 *
+	 * @param node a {@link org.apache.jena.graph.Node} object.
+	 * @param graph a {@link org.apache.jena.enhanced.EnhGraph} object.
+	 */
 	public ModuleCallImpl(Node node, EnhGraph graph) {
 		super(node, graph);
 	}

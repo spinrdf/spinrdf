@@ -63,9 +63,12 @@ import org.spinrdf.progress.ProgressMonitor;
 
 /**
  * Some convenience methods to operate on Jena Models.
- * 
+ *
  * These methods are not as stable as the rest of the API, but
  * they may be of general use.
+ *
+
+ * @version $Id: $Id
  */
 public class JenaUtil {
 	
@@ -83,6 +86,7 @@ public class JenaUtil {
 	 * Sets the helper which allows the behavior of some JenaUtil
 	 * methods to be modified by the system using the SPIN library.
 	 * Note: Should not be used outside of TopBraid - not stable.
+	 *
 	 * @param h  the JenaUtilHelper
 	 * @return the old helper
 	 */
@@ -96,6 +100,7 @@ public class JenaUtil {
 	/**
 	 * Gets the current helper object.
 	 * Note: Should not be used outside of TopBraid - not stable.
+	 *
 	 * @return the helper
 	 */
 	public static JenaUtilHelper getHelper() {
@@ -106,6 +111,7 @@ public class JenaUtil {
 	/**
 	 * Adds all sub-properties of a given property as long as they don't have their own
 	 * rdfs:domain.  This is useful to determine inheritance.
+	 *
 	 * @param property  the property ot add the sub-properties of
 	 * @param results  the Set to add the results to
 	 * @param reached  a Set used to track which ones were already reached
@@ -127,10 +133,11 @@ public class JenaUtil {
 
 	/**
 	 * Populates a result set of resources reachable from a subject via zero or more steps with a given predicate.
-	 * Implementation note: the results set need only implement {@link Collection#add(Object)}.
+	 * Implementation note: the results set need only implement {@link java.util.Collection#add(Object)}.
+	 *
 	 * @param results   The transitive objects reached from subject via triples with the given predicate
-	 * @param subject
-	 * @param predicate
+	 * @param subject a {@link org.apache.jena.rdf.model.Resource} object.
+	 * @param predicate a {@link org.apache.jena.rdf.model.Property} object.
 	 */
 	public static void addTransitiveObjects(Set<Resource> results, Resource subject, Property predicate) {
 		helper.setGraphReadOptimization(true);
@@ -189,7 +196,8 @@ public class JenaUtil {
 	
 	
 	/**
-	 * Turns a QuerySolution into a Binding. 
+	 * Turns a QuerySolution into a Binding.
+	 *
 	 * @param map  the input QuerySolution
 	 * @return a Binding or null if the input is null
 	 */
@@ -214,6 +222,7 @@ public class JenaUtil {
 
 	/**
 	 * Turns a Binding into a QuerySolutionMap.
+	 *
 	 * @param binding  the Binding to convert
 	 * @return a QuerySolutionMap
 	 */
@@ -233,6 +242,11 @@ public class JenaUtil {
 	
 	/**
 	 * Returns a set of resources reachable from an object via one or more reversed steps with a given predicate.
+	 *
+	 * @param object a {@link org.apache.jena.rdf.model.Resource} object.
+	 * @param predicate a {@link org.apache.jena.rdf.model.Property} object.
+	 * @param monitor a {@link org.spinrdf.progress.ProgressMonitor} object.
+	 * @return a {@link java.util.Set} object.
 	 */
 	public static Set<Resource> getAllTransitiveSubjects(Resource object, Property predicate,
 			ProgressMonitor monitor) {
@@ -251,6 +265,7 @@ public class JenaUtil {
 	
 	/**
 	 * Casts a Resource into a Property.
+	 *
 	 * @param resource  the Resource to cast
 	 * @return resource as an instance of Property
 	 */
@@ -266,6 +281,7 @@ public class JenaUtil {
 	
 	/**
 	 * Creates a Set of Properties from a Collection of Resources.
+	 *
 	 * @param resources  the Resource to cast
 	 * @return resource as an instance of Property
 	 */
@@ -278,6 +294,12 @@ public class JenaUtil {
 	}
 
 
+	/**
+	 * <p>collectBaseGraphs.</p>
+	 *
+	 * @param graph a {@link org.apache.jena.graph.Graph} object.
+	 * @param baseGraphs a {@link java.util.Set} object.
+	 */
 	public static void collectBaseGraphs(Graph graph, Set<Graph> baseGraphs) {
 		if(graph instanceof MultiUnion) {
 			MultiUnion union = (MultiUnion)graph;
@@ -296,6 +318,7 @@ public class JenaUtil {
 	 * Creates a new Graph.  By default this will deliver a plain in-memory graph,
 	 * but other implementations may deliver graphs with concurrency support and
 	 * other features.
+	 *
 	 * @return a default graph
 	 * @see #createDefaultModel()
 	 */
@@ -305,7 +328,8 @@ public class JenaUtil {
 
 
 	/**
-	 * Wraps the result of {@link #createDefaultGraph()} into a Model and initializes namespaces. 
+	 * Wraps the result of {@link #createDefaultGraph()} into a Model and initializes namespaces.
+	 *
 	 * @return a default Model
 	 * @see #createDefaultGraph()
 	 */
@@ -318,6 +342,7 @@ public class JenaUtil {
 	
 	/**
 	 * Creates a memory Graph with no reification.
+	 *
 	 * @return a new memory graph
 	 */
 	public static Graph createMemoryGraph() {
@@ -327,6 +352,7 @@ public class JenaUtil {
 	
 	/**
 	 * Creates a memory Model with no reification.
+	 *
 	 * @return a new memory Model
 	 */
 	public static Model createMemoryModel() {
@@ -334,16 +360,33 @@ public class JenaUtil {
 	}
 
 	
+	/**
+	 * <p>createMultiUnion.</p>
+	 *
+	 * @return a {@link org.apache.jena.graph.compose.MultiUnion} object.
+	 */
 	public static MultiUnion createMultiUnion() {
 		return helper.createMultiUnion();
 	}
 
 	
+	/**
+	 * <p>createMultiUnion.</p>
+	 *
+	 * @param graphs an array of {@link org.apache.jena.graph.Graph} objects.
+	 * @return a {@link org.apache.jena.graph.compose.MultiUnion} object.
+	 */
 	public static MultiUnion createMultiUnion(Graph[] graphs) {
 		return helper.createMultiUnion(graphs);
 	}
 
 	
+	/**
+	 * <p>createMultiUnion.</p>
+	 *
+	 * @param graphs a {@link java.util.Iterator} object.
+	 * @return a {@link org.apache.jena.graph.compose.MultiUnion} object.
+	 */
 	public static MultiUnion createMultiUnion(Iterator<Graph> graphs) {
 		return helper.createMultiUnion(graphs);
 	}
@@ -351,6 +394,7 @@ public class JenaUtil {
 	
 	/**
 	 * Gets all instances of a given class and its subclasses.
+	 *
 	 * @param cls  the class to get the instances of
 	 * @return the instances
 	 */
@@ -375,6 +419,12 @@ public class JenaUtil {
 	}
 
 	
+	/**
+	 * <p>getAllSubClasses.</p>
+	 *
+	 * @param cls a {@link org.apache.jena.rdf.model.Resource} object.
+	 * @return a {@link java.util.Set} object.
+	 */
 	public static Set<Resource> getAllSubClasses(Resource cls) {
 		return getAllTransitiveSubjects(cls, RDFS.subClassOf);
 	}
@@ -383,6 +433,7 @@ public class JenaUtil {
 	/**
 	 * Returns a set consisting of a given class and all its subclasses.
 	 * Similar to rdfs:subClassOf*.
+	 *
 	 * @param cls  the class to return with its subclasses
 	 * @return the Set of class resources
 	 */
@@ -393,11 +444,23 @@ public class JenaUtil {
 	}
 	
 	
+	/**
+	 * <p>getAllSubProperties.</p>
+	 *
+	 * @param superProperty a {@link org.apache.jena.rdf.model.Property} object.
+	 * @return a {@link java.util.Set} object.
+	 */
 	public static Set<Resource> getAllSubProperties(Property superProperty) {
 		return getAllTransitiveSubjects(superProperty, RDFS.subPropertyOf);
 	}
 
 	
+	/**
+	 * <p>getAllSuperClasses.</p>
+	 *
+	 * @param cls a {@link org.apache.jena.rdf.model.Resource} object.
+	 * @return a {@link java.util.Set} object.
+	 */
 	public static Set<Resource> getAllSuperClasses(Resource cls) {
 		return getAllTransitiveObjects(cls, RDFS.subClassOf);
 	}
@@ -406,6 +469,7 @@ public class JenaUtil {
 	/**
 	 * Returns a set consisting of a given class and all its superclasses.
 	 * Similar to rdfs:subClassOf*.
+	 *
 	 * @param cls  the class to return with its superclasses
 	 * @return the Set of class resources
 	 */
@@ -416,6 +480,12 @@ public class JenaUtil {
 	}
 	
 	
+	/**
+	 * <p>getAllSuperProperties.</p>
+	 *
+	 * @param subProperty a {@link org.apache.jena.rdf.model.Property} object.
+	 * @return a {@link java.util.Set} object.
+	 */
 	public static Set<Resource> getAllSuperProperties(Property subProperty) {
 		return getAllTransitiveObjects(subProperty, RDFS.subPropertyOf);
 	}
@@ -423,7 +493,10 @@ public class JenaUtil {
 	
 	/**
 	 * Returns a set of resources reachable from a subject via one or more steps with a given predicate.
-	 * 
+	 *
+	 * @param subject a {@link org.apache.jena.rdf.model.Resource} object.
+	 * @param predicate a {@link org.apache.jena.rdf.model.Property} object.
+	 * @return a {@link java.util.Set} object.
 	 */
 	public static Set<Resource> getAllTransitiveObjects(Resource subject, Property predicate) {
 		Set<Resource> set = new HashSet<Resource>();
@@ -438,6 +511,12 @@ public class JenaUtil {
 	}
 
 	
+	/**
+	 * <p>getAllTypes.</p>
+	 *
+	 * @param instance a {@link org.apache.jena.rdf.model.Resource} object.
+	 * @return a {@link java.util.Set} object.
+	 */
 	public static Set<Resource> getAllTypes(Resource instance) {
 		Set<Resource> types = new HashSet<Resource>();
 		StmtIterator it = instance.listProperties(RDF.type);
@@ -457,6 +536,7 @@ public class JenaUtil {
 
 	/**
 	 * Gets the "base graph" of a Model, walking into MultiUnions if needed.
+	 *
 	 * @param model  the Model to get the base graph of
 	 * @return the base graph or null if the model contains a MultiUnion that doesn't declare one
 	 */
@@ -465,6 +545,12 @@ public class JenaUtil {
 	}
 	
 	
+	/**
+	 * <p>getBaseGraph.</p>
+	 *
+	 * @param graph a {@link org.apache.jena.graph.Graph} object.
+	 * @return a {@link org.apache.jena.graph.Graph} object.
+	 */
 	public static Graph getBaseGraph(Graph graph) {
 		Graph baseGraph = graph;
 		while(baseGraph instanceof MultiUnion) {
@@ -474,6 +560,12 @@ public class JenaUtil {
 	}
 	
 	
+	/**
+	 * <p>getBaseModel.</p>
+	 *
+	 * @param model a {@link org.apache.jena.rdf.model.Model} object.
+	 * @return a {@link org.apache.jena.rdf.model.Model} object.
+	 */
 	public static Model getBaseModel(Model model) {
 		Graph baseGraph = getBaseGraph(model);
 		if(baseGraph == model.getGraph()) {
@@ -490,6 +582,7 @@ public class JenaUtil {
 	 * If multiple ranges exist, the behavior is undefined.
 	 * Note that this method does not consider ranges defined on
 	 * super-properties.
+	 *
 	 * @param property  the property to get the range of
 	 * @return the "first" range Resource or null
 	 */
@@ -526,6 +619,7 @@ public class JenaUtil {
 	 * Gets the "first" declared rdfs:range of a given property.
 	 * If multiple ranges exist, the behavior is undefined.
 	 * This method walks up to super-properties if no direct match exists.
+	 *
 	 * @param property  the property to get the range of
 	 * @return the "first" range Resource or null
 	 */
@@ -534,6 +628,12 @@ public class JenaUtil {
 	}
 	
 	
+	/**
+	 * <p>getImports.</p>
+	 *
+	 * @param graph a {@link org.apache.jena.rdf.model.Resource} object.
+	 * @return a {@link java.util.Set} object.
+	 */
 	public static Set<Resource> getImports(Resource graph) {
 		Set<Resource> results = new HashSet<Resource>();
 		for(Property importProperty : ImportProperties.get().getImportProperties()) {
@@ -543,6 +643,13 @@ public class JenaUtil {
 	}
 
 	
+	/**
+	 * <p>getIntegerProperty.</p>
+	 *
+	 * @param subject a {@link org.apache.jena.rdf.model.Resource} object.
+	 * @param predicate a {@link org.apache.jena.rdf.model.Property} object.
+	 * @return a {@link java.lang.Integer} object.
+	 */
 	public static Integer getIntegerProperty(Resource subject, Property predicate) {
 		Statement s = subject.getProperty(predicate);
 		if(s != null && s.getObject().isLiteral()) {
@@ -554,6 +661,13 @@ public class JenaUtil {
 	}
 	
 	
+	/**
+	 * <p>getListProperty.</p>
+	 *
+	 * @param subject a {@link org.apache.jena.rdf.model.Resource} object.
+	 * @param predicate a {@link org.apache.jena.rdf.model.Property} object.
+	 * @return a {@link org.apache.jena.rdf.model.RDFList} object.
+	 */
 	public static RDFList getListProperty(Resource subject, Property predicate) {
 		Statement s = subject.getProperty(predicate);
 		if(s != null && s.getObject().canAs(RDFList.class)) {
@@ -565,6 +679,13 @@ public class JenaUtil {
 	}
 	
 	
+	/**
+	 * <p>getLiteralProperties.</p>
+	 *
+	 * @param subject a {@link org.apache.jena.rdf.model.Resource} object.
+	 * @param predicate a {@link org.apache.jena.rdf.model.Property} object.
+	 * @return a {@link java.util.List} object.
+	 */
 	public static List<Literal> getLiteralProperties(Resource subject, Property predicate) {
 		List<Literal> results = new LinkedList<Literal>();
 		StmtIterator it = subject.listProperties(predicate);
@@ -582,6 +703,7 @@ public class JenaUtil {
 	 * Gets the local range of a given property at a given class, considering things like
 	 * rdfs:range, owl:allValuesFrom restrictions, spl:Argument and others.
 	 * Optionally returns a suitable default range (rdfs:Resource or xsd:string) if no other is defined.
+	 *
 	 * @param property  the Property to get the range of
 	 * @param type  the class to get the range at
 	 * @param graph  the Graph to operate on
@@ -608,7 +730,7 @@ public class JenaUtil {
 	/**
 	 * Overcomes a bug in Jena: if the base model does not declare a default namespace then the
 	 * default namespace of an import is returned!
-	 * 
+	 *
 	 * @param model the Model to operate on
 	 * @param prefix the prefix to get the URI of
 	 * @return the URI of prefix
@@ -629,6 +751,13 @@ public class JenaUtil {
 	}
 	
 	
+	/**
+	 * <p>getProperty.</p>
+	 *
+	 * @param subject a {@link org.apache.jena.rdf.model.Resource} object.
+	 * @param predicate a {@link org.apache.jena.rdf.model.Property} object.
+	 * @return a {@link org.apache.jena.rdf.model.RDFNode} object.
+	 */
 	public static RDFNode getProperty(Resource subject, Property predicate) {
 		Statement s = subject.getProperty(predicate);
 		if(s != null) {
@@ -640,6 +769,13 @@ public class JenaUtil {
 	}
 	
 	
+	/**
+	 * <p>getReferences.</p>
+	 *
+	 * @param predicate a {@link org.apache.jena.rdf.model.Property} object.
+	 * @param object a {@link org.apache.jena.rdf.model.Resource} object.
+	 * @return a {@link java.util.List} object.
+	 */
 	public static List<Resource> getReferences(Property predicate, Resource object) {
 		List<Resource> results = new LinkedList<Resource>();
 		StmtIterator it = object.getModel().listStatements(null, predicate, object);
@@ -651,6 +787,13 @@ public class JenaUtil {
 	}
 	
 	
+	/**
+	 * <p>getResourceProperty.</p>
+	 *
+	 * @param subject a {@link org.apache.jena.rdf.model.Resource} object.
+	 * @param predicate a {@link org.apache.jena.rdf.model.Property} object.
+	 * @return a {@link org.apache.jena.rdf.model.Resource} object.
+	 */
 	public static Resource getResourceProperty(Resource subject, Property predicate) {
 		Statement s = subject.getProperty(predicate);
 		if(s != null && s.getObject().isResource()) {
@@ -662,6 +805,13 @@ public class JenaUtil {
 	}
 	
 	
+	/**
+	 * <p>getResourceProperties.</p>
+	 *
+	 * @param subject a {@link org.apache.jena.rdf.model.Resource} object.
+	 * @param predicate a {@link org.apache.jena.rdf.model.Property} object.
+	 * @return a {@link java.util.List} object.
+	 */
 	public static List<Resource> getResourceProperties(Resource subject, Property predicate) {
 		List<Resource> results = new LinkedList<Resource>();
 		StmtIterator it = subject.listProperties(predicate);
@@ -675,6 +825,13 @@ public class JenaUtil {
 	}
 	
 	
+	/**
+	 * <p>getStringProperty.</p>
+	 *
+	 * @param subject a {@link org.apache.jena.rdf.model.Resource} object.
+	 * @param predicate a {@link org.apache.jena.rdf.model.Property} object.
+	 * @return a {@link java.lang.String} object.
+	 */
 	public static String getStringProperty(Resource subject, Property predicate) {
 		Statement s = subject.getProperty(predicate);
 		if(s != null && s.getObject().isLiteral()) {
@@ -685,6 +842,13 @@ public class JenaUtil {
 		}
 	}
 
+	/**
+	 * <p>getBooleanProperty.</p>
+	 *
+	 * @param subject a {@link org.apache.jena.rdf.model.Resource} object.
+	 * @param predicate a {@link org.apache.jena.rdf.model.Property} object.
+	 * @return a boolean.
+	 */
 	public static boolean getBooleanProperty(Resource subject, Property predicate) {
 		Statement s = subject.getProperty(predicate);
 		if(s != null && s.getObject().isLiteral()) {
@@ -695,6 +859,12 @@ public class JenaUtil {
 		}
 	}
 
+	/**
+	 * <p>getSubGraphs.</p>
+	 *
+	 * @param union a {@link org.apache.jena.graph.compose.MultiUnion} object.
+	 * @return a {@link java.util.List} object.
+	 */
 	public static List<Graph> getSubGraphs(MultiUnion union) {
 		List<Graph> results = new LinkedList<Graph>();
 		results.add(union.getBaseGraph());
@@ -706,7 +876,8 @@ public class JenaUtil {
 	
 	
 	/**
-	 * Gets a Set of all superclasses (rdfs:subClassOf) of a given Resource. 
+	 * Gets a Set of all superclasses (rdfs:subClassOf) of a given Resource.
+	 *
 	 * @param subClass  the subClass Resource
 	 * @return a Collection of class resources
 	 */
@@ -725,6 +896,7 @@ public class JenaUtil {
 
 	/**
 	 * Gets the "first" type of a given Resource.
+	 *
 	 * @param instance  the instance to get the type of
 	 * @return the type or null
 	 */
@@ -734,7 +906,8 @@ public class JenaUtil {
 	
 	
 	/**
-	 * Gets a Set of all rdf:types of a given Resource. 
+	 * Gets a Set of all rdf:types of a given Resource.
+	 *
 	 * @param instance  the instance Resource
 	 * @return a Collection of type resources
 	 */
@@ -749,6 +922,7 @@ public class JenaUtil {
 	 * with the right Model, because the system will try to walk up the superclasses
 	 * of expectedType.  The expectedType may have no Model, in which case
 	 * the method will use the instance's Model.
+	 *
 	 * @param instance  the Resource to test
 	 * @param expectedType  the type that instance is expected to have
 	 * @return true if resource has rdf:type expectedType
@@ -776,6 +950,7 @@ public class JenaUtil {
 
 	/**
 	 * Checks whether a given class has a given (transitive) super class.
+	 *
 	 * @param subClass  the sub-class
 	 * @param superClass  the super-class
 	 * @return true if subClass has superClass (somewhere up the tree)
@@ -803,6 +978,7 @@ public class JenaUtil {
 
 	/**
 	 * Checks whether a given property has a given (transitive) super property.
+	 *
 	 * @param subProperty  the sub-property
 	 * @param superProperty  the super-property
 	 * @return true if subProperty has superProperty (somewhere up the tree)
@@ -814,6 +990,7 @@ public class JenaUtil {
 
 	/**
 	 * Sets the usual default namespaces for rdf, rdfs, owl and xsd.
+	 *
 	 * @param graph  the Graph to modify
 	 */
 	public static void initNamespaces(Graph graph) {
@@ -824,6 +1001,7 @@ public class JenaUtil {
 	
 	/**
 	 * Sets the usual default namespaces for rdf, rdfs, owl and xsd.
+	 *
 	 * @param prefixMapping  the Model to modify
 	 */
 	public static void initNamespaces(PrefixMapping prefixMapping) {
@@ -837,6 +1015,7 @@ public class JenaUtil {
 	/**
 	 * Checks whether a given graph (possibly a MultiUnion) only contains
 	 * GraphMemBase instances.
+	 *
 	 * @param graph  the Graph to test
 	 * @return true  if graph is a memory graph
 	 */
@@ -857,7 +1036,8 @@ public class JenaUtil {
 
 	/**
 	 * Checks if a given property is multi-valued according to owl:FunctionalProperty,
-	 * OWL cardinality restrictions, spl:Argument or spl:ObjectCountPropertyConstraint. 
+	 * OWL cardinality restrictions, spl:Argument or spl:ObjectCountPropertyConstraint.
+	 *
 	 * @param property  the Property check
 	 * @param type  the context class to start traversal at (may be null)
 	 * @return true  if property may have multiple values
@@ -867,6 +1047,14 @@ public class JenaUtil {
 	}
 	
 	
+	/**
+	 * <p>isMulti.</p>
+	 *
+	 * @param property a {@link org.apache.jena.graph.Node} object.
+	 * @param type a {@link org.apache.jena.graph.Node} object.
+	 * @param graph a {@link org.apache.jena.graph.Graph} object.
+	 * @return a boolean.
+	 */
 	public static boolean isMulti(Node property, Node type, Graph graph) {
 		return IsMultiFunctionHelper.isMulti(property, type, graph);
 	}
@@ -876,6 +1064,7 @@ public class JenaUtil {
 	 * Gets an Iterator over all Statements of a given property or its sub-properties
 	 * at a given subject instance.  Note that the predicate and subject should be
 	 * both attached to a Model to avoid NPEs.
+	 *
 	 * @param subject  the subject (may be null)
 	 * @param predicate  the predicate
 	 * @return a StmtIterator
@@ -922,6 +1111,12 @@ public class JenaUtil {
 	}
 	
 	
+	/**
+	 * <p>withImports.</p>
+	 *
+	 * @param uri a {@link java.lang.String} object.
+	 * @return a {@link java.lang.String} object.
+	 */
 	public static String withImports(String uri) {
 		if(!uri.startsWith(WITH_IMPORTS_PREFIX)) {
 			return WITH_IMPORTS_PREFIX + uri;
@@ -932,6 +1127,12 @@ public class JenaUtil {
 	}
 	
 	
+	/**
+	 * <p>withoutImports.</p>
+	 *
+	 * @param uri a {@link java.lang.String} object.
+	 * @return a {@link java.lang.String} object.
+	 */
 	public static String withoutImports(String uri) {
 		if(uri.startsWith(WITH_IMPORTS_PREFIX)) {
 			return uri.substring(WITH_IMPORTS_PREFIX.length());
@@ -945,8 +1146,9 @@ public class JenaUtil {
 	/**
 	 * This indicates that no further changes to the model are needed.
 	 * Some implementations may give runtime exceptions if this is violated.
-	 * @param m
-	 * @return
+	 *
+	 * @param m a {@link org.apache.jena.rdf.model.Model} object.
+	 * @return a {@link org.apache.jena.rdf.model.Model} object.
 	 */
 	public static Model asReadOnlyModel(Model m) {
 		return helper.asReadOnlyModel(m);
@@ -956,8 +1158,9 @@ public class JenaUtil {
 	/**
 	 * This indicates that no further changes to the graph are needed.
 	 * Some implementations may give runtime exceptions if this is violated.
-	 * @param m
-	 * @return
+	 *
+	 * @param g a {@link org.apache.jena.graph.Graph} object.
+	 * @return a {@link org.apache.jena.graph.Graph} object.
 	 */
 	public static Graph asReadOnlyGraph(Graph g) {
 		return helper.asReadOnlyGraph(g);
@@ -965,26 +1168,45 @@ public class JenaUtil {
 	
 	
 	// Internal to TopBraid only
+	/**
+	 * <p>createOntologyModel.</p>
+	 *
+	 * @param spec a {@link org.apache.jena.ontology.OntModelSpec} object.
+	 * @param base a {@link org.apache.jena.rdf.model.Model} object.
+	 * @return a {@link org.apache.jena.ontology.OntModel} object.
+	 */
 	public static OntModel createOntologyModel(OntModelSpec spec, Model base) {
 		return helper.createOntologyModel(spec,base);
 	}
 
 	
 	// Internal to TopBraid only
+	/**
+	 * <p>createOntologyModel.</p>
+	 *
+	 * @return a {@link org.apache.jena.ontology.OntModel} object.
+	 */
 	public static OntModel createOntologyModel() {
 		return helper.createOntologyModel();
 	}
 
 
 	// Internal to TopBraid only
+	/**
+	 * <p>createOntologyModel.</p>
+	 *
+	 * @param spec a {@link org.apache.jena.ontology.OntModelSpec} object.
+	 * @return a {@link org.apache.jena.ontology.OntModel} object.
+	 */
 	public static OntModel createOntologyModel(OntModelSpec spec) {
 		return helper.createOntologyModel(spec);
 	}
 
 	
 	/**
-	 * Replacement for {@link Resource#getPropertyResourceValue(Property)}
+	 * Replacement for {@link org.apache.jena.rdf.model.Resource#getPropertyResourceValue(Property)}
 	 * which leaves an unclosed iterator.
+	 *
 	 * @param subject  the subject
 	 * @param p  the predicate
 	 * @return the value or null
@@ -1012,10 +1234,10 @@ public class JenaUtil {
 	 * The top of the block should call this with <code>true</code>
 	 * with a matching call with <code>false</code> in a finally
 	 * block.
-	 * 
+	 *
 	 * Note: Unstable - don't use outside of TopBraid.
-	 * 
-	 * @param onOrOff
+	 *
+	 * @param onOrOff a boolean.
 	 */
 	public static void setGraphReadOptimization(boolean onOrOff) {
 		getHelper().setGraphReadOptimization(onOrOff);
@@ -1026,9 +1248,9 @@ public class JenaUtil {
 	 * Ensure that we there is a read-only, thread safe version of the
 	 * graph.  If the graph is not, then create a deep clone that is
 	 * both.
-	 * 
+	 *
 	 * Note: Unstable - don't use outside of TopBraid.
-	 * 
+	 *
 	 * @param g The given graph
 	 * @return A read-only, thread safe version of the given graph.
 	 */
@@ -1082,6 +1304,12 @@ public class JenaUtil {
 	}
 
 
+	/**
+	 * <p>toRDFNode.</p>
+	 *
+	 * @param node a {@link org.apache.jena.graph.Node} object.
+	 * @return a {@link org.apache.jena.rdf.model.RDFNode} object.
+	 */
 	public static RDFNode toRDFNode(Node node) {
 		if(node != null) {
 			return dummyModel.asRDFNode(node);
@@ -1091,6 +1319,14 @@ public class JenaUtil {
 	}
 
 
+	/**
+	 * <p>invokeFunction1.</p>
+	 *
+	 * @param function a {@link org.apache.jena.rdf.model.Resource} object.
+	 * @param argument a {@link org.apache.jena.graph.Node} object.
+	 * @param dataset a {@link org.apache.jena.query.Dataset} object.
+	 * @return a {@link org.apache.jena.graph.Node} object.
+	 */
 	public static Node invokeFunction1(Resource function, Node argument, Dataset dataset) {
 		return invokeFunction1(function, toRDFNode(argument), dataset);
 	}
@@ -1118,11 +1354,30 @@ public class JenaUtil {
 	}
 
 
+	/**
+	 * <p>invokeFunction2.</p>
+	 *
+	 * @param function a {@link org.apache.jena.rdf.model.Resource} object.
+	 * @param argument1 a {@link org.apache.jena.graph.Node} object.
+	 * @param argument2 a {@link org.apache.jena.graph.Node} object.
+	 * @param dataset a {@link org.apache.jena.query.Dataset} object.
+	 * @return a {@link org.apache.jena.graph.Node} object.
+	 */
 	public static Node invokeFunction2(Resource function, Node argument1, Node argument2, Dataset dataset) {
 		return invokeFunction2(function, toRDFNode(argument1), toRDFNode(argument2), dataset);
 	}
 
 
+	/**
+	 * <p>invokeFunction3.</p>
+	 *
+	 * @param function a {@link org.apache.jena.rdf.model.Resource} object.
+	 * @param argument1 a {@link org.apache.jena.rdf.model.RDFNode} object.
+	 * @param argument2 a {@link org.apache.jena.rdf.model.RDFNode} object.
+	 * @param argument3 a {@link org.apache.jena.rdf.model.RDFNode} object.
+	 * @param dataset a {@link org.apache.jena.query.Dataset} object.
+	 * @return a {@link org.apache.jena.graph.Node} object.
+	 */
 	public static Node invokeFunction3(Resource function, RDFNode argument1, RDFNode argument2, RDFNode argument3, Dataset dataset) {
 		
 	    final String expression = "<" + function + ">(?arg1, ?arg2, ?arg3)";
@@ -1138,6 +1393,16 @@ public class JenaUtil {
 	}
 
 
+	/**
+	 * <p>invokeFunction3.</p>
+	 *
+	 * @param function a {@link org.apache.jena.rdf.model.Resource} object.
+	 * @param argument1 a {@link org.apache.jena.graph.Node} object.
+	 * @param argument2 a {@link org.apache.jena.graph.Node} object.
+	 * @param argument3 a {@link org.apache.jena.graph.Node} object.
+	 * @param dataset a {@link org.apache.jena.query.Dataset} object.
+	 * @return a {@link org.apache.jena.graph.Node} object.
+	 */
 	public static Node invokeFunction3(Resource function, Node argument1, Node argument2, Node argument3, Dataset dataset) {
 		return invokeFunction3(function, toRDFNode(argument1), toRDFNode(argument2), toRDFNode(argument3), dataset);
 	}

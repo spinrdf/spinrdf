@@ -24,15 +24,20 @@ import org.apache.jena.util.iterator.ExtendedIterator;
 
 /**
  * The implementation of sh:walkObjects (and spif:walkObjects).
+ *
+
+ * @version $Id: $Id
  */
 public class WalkObjectsFunction extends AbstractWalkFunction {
 
 
+	/** {@inheritDoc} */
 	protected ExtendedIterator<Triple> createIterator(Graph graph, Node node, Node predicate) {
 		return graph.find(node, predicate, null);
 	}
 
 	
+	/** {@inheritDoc} */
 	protected Node getNext(Triple triple) {
 		return triple.getObject();
 	}

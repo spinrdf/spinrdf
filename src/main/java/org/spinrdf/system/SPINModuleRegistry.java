@@ -48,6 +48,9 @@ import org.spinrdf.vocabulary.SPL;
  * and templates.  For example, in TopBraid this is populated by
  * walking all .spin. files in the Eclipse workspace.  Other
  * implementations may need to register their modules "manually".
+ *
+
+ * @version $Id: $Id
  */
 public class SPINModuleRegistry {
 	
@@ -74,6 +77,7 @@ public class SPINModuleRegistry {
 	
 	/**
 	 * Gets the singleton instance of this class.
+	 *
 	 * @return the singleton
 	 */
 	public static SPINModuleRegistry get() {
@@ -83,6 +87,7 @@ public class SPINModuleRegistry {
 	
 	/**
 	 * Sets the SPINModuleRegistry to another value.
+	 *
 	 * @param value  the new value (not null)
 	 */
 	public static void set(SPINModuleRegistry value) {
@@ -92,6 +97,7 @@ public class SPINModuleRegistry {
 	
 	/**
 	 * Gets a registered Function with a given URI.
+	 *
 	 * @param uri  the URI of the Function to get
 	 * @param model  an (optional) Model that should also be used to look up
 	 *               locally defined functions (currently not used)
@@ -114,6 +120,7 @@ public class SPINModuleRegistry {
 	
 	/**
 	 * Gets a Collection of all registered Functions.
+	 *
 	 * @return the Templates
 	 */
 	public Collection<Function> getFunctions() {
@@ -123,6 +130,7 @@ public class SPINModuleRegistry {
 
 	/**
 	 * Gets all Models that are associated to registered functions and templates.
+	 *
 	 * @return the Models
 	 */
 	public Set<Model> getModels() {
@@ -137,6 +145,12 @@ public class SPINModuleRegistry {
 	}
 
 	
+	/**
+	 * <p>getSource.</p>
+	 *
+	 * @param function a {@link org.spinrdf.model.Function} object.
+	 * @return a {@link java.lang.Object} object.
+	 */
 	public Object getSource(Function function) {
 		return sources.get(function.asNode());
 	}
@@ -144,6 +158,7 @@ public class SPINModuleRegistry {
 	
 	/**
 	 * Gets a Template with a given URI in its defining Model.
+	 *
 	 * @param uri  the URI of the Template to look up
 	 * @param model  an (optional) Model that should also be used for look up
 	 * @return a Template or null
@@ -161,6 +176,7 @@ public class SPINModuleRegistry {
 	
 	/**
 	 * Gets a Collection of all registered Templates.
+	 *
 	 * @return the Templates
 	 */
 	public Collection<Template> getTemplates() {
@@ -202,6 +218,7 @@ public class SPINModuleRegistry {
 	 * that also imports the system namespaces spin.owl and sp.owl - otherwise
 	 * the system may not be able to transform the SPIN RDF into the correct
 	 * SPARQL string.</b>
+	 *
 	 * @param function  the Function (must be a URI resource)
 	 * @param source  an optional source for the function (e.g. a File)
 	 * @param addARQFunction  true to also add an entry to the ARQ function registry
@@ -227,6 +244,7 @@ public class SPINModuleRegistry {
 	 * that also imports the system namespaces spin.owl and sp.owl - otherwise
 	 * the system may not be able to transform the SPIN RDF into the correct
 	 * SPARQL string.</b>
+	 *
 	 * @param template  the Template (must be a URI resource)
 	 */
 	public void register(Template template) {
@@ -241,7 +259,9 @@ public class SPINModuleRegistry {
 	 * may not be able to transform the SPIN RDF into the correct
 	 * SPARQL string.  In a typical use case, the Model would be
 	 * an OntModel that also imports the SPIN system namespaces.</b>
+	 *
 	 * @param model  the Model to iterate over
+	 * @param source a {@link java.lang.Object} object.
 	 */
 	public void registerAll(Model model, Object source) {
 		registerFunctions(model, source);
@@ -254,6 +274,7 @@ public class SPINModuleRegistry {
 	 * register an ARQ function for it with the current FunctionRegistry.
 	 * If there is an existing function with the same URI already registered,
 	 * then it will only be replaced if it is also a SPINARQFunction.
+	 *
 	 * @param spinFunction  the function to register
 	 */
 	protected void registerARQFunction(Function spinFunction) {
@@ -269,9 +290,10 @@ public class SPINModuleRegistry {
 
 	/**
 	 * If the provided Function has an executable body (spin:body), then
-	 * register an ARQ function for it with the current FunctionRegistry. 
+	 * register an ARQ function for it with the current FunctionRegistry.
 	 * If there is an existing function with the same URI already registered,
 	 * then it will only be replaced if it is also a SPINARQPFunction.
+	 *
 	 * @param function  the function to register
 	 */
 	public void registerARQPFunction(Function function) {
@@ -289,6 +311,7 @@ public class SPINModuleRegistry {
 	 * Registers all functions defined in a given Model.
 	 * This basically iterates over all instances of spin:Function and calls
 	 * <code>register(function)</code> for each of them.
+	 *
 	 * @param model  the Model to add the functions of
 	 * @param source  an optional source of the Model
 	 */
@@ -304,6 +327,7 @@ public class SPINModuleRegistry {
 	 * Registers all templates defined in a given Model.
 	 * This basically iterates over all instances of spin:Template and calls
 	 * <code>register(template)</code> for each of them.
+	 *
 	 * @param model  the Model to add the templates of
 	 */
 	public void registerTemplates(Model model) {

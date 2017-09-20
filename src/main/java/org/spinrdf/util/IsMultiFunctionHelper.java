@@ -45,6 +45,14 @@ class IsMultiFunctionHelper {
 	private static Node integerOne = NodeFactory.createLiteral("1", TypeMapper.getInstance().getSafeTypeByName(XSD.integer.getURI()));
 
 	
+	/**
+	 * <p>isMulti.</p>
+	 *
+	 * @param property a {@link org.apache.jena.graph.Node} object.
+	 * @param type a {@link org.apache.jena.graph.Node} object.
+	 * @param graph a {@link org.apache.jena.graph.Graph} object.
+	 * @return a boolean.
+	 */
 	public static boolean isMulti(Node property, Node type, Graph graph) {
 		
 		// FILTER NOT EXISTS { ?property a owl:FunctionalProperty }

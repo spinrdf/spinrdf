@@ -22,19 +22,28 @@ import org.apache.jena.rdf.model.ResourceFactory;
 
 /**
  * Constants to access the arg: namespace.
+ *
+
+ * @version $Id: $Id
  */
 public class ARG {
 
+	/** Constant <code>BASE_URI="http://spinrdf.org/arg"</code> */
 	public final static String BASE_URI = "http://spinrdf.org/arg";
 	
+	/** Constant <code>NS="BASE_URI + #"</code> */
 	public final static String NS = BASE_URI + "#";
 	
+	/** Constant <code>PREFIX="arg"</code> */
 	public final static String PREFIX = "arg";
 	
 	
+	/** Constant <code>property</code> */
 	public final static Resource property = ResourceFactory.createResource(NS + "property");
 	
+	/** Constant <code>maxCount</code> */
 	public final static Resource maxCount = ResourceFactory.createResource(NS + "maxCount");
 	
+	/** Constant <code>minCount</code> */
 	public final static Resource minCount = ResourceFactory.createResource(NS + "minCount");
 }

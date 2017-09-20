@@ -22,11 +22,15 @@ import org.apache.jena.rdf.model.RDFNode;
 
 /**
  * A BIND assignment element.
+ *
+
+ * @version $Id: $Id
  */
 public interface Bind extends Element {
 	
 	/**
 	 * Gets the SPARQL expression delivering the assigned value.
+	 *
 	 * @return the expression
 	 */
 	RDFNode getExpression();
@@ -34,6 +38,7 @@ public interface Bind extends Element {
 
 	/**
 	 * Gets the variable on the right hand side of the BIND.
+	 *
 	 * @return the Variable
 	 */
 	Variable getVariable();

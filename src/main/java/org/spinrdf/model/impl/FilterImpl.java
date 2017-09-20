@@ -28,13 +28,30 @@ import org.spinrdf.model.visitor.ElementVisitor;
 import org.spinrdf.vocabulary.SP;
 
 
+/**
+ * <p>FilterImpl class.</p>
+ *
+
+ * @version $Id: $Id
+ */
 public class FilterImpl extends ElementImpl implements Filter {
 	
+	/**
+	 * <p>Constructor for FilterImpl.</p>
+	 *
+	 * @param node a {@link org.apache.jena.graph.Node} object.
+	 * @param graph a {@link org.apache.jena.enhanced.EnhGraph} object.
+	 */
 	public FilterImpl(Node node, EnhGraph graph) {
 		super(node, graph);
 	}
 
 	
+	/**
+	 * <p>getExpression.</p>
+	 *
+	 * @return a {@link org.apache.jena.rdf.model.RDFNode} object.
+	 */
 	public RDFNode getExpression() {
 		Statement s = getProperty(SP.expression);
 		if(s != null) {
@@ -47,6 +64,7 @@ public class FilterImpl extends ElementImpl implements Filter {
 	}
 	
 	
+	/** {@inheritDoc} */
 	public void print(PrintContext context) {
 		context.printKeyword("FILTER");
 		context.print(" ");
@@ -60,6 +78,7 @@ public class FilterImpl extends ElementImpl implements Filter {
 	}
 
 
+	/** {@inheritDoc} */
 	public void visit(ElementVisitor visitor) {
 		visitor.visit(this);
 	}

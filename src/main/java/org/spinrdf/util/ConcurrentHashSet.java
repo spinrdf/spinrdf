@@ -25,18 +25,22 @@ import java.util.concurrent.ConcurrentMap;
 
 /**
  * A set that uses ConcurrentHashMap as its implementation.
- * 
- * @author Jeremy
  *
+ * @author Jeremy
  * @param <E>
+ * @version $Id: $Id
  */
 public class ConcurrentHashSet<E> extends AbstractSet<E> {
 
 	private final ConcurrentMap<E,Boolean> delegate = new ConcurrentHashMap<E,Boolean>();
 
+	/**
+	 * <p>Constructor for ConcurrentHashSet.</p>
+	 */
 	public ConcurrentHashSet() {
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public boolean add(E o) {
 		if (o == null) {
@@ -46,23 +50,27 @@ public class ConcurrentHashSet<E> extends AbstractSet<E> {
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public void clear() {
 		delegate.clear();
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public boolean contains(Object o) {
 		return delegate.containsKey(o);
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public Iterator<E> iterator() {
 		return delegate.keySet().iterator();
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public boolean remove(Object o) {
 		if (o == null) {
@@ -72,6 +80,7 @@ public class ConcurrentHashSet<E> extends AbstractSet<E> {
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public int size() {
 		return delegate.keySet().size();

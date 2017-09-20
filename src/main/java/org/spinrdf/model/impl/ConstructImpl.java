@@ -29,13 +29,30 @@ import org.spinrdf.model.print.PrintContext;
 import org.spinrdf.vocabulary.SP;
 
 
+/**
+ * <p>ConstructImpl class.</p>
+ *
+
+ * @version $Id: $Id
+ */
 public class ConstructImpl extends QueryImpl implements Construct {
 
+	/**
+	 * <p>Constructor for ConstructImpl.</p>
+	 *
+	 * @param node a {@link org.apache.jena.graph.Node} object.
+	 * @param graph a {@link org.apache.jena.enhanced.EnhGraph} object.
+	 */
 	public ConstructImpl(Node node, EnhGraph graph) {
 		super(node, graph);
 	}
 
 	
+	/**
+	 * <p>getTemplates.</p>
+	 *
+	 * @return a {@link java.util.List} object.
+	 */
 	public List<TripleTemplate> getTemplates() {
 		List<TripleTemplate> results = new LinkedList<TripleTemplate>();
 		for(RDFNode next : getList(SP.templates)) {
@@ -47,6 +64,7 @@ public class ConstructImpl extends QueryImpl implements Construct {
 	}
 
 
+	/** {@inheritDoc} */
 	public void printSPINRDF(PrintContext context) {
 		printComment(context);
 		printPrefixes(context);

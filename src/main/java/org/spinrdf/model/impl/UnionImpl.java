@@ -28,13 +28,26 @@ import org.spinrdf.model.print.PrintContext;
 import org.spinrdf.model.visitor.ElementVisitor;
 
 
+/**
+ * <p>UnionImpl class.</p>
+ *
+
+ * @version $Id: $Id
+ */
 public class UnionImpl extends ElementImpl implements Union {
 	
+	/**
+	 * <p>Constructor for UnionImpl.</p>
+	 *
+	 * @param node a {@link org.apache.jena.graph.Node} object.
+	 * @param graph a {@link org.apache.jena.enhanced.EnhGraph} object.
+	 */
 	public UnionImpl(Node node, EnhGraph graph) {
 		super(node, graph);
 	}
 	
 	
+	/** {@inheritDoc} */
 	public void print(PrintContext p) {
 		List<Element> elements = getElements();
 		for(Iterator<Element> it = elements.iterator(); it.hasNext(); ) {
@@ -57,6 +70,7 @@ public class UnionImpl extends ElementImpl implements Union {
 	}
 
 
+	/** {@inheritDoc} */
 	public void visit(ElementVisitor visitor) {
 		visitor.visit(this);
 	}

@@ -27,10 +27,20 @@ import org.apache.jena.rdf.model.ResourceFactory;
 
 /**
  * Convenience base class for TableEngine implementations.
+ *
+
+ * @version $Id: $Id
  */
 public abstract class AbstractTableEngine implements TableEngine {
 
 	
+	/**
+	 * <p>addVarNames.</p>
+	 *
+	 * @param ns a {@link java.lang.String} object.
+	 * @param table a {@link org.apache.jena.rdf.model.Resource} object.
+	 * @param varNames a {@link java.util.List} object.
+	 */
 	protected void addVarNames(String ns, Resource table, List<String> varNames) {
 		Model model = table.getModel();
 		for(int col = 0; col < varNames.size(); col++) {
@@ -41,21 +51,46 @@ public abstract class AbstractTableEngine implements TableEngine {
 	}
 	
 	
+	/**
+	 * <p>getColCountProperty.</p>
+	 *
+	 * @param ns a {@link java.lang.String} object.
+	 * @return a {@link org.apache.jena.rdf.model.Property} object.
+	 */
 	protected Property getColCountProperty(String ns) {
 		return ResourceFactory.createProperty(ns + "colCount");
 	}
 	
 	
+	/**
+	 * <p>getRowCountProperty.</p>
+	 *
+	 * @param ns a {@link java.lang.String} object.
+	 * @return a {@link org.apache.jena.rdf.model.Property} object.
+	 */
 	protected Property getRowCountProperty(String ns) {
 		return ResourceFactory.createProperty(ns + "rowCount");
 	}
 	
 	
+	/**
+	 * <p>getValueProperty.</p>
+	 *
+	 * @param ns a {@link java.lang.String} object.
+	 * @return a {@link org.apache.jena.rdf.model.Property} object.
+	 */
 	protected Property getValueProperty(String ns) {
 		return ResourceFactory.createProperty(ns + "value");
 	}
 
 	
+	/**
+	 * <p>getVarNameProperty.</p>
+	 *
+	 * @param ns a {@link java.lang.String} object.
+	 * @param colIndex a int.
+	 * @return a {@link org.apache.jena.rdf.model.Property} object.
+	 */
 	protected Property getVarNameProperty(String ns, int colIndex) {
 		return ResourceFactory.createProperty(ns + "colName" + colIndex);
 	}

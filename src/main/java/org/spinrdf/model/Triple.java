@@ -24,11 +24,15 @@ import org.spinrdf.model.print.Printable;
 
 /**
  * The base interface of TriplePattern and TripleTemplate.
+ *
+
+ * @version $Id: $Id
  */
 public interface Triple extends Printable, Resource {
 	
 	/**
 	 * Gets the subject of this Triple, downcasting it into Variable if appropriate.
+	 *
 	 * @return the subject
 	 */
 	Resource getSubject();
@@ -36,6 +40,7 @@ public interface Triple extends Printable, Resource {
 
 	/**
 	 * Gets the predicate of this Triple, downcasting it into Variable if appropriate.
+	 *
 	 * @return the predicate
 	 */
 	Resource getPredicate();
@@ -43,6 +48,7 @@ public interface Triple extends Printable, Resource {
 	
 	/**
 	 * Gets the object of this Triple, downcasting it into Variable if appropriate.
+	 *
 	 * @return the object
 	 */
 	RDFNode getObject();
@@ -50,6 +56,7 @@ public interface Triple extends Printable, Resource {
 	
 	/**
 	 * Gets the object as a Resource.
+	 *
 	 * @return the object or null if it's not a resource (i.e., a literal)
 	 */
 	Resource getObjectResource();

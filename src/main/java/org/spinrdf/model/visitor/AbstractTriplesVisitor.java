@@ -34,7 +34,10 @@ import org.spinrdf.vocabulary.SPIN;
 /**
  * A utility that can be used to traverse all TriplePatterns under a given
  * root Element.  This also traverses function calls and simulates the
- * bindings of those function calls if a Function has a registered body. 
+ * bindings of those function calls if a Function has a registered body.
+ *
+
+ * @version $Id: $Id
  */
 public abstract class AbstractTriplesVisitor {
 	
@@ -44,12 +47,21 @@ public abstract class AbstractTriplesVisitor {
 	private Element element;
 	
 	
+	/**
+	 * <p>Constructor for AbstractTriplesVisitor.</p>
+	 *
+	 * @param element a {@link org.spinrdf.model.Element} object.
+	 * @param initialBindings a {@link java.util.Map} object.
+	 */
 	public AbstractTriplesVisitor(Element element, Map<Property,RDFNode> initialBindings) {
 		this.bindings = initialBindings;
 		this.element = element;
 	}
 	
 	
+	/**
+	 * <p>run.</p>
+	 */
 	public void run() {
 		ElementWalker walker = new ElementWalker(new MyElementVisitor(), new MyExpressionVisitor());
 		element.visit(walker);
@@ -58,7 +70,9 @@ public abstract class AbstractTriplesVisitor {
 
 	/**
 	 * Will be called on each TriplePattern.
+	 *
 	 * @param triplePattern  the TriplePattern
+	 * @param bindings a {@link java.util.Map} object.
 	 */
 	protected abstract void handleTriplePattern(TriplePattern triplePattern, Map<Property,RDFNode> bindings);
 

@@ -21,6 +21,7 @@ package org.spinrdf.model;
  * An EXISTS element group.
  *
  * @author Holger Knublauch
+ * @version $Id: $Id
  */
 public interface Exists extends ElementGroup {
 }

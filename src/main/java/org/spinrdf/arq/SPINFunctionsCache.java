@@ -31,15 +31,28 @@ import org.apache.jena.sparql.expr.NodeValue;
 
 /**
  * A cache that remembers previous calls to SPIN functions marked with spin:cachable.
+ *
+
+ * @version $Id: $Id
  */
 public class SPINFunctionsCache {
 
 	private static SPINFunctionsCache singleton = new SPINFunctionsCache();
 	
+	/**
+	 * <p>get.</p>
+	 *
+	 * @return a {@link org.spinrdf.arq.SPINFunctionsCache} object.
+	 */
 	public static SPINFunctionsCache get() {
 		return singleton;
 	}
 	
+	/**
+	 * <p>set.</p>
+	 *
+	 * @param value a {@link org.spinrdf.arq.SPINFunctionsCache} object.
+	 */
 	public static void set(SPINFunctionsCache value) {
 		SPINFunctionsCache.singleton = value;
 	}
@@ -68,11 +81,24 @@ public class SPINFunctionsCache {
 	private Map<Key,Result> cache = Collections.synchronizedMap(new MyCache());
 
 	
+	/**
+	 * <p>clear.</p>
+	 */
 	public void clear() {
 		cache.clear();
 	}
 	
 	
+	/**
+	 * <p>execute.</p>
+	 *
+	 * @param function a {@link org.spinrdf.arq.SPINARQFunction} object.
+	 * @param dataset a {@link org.apache.jena.query.Dataset} object.
+	 * @param defaultModel a {@link org.apache.jena.rdf.model.Model} object.
+	 * @param bindings a {@link org.apache.jena.query.QuerySolution} object.
+	 * @param args an array of {@link org.apache.jena.graph.Node} objects.
+	 * @return a {@link org.apache.jena.sparql.expr.NodeValue} object.
+	 */
 	public NodeValue execute(SPINARQFunction function, Dataset dataset, Model defaultModel, QuerySolution bindings, Node[] args) {
 		Key key = new Key(function.getSPINFunction().getURI(), args);
 		Result result = cache.get(key);

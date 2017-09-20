@@ -22,39 +22,47 @@ package org.spinrdf.progress;
 /**
  * A ProgressMonitor that doesn't "do" anything.
  * Support for canceling is provided via <code>setCanceled</code>.
- * 
+ *
  * @author Holger Knublauch
+ * @version $Id: $Id
  */
 public class NullProgressMonitor implements ProgressMonitor {
 	
 	private boolean canceled;
 
+	/** {@inheritDoc} */
 	@Override
 	public boolean isCanceled() {
 		return canceled;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void beginTask(String label, int totalWork) {
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void done() {
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void setCanceled(boolean value) {
 		this.canceled = value;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void setTaskName(String value) {
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void subTask(String label) {
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void worked(int amount) {
 	}

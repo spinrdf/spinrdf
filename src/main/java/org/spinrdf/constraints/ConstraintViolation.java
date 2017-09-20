@@ -27,6 +27,9 @@ import org.spinrdf.vocabulary.SPIN;
 
 /**
  * An object representing a failure of a SPIN constraint.
+ *
+
+ * @version $Id: $Id
  */
 public class ConstraintViolation {
 	
@@ -47,6 +50,7 @@ public class ConstraintViolation {
 	
 	/**
 	 * Constructs a new ConstraintViolation.
+	 *
 	 * @param root  the root resource of the violation
 	 * @param paths  the paths (may be empty)
 	 * @param fixes  potential fixes for the violations (may be empty)
@@ -67,26 +71,51 @@ public class ConstraintViolation {
 	}
 	
 	
+	/**
+	 * <p>Getter for the field <code>fixes</code>.</p>
+	 *
+	 * @return a {@link java.util.Collection} object.
+	 */
 	public Collection<TemplateCall> getFixes() {
 		return fixes;
 	}
 	
 	
+	/**
+	 * <p>Getter for the field <code>level</code>.</p>
+	 *
+	 * @return a {@link org.apache.jena.rdf.model.Resource} object.
+	 */
 	public Resource getLevel() {
 		return level == null ? SPIN.Error : level;
 	}
 	
 	
+	/**
+	 * <p>Getter for the field <code>message</code>.</p>
+	 *
+	 * @return a {@link java.lang.String} object.
+	 */
 	public String getMessage() {
 		return message;
 	}
 	
 	
+	/**
+	 * <p>Getter for the field <code>paths</code>.</p>
+	 *
+	 * @return a {@link java.util.Collection} object.
+	 */
 	public Collection<SimplePropertyPath> getPaths() {
 		return paths;
 	}
 	
 
+	/**
+	 * <p>Getter for the field <code>root</code>.</p>
+	 *
+	 * @return a {@link org.apache.jena.rdf.model.Resource} object.
+	 */
 	public Resource getRoot() {
 		return root;
 	}
@@ -94,6 +123,7 @@ public class ConstraintViolation {
 	
 	/**
 	 * Gets the SPIN Query or template call that has caused this violation.
+	 *
 	 * @return the source (code should be robust against null values)
 	 */
 	public Resource getSource() {
@@ -101,6 +131,11 @@ public class ConstraintViolation {
 	}
 	
 	
+	/**
+	 * <p>Getter for the field <code>value</code>.</p>
+	 *
+	 * @return a {@link org.apache.jena.rdf.model.RDFNode} object.
+	 */
 	public RDFNode getValue() {
 		return value;
 	}
@@ -108,6 +143,7 @@ public class ConstraintViolation {
 
 	/**
 	 * Checks if this represents an Error or Fatal.
+	 *
 	 * @return true if Error or Fatal
 	 */
 	public boolean isError() {
@@ -115,11 +151,21 @@ public class ConstraintViolation {
 	}
 	
 	
+	/**
+	 * <p>Setter for the field <code>level</code>.</p>
+	 *
+	 * @param level a {@link org.apache.jena.rdf.model.Resource} object.
+	 */
 	public void setLevel(Resource level) {
 		this.level = level;
 	}
 	
 	
+	/**
+	 * <p>Setter for the field <code>value</code>.</p>
+	 *
+	 * @param value a {@link org.apache.jena.rdf.model.RDFNode} object.
+	 */
 	public void setValue(RDFNode value) {
 		this.value = value;
 	}

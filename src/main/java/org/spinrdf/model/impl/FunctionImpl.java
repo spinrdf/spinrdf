@@ -26,24 +26,43 @@ import org.spinrdf.util.JenaUtil;
 import org.spinrdf.vocabulary.SPIN;
 
 
+/**
+ * <p>FunctionImpl class.</p>
+ *
+
+ * @version $Id: $Id
+ */
 public class FunctionImpl extends ModuleImpl implements Function {
 	
+	/**
+	 * <p>Constructor for FunctionImpl.</p>
+	 *
+	 * @param node a {@link org.apache.jena.graph.Node} object.
+	 * @param eg a {@link org.apache.jena.enhanced.EnhGraph} object.
+	 */
 	public FunctionImpl(Node node, EnhGraph eg) {
 		super(node, eg);
 	}
 
 	
+	/**
+	 * <p>getReturnType.</p>
+	 *
+	 * @return a {@link org.apache.jena.rdf.model.Resource} object.
+	 */
 	public Resource getReturnType() {
 		return getResource(SPIN.returnType);
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public boolean isMagicProperty() {
 		return JenaUtil.hasIndirectType(this, SPIN.MagicProperty);
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public boolean isPrivate() {
 		return hasProperty(SPIN.private_, JenaDatatypes.TRUE);

@@ -34,15 +34,15 @@ import org.apache.jena.sparql.function.FunctionRegistry;
  * An ARQ FunctionRegistry that can be used to associate functions
  * with Threads, so that additional functions from a given Model can
  * be made visible depending on the SPARQL query thread.
- * 
+ *
  * <p>Note that this concept only works if ARQ has been set to single
  * threading, which is done by the static block below.</p>
- * 
+ *
  * <p>The contract of this class is very strict to prevent memory leaks:
  * Users always need to make sure that unregister is called as soon
  * as a query (block) ends, and to restore any old SPINThreadFunctions
  * object that was registered before.  So a typical block would be:</p>
- * 
+ *
  * <code>
  * 	Model model = ... a Model with extra SPIN functions
  * 	SPINThreadFunctions old = SPINThreadFunctionRegistry.register(model);
@@ -52,10 +52,10 @@ import org.apache.jena.sparql.function.FunctionRegistry;
  * 	finally {
  * 		SPINThreadFunctionRegistry.unregister(old);
  * 	}</code>
- * 
+ *
  * <p>In preparation of the above, the application should start up with code
  * such as</p>
- * 
+ *
  * <code>
  * 	FunctionRegistry oldFR = FunctionRegistry.get();
  *  SPINThreadFunctionRegistry threadFR = new SPINThreadFunctionRegistry(oldFR);
@@ -63,6 +63,9 @@ import org.apache.jena.sparql.function.FunctionRegistry;
  * </code>
  *
  * <p>and do the same for the SPINThreadPropertyFunctionRegistry.</p>
+ *
+
+ * @version $Id: $Id
  */
 public class SPINThreadFunctionRegistry extends FunctionRegistry {
 
@@ -81,6 +84,7 @@ public class SPINThreadFunctionRegistry extends FunctionRegistry {
 	/**
 	 * Registers a set of extra SPIN functions from a given Model for the current
 	 * Thread.
+	 *
 	 * @param model  the Model containing the SPIN functions
 	 * @return any old object that was registered for the current Thread, so that
 	 *         the old value can be restored when done.
@@ -95,6 +99,7 @@ public class SPINThreadFunctionRegistry extends FunctionRegistry {
 	
 	/**
 	 * Unregisters the current Model for the current Thread.
+	 *
 	 * @param old  the old functions that shall be restored or null
 	 */
 	public static void unregister(SPINThreadFunctions old) {
@@ -106,17 +111,28 @@ public class SPINThreadFunctionRegistry extends FunctionRegistry {
 		}
 	}
 	
+	/**
+	 * <p>getFunctions.</p>
+	 *
+	 * @return a {@link org.spinrdf.arq.SPINThreadFunctions} object.
+	 */
 	public static SPINThreadFunctions getFunctions() {
 		return localFunctions.get();
 	}
 	
 	private FunctionRegistry base;
 	
+	/**
+	 * <p>Constructor for SPINThreadFunctionRegistry.</p>
+	 *
+	 * @param base a {@link org.apache.jena.sparql.function.FunctionRegistry} object.
+	 */
 	public SPINThreadFunctionRegistry(FunctionRegistry base) {
 		this.base = base;
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public FunctionFactory get(String uri) {
 		FunctionFactory b = base.get(uri);
@@ -134,6 +150,7 @@ public class SPINThreadFunctionRegistry extends FunctionRegistry {
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public boolean isRegistered(String uri) {
 		if(base.isRegistered(uri)) {
@@ -145,6 +162,7 @@ public class SPINThreadFunctionRegistry extends FunctionRegistry {
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public Iterator<String> keys() {
 		// Note: only returns base keys
@@ -152,18 +170,21 @@ public class SPINThreadFunctionRegistry extends FunctionRegistry {
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public void put(String uri, Class<?> funcClass) {
 		base.put(uri, funcClass);
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public void put(String uri, FunctionFactory f) {
 		base.put(uri, f);
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public FunctionFactory remove(String uri) {
 		return base.remove(uri);

@@ -20,8 +20,9 @@ package org.spinrdf.model.update;
 
 /**
  * A SPARQL Update INSERT DATA operation.
- * 
+ *
  * @author Holger Knublauch
+ * @version $Id: $Id
  */
 public interface InsertData extends Update {
 }

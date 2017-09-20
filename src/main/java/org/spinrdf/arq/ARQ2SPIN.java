@@ -112,6 +112,9 @@ import org.spinrdf.vocabulary.SPL;
 /**
  * Takes a ARQ SPARQL Query as input and creates a corresponding SPIN RDF
  * data structure from it.
+ *
+
+ * @version $Id: $Id
  */
 public class ARQ2SPIN {
 	
@@ -160,6 +163,7 @@ public class ARQ2SPIN {
 	/**
 	 * Constructs a new ARQ2SPIN engine for a given Model,
 	 * equivalent with <code>ARQ2SPIN(model, true)</code>.
+	 *
 	 * @param model  the Model to operate on
 	 */
 	public ARQ2SPIN(Model model) {
@@ -169,6 +173,7 @@ public class ARQ2SPIN {
 	
 	/**
 	 * Constructs a new ARQ2SPIN engine for a given Model.
+	 *
 	 * @param model  the Model to operate on
 	 * @param addPrefixes  true to also let the system add missing
 	 *                     prefixes mentioned in SPARQL expressions
@@ -431,6 +436,7 @@ public class ARQ2SPIN {
 
 	/**
 	 * Creates a SPIN ElementList from a given ARQ Element pattern.
+	 *
 	 * @param pattern  the ARQ pattern to convert to SPIN
 	 * @return a SPIN ElementList
 	 */
@@ -614,6 +620,12 @@ public class ARQ2SPIN {
 	}
 	
 	
+	/**
+	 * <p>createExpression.</p>
+	 *
+	 * @param expr a {@link org.apache.jena.sparql.expr.Expr} object.
+	 * @return a {@link org.apache.jena.rdf.model.RDFNode} object.
+	 */
 	public RDFNode createExpression(Expr expr) {
 		NodeValue constant = expr.getConstant();
 		if(constant != null) {
@@ -878,6 +890,7 @@ public class ARQ2SPIN {
 	/**
 	 * Constructs a new SPIN Query from a given ARQ query, possibly
 	 * with a URI.
+	 *
 	 * @param arq  the ARQ query
 	 * @param uri  the URI of the new Query resource or null for a blank node
 	 * @return the Query
@@ -958,6 +971,13 @@ public class ARQ2SPIN {
 	}
 	
 	
+	/**
+	 * <p>createUpdate.</p>
+	 *
+	 * @param arq a {@link org.apache.jena.update.Update} object.
+	 * @param uri a {@link java.lang.String} object.
+	 * @return a {@link org.spinrdf.model.update.Update} object.
+	 */
 	public Update createUpdate(org.apache.jena.update.Update arq, String uri) {
 		if(arq instanceof UpdateModify) {
 			return createModify((UpdateModify)arq, uri);
@@ -1058,6 +1078,12 @@ public class ARQ2SPIN {
 	}
 	
 	
+	/**
+	 * <p>getTextOnly.</p>
+	 *
+	 * @param spinCommand a {@link org.apache.jena.rdf.model.Resource} object.
+	 * @return a {@link java.lang.String} object.
+	 */
 	public static String getTextOnly(Resource spinCommand) {
 		// Return sp:text if this is the only property of the command apart from the rdf:type triple
 		Statement s = spinCommand.getProperty(SP.text);
@@ -1097,6 +1123,7 @@ public class ARQ2SPIN {
 
 	/**
 	 * Gets the (optional) variable namespace.
+	 *
 	 * @return the variable namespace
 	 */
 	public String getVarNamespace() {
@@ -1107,6 +1134,7 @@ public class ARQ2SPIN {
 	/**
 	 * Parses a given partial query string and converts it into a SPIN structure
 	 * inside a given Model.
+	 *
 	 * @param str  the partial query string
 	 * @param model  the Model to operate on
 	 * @return the new SPIN Query
@@ -1121,6 +1149,7 @@ public class ARQ2SPIN {
 	/**
 	 * Parses a given partial UPDATE string and converts it into a SPIN structure
 	 * inside a given Model.
+	 *
 	 * @param str  the partial UPDATE string
 	 * @param model  the Model to operate on
 	 * @return the new SPIN Query
@@ -1136,6 +1165,7 @@ public class ARQ2SPIN {
 	/**
 	 * Sets the variable namespace which is used to prevent the
 	 * creation of too many blank nodes.
+	 *
 	 * @param value  the new namespace (might be null)
 	 */
 	public void setVarNamespace(String value) {

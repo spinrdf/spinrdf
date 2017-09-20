@@ -28,6 +28,9 @@ import org.apache.jena.vocabulary.RDF;
 /**
  * An extension of the Jena polymorphism mechanism.
  * In contrast to SimpleImplementation, this maps to two different RDF classes.
+ *
+
+ * @version $Id: $Id
  */
 public class SimpleImplementation2 extends Implementation {
 
@@ -39,6 +42,13 @@ public class SimpleImplementation2 extends Implementation {
 	private final Node type2;
 
 
+	/**
+	 * <p>Constructor for SimpleImplementation2.</p>
+	 *
+	 * @param type1 a {@link org.apache.jena.graph.Node} object.
+	 * @param type2 a {@link org.apache.jena.graph.Node} object.
+	 * @param implClass a {@link java.lang.Class} object.
+	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public SimpleImplementation2(Node type1, Node type2, Class implClass) {
 		this.type1 = type1;
@@ -52,6 +62,7 @@ public class SimpleImplementation2 extends Implementation {
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public boolean canWrap(Node node, EnhGraph eg) {
 		return 	eg.asGraph().contains(node, RDF.type.asNode(), type1) ||
@@ -59,6 +70,7 @@ public class SimpleImplementation2 extends Implementation {
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public EnhNode wrap(Node node, EnhGraph eg) {
 		try {

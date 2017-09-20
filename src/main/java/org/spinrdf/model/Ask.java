@@ -20,8 +20,9 @@ package org.spinrdf.model;
 
 /**
  * An ASK Query.
- * 
+ *
  * @author Holger Knublauch
+ * @version $Id: $Id
  */
 public interface Ask extends Query {
 

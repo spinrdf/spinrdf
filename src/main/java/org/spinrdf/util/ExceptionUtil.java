@@ -23,6 +23,9 @@ import java.io.StringWriter;
 
 /**
  * A collection of utilities on Exception handling.
+ *
+
+ * @version $Id: $Id
  */
 public class ExceptionUtil {
 
@@ -36,7 +39,8 @@ public class ExceptionUtil {
 	 *
 	 * @param t The underlying problem.
 	 * @throws Error If there is an underlying Error
-	 * @throws RuntimeException Otherwise
+	 * @throws java.lang.RuntimeException Otherwise
+	 * @return a {@link java.lang.RuntimeException} object.
 	 */
 	public static RuntimeException throwRootCauseUnchecked(Throwable t) {
 		return ExceptionUtil.throwDeepCauseChecked(t,RuntimeException.class);
@@ -51,7 +55,7 @@ public class ExceptionUtil {
 	 *
 	 * @param t The underlying problem.
 	 * @throws Error If t is an Error
-	 * @throws RuntimeException Otherwise
+	 * @throws java.lang.RuntimeException Otherwise
 	 * @return Never returns, return type is for idiom "throw throwUnchecked();" to clarify that next line is not reached.
 	 */
 	public static RuntimeException throwUnchecked(Throwable t) {
@@ -69,7 +73,7 @@ public class ExceptionUtil {
 
 	
 	/**
-	 * Always 
+	 * Always
 	 * throw an exception; based on <code>t</code>.
 	 * The <code>getCause</code> chain of <code>t</code>
 	 * is analyzed, and then,
@@ -85,11 +89,12 @@ public class ExceptionUtil {
 	 * @param t The underlying problem.
 	 * @param clazz The class of exception to look for. This clazz must not be abstract and must have
 	 * either a no element constructor or a constructor with one argument being a throwable.
-	 * @param <Ex> The type of exception thrown by the constructor of V
 	 * @throws Error If there is an underlying Error
-	 * @throws RuntimeException If there is an underlying RuntimeException and no exception of type EX
+	 * @throws java.lang.RuntimeException If there is an underlying java.lang.RuntimeException and no exception of type EX
 	 * @throws EX If there is an appropriate exception or otherwise
-	 * @throws IllegalArgumentException If clazz is inappropriate (not always checked).
+	 * @throws java.lang.IllegalArgumentException If clazz is inappropriate (not always checked).
+	 * @param <EX> a EX object.
+	 * @return a EX object.
 	 */
 	public static <EX extends Throwable> EX throwDeepCauseChecked(Throwable t, Class<? extends EX> clazz) throws EX {
 		if (t == null ) {
@@ -131,6 +136,12 @@ public class ExceptionUtil {
 		// NOT REACHED.
 	}
 
+	/**
+	 * <p>getStackTrace.</p>
+	 *
+	 * @param t a {@link java.lang.Throwable} object.
+	 * @return a {@link java.lang.String} object.
+	 */
 	public static String getStackTrace(Throwable t) {
 		StringWriter writer = new StringWriter();
 		t.printStackTrace(new PrintWriter(writer));
@@ -144,6 +155,14 @@ public class ExceptionUtil {
 		return null;
 	}
 
+	/**
+	 * <p>getDeepCause.</p>
+	 *
+	 * @param t a {@link java.lang.Throwable} object.
+	 * @param clazz a {@link java.lang.Class} object.
+	 * @param <EX> a EX object.
+	 * @return a EX object.
+	 */
 	@SuppressWarnings("unchecked")
 	public static <EX extends Throwable> EX getDeepCause(Throwable t, Class<? extends EX> clazz) {
 		if (t == null ) {

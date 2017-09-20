@@ -19,13 +19,15 @@ package org.spinrdf.model.update;
 
 /**
  * A SPARQL Update CLEAR operation.
- * 
+ *
  * @author Holger Knublauch
+ * @version $Id: $Id
  */
 public interface Clear extends Update {
 	
 	/**
 	 * Checks if this Update operation has been marked to be SILENT.
+	 *
 	 * @return true if SILENT
 	 */
 	boolean isSilent();

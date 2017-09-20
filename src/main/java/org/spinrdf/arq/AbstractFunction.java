@@ -36,13 +36,18 @@ import org.spinrdf.statistics.SPINStatisticsManager;
 
 /**
  * Base implementation of Function comparable to Jena's FunctionBase.
+ *
+
+ * @version $Id: $Id
  */
 public abstract class AbstractFunction implements Function {
 
+	/** {@inheritDoc} */
 	public void build(String uri, ExprList args) {
 	}
 
 	
+	/** {@inheritDoc} */
 	public NodeValue exec(Binding binding, ExprList args, String uri, FunctionEnv env) {
 		Node[] nodes = new Node[args.size()];
 		for(int i = 0; i < args.size(); i++) {
@@ -105,5 +110,12 @@ public abstract class AbstractFunction implements Function {
 	}
 	
 	
+	/**
+	 * <p>exec.</p>
+	 *
+	 * @param nodes an array of {@link org.apache.jena.graph.Node} objects.
+	 * @param env a {@link org.apache.jena.sparql.function.FunctionEnv} object.
+	 * @return a {@link org.apache.jena.sparql.expr.NodeValue} object.
+	 */
 	protected abstract NodeValue exec(Node[] nodes, FunctionEnv env);
 }

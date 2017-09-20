@@ -21,28 +21,63 @@ package org.spinrdf.progress;
 /**
  * An abstraction of the Eclipse IProgressMonitor for intermediate
  * status messages and the ability to cancel long-running processes.
- * 
+ *
  * @author Holger Knublauch
+ * @version $Id: $Id
  */
 public interface ProgressMonitor {
 
+	/**
+	 * <p>isCanceled.</p>
+	 *
+	 * @return a boolean.
+	 */
 	boolean isCanceled();
 	
 	
+	/**
+	 * <p>beginTask.</p>
+	 *
+	 * @param label a {@link java.lang.String} object.
+	 * @param totalWork a int.
+	 */
 	void beginTask(String label, int totalWork);
 	
 	
+	/**
+	 * <p>done.</p>
+	 */
 	void done();
 	
 	
+	/**
+	 * <p>setCanceled.</p>
+	 *
+	 * @param value a boolean.
+	 */
 	void setCanceled(boolean value);
 	
 	
+	/**
+	 * <p>setTaskName.</p>
+	 *
+	 * @param value a {@link java.lang.String} object.
+	 */
 	void setTaskName(String value);
 	
 	
+	/**
+	 * <p>subTask.</p>
+	 *
+	 * @param label a {@link java.lang.String} object.
+	 */
 	void subTask(String label);
 	
 	
+	/**
+	 * <p>worked.</p>
+	 *
+	 * @param amount a int.
+	 */
 	void worked(int amount);
 }

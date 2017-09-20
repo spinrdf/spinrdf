@@ -25,6 +25,7 @@ import org.spinrdf.util.CommandWrapper;
  * A Comparator of spin:rules to determine the order of execution.
  *
  * @author Holger Knublauch
+ * @version $Id: $Id
  */
 public interface SPINRuleComparator extends Comparator<CommandWrapper> {
 }

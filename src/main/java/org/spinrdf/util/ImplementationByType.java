@@ -24,18 +24,27 @@ import org.apache.jena.vocabulary.RDF;
 
 /**
  * Extended polymorphism support for Jena, checking whether the Node
- * has a given rdf:type. 
+ * has a given rdf:type.
+ *
+
+ * @version $Id: $Id
  */
 public abstract class ImplementationByType extends Implementation {
 
 	private final Node type;
 
 
+	/**
+	 * <p>Constructor for ImplementationByType.</p>
+	 *
+	 * @param type a {@link org.apache.jena.graph.Node} object.
+	 */
 	public ImplementationByType(Node type) {
 		this.type = type;
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public boolean canWrap(Node node, EnhGraph eg) {
 		return eg.asGraph().contains(node, RDF.type.asNode(), type);

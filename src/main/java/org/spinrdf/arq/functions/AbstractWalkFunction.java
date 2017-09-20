@@ -44,9 +44,13 @@ import org.spinrdf.arq.DatasetWithDifferentDefaultModel;
 
 /**
  * The base implementation of sh:walkObjects and sh:walkSubjects.
+ *
+
+ * @version $Id: $Id
  */
 public abstract class AbstractWalkFunction extends AbstractFunction {
 
+	/** {@inheritDoc} */
 	@Override
 	protected NodeValue exec(Node[] nodes, FunctionEnv env) {
 		Node startNode = nodes[0];
@@ -122,8 +126,22 @@ public abstract class AbstractWalkFunction extends AbstractFunction {
 	}
 
 
+	/**
+	 * <p>createIterator.</p>
+	 *
+	 * @param graph a {@link org.apache.jena.graph.Graph} object.
+	 * @param node a {@link org.apache.jena.graph.Node} object.
+	 * @param predicate a {@link org.apache.jena.graph.Node} object.
+	 * @return a {@link org.apache.jena.util.iterator.ExtendedIterator} object.
+	 */
 	protected abstract ExtendedIterator<Triple> createIterator(Graph graph, Node node, Node predicate);
 	
 	
+	/**
+	 * <p>getNext.</p>
+	 *
+	 * @param triple a {@link org.apache.jena.graph.Triple} object.
+	 * @return a {@link org.apache.jena.graph.Node} object.
+	 */
 	protected abstract Node getNext(Triple triple);
 }

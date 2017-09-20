@@ -23,6 +23,7 @@ import org.spinrdf.model.Command;
  * Base interface of the top-level SPARQL UPDATE commands.
  *
  * @author Holger Knublauch
+ * @version $Id: $Id
  */
 public interface Update extends Command {
 }

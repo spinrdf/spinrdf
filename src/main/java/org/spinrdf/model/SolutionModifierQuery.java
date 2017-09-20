@@ -20,13 +20,15 @@ package org.spinrdf.model;
 
 /**
  * Shared functions of those Query types that can have solution modifiers.
- * 
+ *
  * @author Holger Knublauch
+ * @version $Id: $Id
  */
 public interface SolutionModifierQuery extends Query {
 
 	/**
 	 * Gets the LIMIT or null.
+	 *
 	 * @return the specified limit or null
 	 */
 	Long getLimit();
@@ -34,6 +36,7 @@ public interface SolutionModifierQuery extends Query {
 	
 	/**
 	 * Gets the OFFSET or null
+	 *
 	 * @return the specified offset or null
 	 */
 	Long getOffset();

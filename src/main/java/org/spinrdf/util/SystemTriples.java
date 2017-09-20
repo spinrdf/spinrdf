@@ -34,11 +34,14 @@ import org.spinrdf.vocabulary.SP;
 
 /**
  * Provides access to the RDF/RDFS/OWL system triples.
- * 
+ *
  * TopBraid and this API adds some extra triples (such as declaring
  * superclasses for each system class) that make life easier.
  * In order to expose those assumptions to 3rd party APIs, this is
  * part of the (open source) SPIN API.
+ *
+
+ * @version $Id: $Id
  */
 public class SystemTriples {
 
@@ -71,6 +74,7 @@ public class SystemTriples {
 
 	/**
 	 * Gets the system ontology (a shared copy).
+	 *
 	 * @return the system ontology
 	 */
 	public static synchronized Model getVocabularyModel() {

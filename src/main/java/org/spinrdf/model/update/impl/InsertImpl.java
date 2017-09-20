@@ -23,14 +23,32 @@ import org.spinrdf.model.print.PrintContext;
 import org.spinrdf.model.update.Insert;
 import org.spinrdf.vocabulary.SP;
 
+/**
+ *
+
+ * @deprecated
+ */
 @Deprecated
+/**
+ * <p>InsertImpl class.</p>
+ *
+
+ * @version $Id: $Id
+ */
 public class InsertImpl extends UpdateImpl implements Insert {
 
+	/**
+	 * <p>Constructor for InsertImpl.</p>
+	 *
+	 * @param node a {@link org.apache.jena.graph.Node} object.
+	 * @param graph a {@link org.apache.jena.enhanced.EnhGraph} object.
+	 */
 	public InsertImpl(Node node, EnhGraph graph) {
 		super(node, graph);
 	}
 
 	
+	/** {@inheritDoc} */
 	public void printSPINRDF(PrintContext p) {
 		printComment(p);
 		printPrefixes(p);

@@ -30,11 +30,12 @@ import java.util.Set;
  * In TopBraid, this singleton is used as a single entry point for various
  * statistics producing engines such as TopSPIN.
  * The results are displayed in the SPIN Statistics view of TBC.
- * 
+ *
  * The SPINStatisticsManager is off by default, and needs to be activated
  * with <code>setRecording(true);</code>.
- * 
+ *
  * @author Holger Knublauch
+ * @version $Id: $Id
  */
 public class SPINStatisticsManager {
 
@@ -42,6 +43,7 @@ public class SPINStatisticsManager {
 	
 	/**
 	 * Gets the singleton instance of this class.
+	 *
 	 * @return the SPINStatisticsManager (never null)
 	 */
 	public static SPINStatisticsManager get() {
@@ -60,6 +62,11 @@ public class SPINStatisticsManager {
 	private List<SPINStatistics> stats = Collections.synchronizedList(new LinkedList<SPINStatistics>());
 	
 	
+	/**
+	 * <p>addListener.</p>
+	 *
+	 * @param listener a {@link org.spinrdf.statistics.SPINStatisticsListener} object.
+	 */
 	public void addListener(SPINStatisticsListener listener) {
 		listeners.add(listener);
 	}
@@ -69,6 +76,7 @@ public class SPINStatisticsManager {
 	 * Adds new statistics and notifies any registered listeners.
 	 * This should only be called if <code>isRecording()</code> is true
 	 * to prevent the unnecessary creation of SPINStatistics objects.
+	 *
 	 * @param values  the statistics to add
 	 */
 	public synchronized void add(Iterable<SPINStatistics> values) {
@@ -81,6 +89,7 @@ public class SPINStatisticsManager {
 	 * Adds new statistics without notifying listeners.
 	 * This should only be called if <code>isRecording()</code> is true
 	 * to prevent the unnecessary creation of SPINStatistics objects.
+	 *
 	 * @param values  the statistics to add
 	 */
 	public void addSilently(Iterable<SPINStatistics> values) {
@@ -92,6 +101,7 @@ public class SPINStatisticsManager {
 	
 	/**
 	 * Gets all previously added statistics.
+	 *
 	 * @return the statistics
 	 */
 	public synchronized List<SPINStatistics> getStatistics() {
@@ -99,26 +109,49 @@ public class SPINStatisticsManager {
 	}
 	
 	
+	/**
+	 * <p>isRecording.</p>
+	 *
+	 * @return a boolean.
+	 */
 	public boolean isRecording() {
 		return recording;
 	}
 	
 	
+	/**
+	 * <p>isRecordingNativeFunctions.</p>
+	 *
+	 * @return a boolean.
+	 */
 	public boolean isRecordingNativeFunctions() {
 		return recordingNativeFunctions;
 	}
 	
 	
+	/**
+	 * <p>isRecordingSPINFunctions.</p>
+	 *
+	 * @return a boolean.
+	 */
 	public boolean isRecordingSPINFunctions() {
 		return recordingSPINFunctions;
 	}
 	
 	
+	/**
+	 * <p>removeListener.</p>
+	 *
+	 * @param listener a {@link org.spinrdf.statistics.SPINStatisticsListener} object.
+	 */
 	public void removeListener(SPINStatisticsListener listener) {
 		listeners.remove(listener);
 	}
 	
 	
+	/**
+	 * <p>reset.</p>
+	 */
 	public synchronized void reset() {
 		stats.clear();
 		notifyListeners();
@@ -135,16 +168,31 @@ public class SPINStatisticsManager {
 	}
 	
 	
+	/**
+	 * <p>Setter for the field <code>recording</code>.</p>
+	 *
+	 * @param value a boolean.
+	 */
 	public void setRecording(boolean value) {
 		this.recording = value;
 	}
 	
 	
+	/**
+	 * <p>Setter for the field <code>recordingNativeFunctions</code>.</p>
+	 *
+	 * @param value a boolean.
+	 */
 	public void setRecordingNativeFunctions(boolean value) {
 		this.recordingNativeFunctions = value;
 	}
 	
 	
+	/**
+	 * <p>Setter for the field <code>recordingSPINFunctions</code>.</p>
+	 *
+	 * @param value a boolean.
+	 */
 	public void setRecordingSPINFunctions(boolean value) {
 		this.recordingSPINFunctions = value;
 	}

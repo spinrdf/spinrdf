@@ -39,13 +39,26 @@ import org.spinrdf.system.SPINModuleRegistry;
 import org.spinrdf.vocabulary.SPIN;
 
 
+/**
+ * <p>TemplateCallImpl class.</p>
+ *
+
+ * @version $Id: $Id
+ */
 public class TemplateCallImpl extends ModuleCallImpl implements TemplateCall {
 
+	/**
+	 * <p>Constructor for TemplateCallImpl.</p>
+	 *
+	 * @param node a {@link org.apache.jena.graph.Node} object.
+	 * @param graph a {@link org.apache.jena.enhanced.EnhGraph} object.
+	 */
 	public TemplateCallImpl(Node node, EnhGraph graph) {
 		super(node, graph);
 	}
 
 	
+	/** {@inheritDoc} */
 	@Override
 	public QueryExecution createQueryExecution(Dataset dataset) {
 		Module template = getModule();
@@ -60,6 +73,11 @@ public class TemplateCallImpl extends ModuleCallImpl implements TemplateCall {
 	}
 
 
+	/**
+	 * <p>getArgumentsMap.</p>
+	 *
+	 * @return a {@link java.util.Map} object.
+	 */
 	public Map<Argument,RDFNode> getArgumentsMap() {
 		Map<Argument,RDFNode> map = new HashMap<Argument,RDFNode>();
 		Template template = getTemplate();
@@ -79,6 +97,11 @@ public class TemplateCallImpl extends ModuleCallImpl implements TemplateCall {
 	}
 
 
+	/**
+	 * <p>getArgumentsMapByProperties.</p>
+	 *
+	 * @return a {@link java.util.Map} object.
+	 */
 	public Map<Property, RDFNode> getArgumentsMapByProperties() {
 		Map<Property,RDFNode> map = new HashMap<Property,RDFNode>();
 		Template template = getTemplate();
@@ -98,6 +121,11 @@ public class TemplateCallImpl extends ModuleCallImpl implements TemplateCall {
 	}
 
 
+	/**
+	 * <p>getArgumentsMapByVarNames.</p>
+	 *
+	 * @return a {@link java.util.Map} object.
+	 */
 	public Map<String, RDFNode> getArgumentsMapByVarNames() {
 		Map<String,RDFNode> map = new HashMap<String,RDFNode>();
 		Template template = getTemplate();
@@ -120,6 +148,7 @@ public class TemplateCallImpl extends ModuleCallImpl implements TemplateCall {
 	}
 
 	
+	/** {@inheritDoc} */
 	@Override
 	public QuerySolutionMap getInitialBinding() {
 		QuerySolutionMap map = new QuerySolutionMap();
@@ -132,12 +161,18 @@ public class TemplateCallImpl extends ModuleCallImpl implements TemplateCall {
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public Module getModule() {
 		return getTemplate();
 	}
 
 
+	/**
+	 * <p>getQueryString.</p>
+	 *
+	 * @return a {@link java.lang.String} object.
+	 */
 	public String getQueryString() {
 		Map<String,RDFNode> map = getArgumentsMapByVarNames();
 		StringPrintContext p = new StringPrintContext(new StringBuilder(), map);
@@ -148,6 +183,11 @@ public class TemplateCallImpl extends ModuleCallImpl implements TemplateCall {
 	}
 
 
+	/**
+	 * <p>getTemplate.</p>
+	 *
+	 * @return a {@link org.spinrdf.model.Template} object.
+	 */
 	public Template getTemplate() {
 		Statement s = getProperty(RDF.type);
 		if(s != null && s.getObject().isURIResource()) {
@@ -159,6 +199,7 @@ public class TemplateCallImpl extends ModuleCallImpl implements TemplateCall {
 	}
 
 
+	/** {@inheritDoc} */
 	public void print(PrintContext p) {
 		Template template = getTemplate();
 		String str = template.getLabelTemplate();

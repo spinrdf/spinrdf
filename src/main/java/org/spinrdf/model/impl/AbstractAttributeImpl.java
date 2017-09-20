@@ -28,13 +28,30 @@ import org.spinrdf.model.print.PrintContext;
 import org.spinrdf.vocabulary.SPL;
 
 
+/**
+ * <p>Abstract AbstractAttributeImpl class.</p>
+ *
+
+ * @version $Id: $Id
+ */
 public abstract class AbstractAttributeImpl extends AbstractSPINResourceImpl implements AbstractAttribute {
 	
+	/**
+	 * <p>Constructor for AbstractAttributeImpl.</p>
+	 *
+	 * @param node a {@link org.apache.jena.graph.Node} object.
+	 * @param eg a {@link org.apache.jena.enhanced.EnhGraph} object.
+	 */
 	public AbstractAttributeImpl(Node node, EnhGraph eg) {
 		super(node, eg);
 	}
 
 	
+	/**
+	 * <p>getPredicate.</p>
+	 *
+	 * @return a {@link org.apache.jena.rdf.model.Property} object.
+	 */
 	public Property getPredicate() {
 		Resource r = getResource(SPL.predicate);
 		if(r != null && r.isURIResource()) {
@@ -46,16 +63,27 @@ public abstract class AbstractAttributeImpl extends AbstractSPINResourceImpl imp
 	}
 
 
+	/**
+	 * <p>getValueType.</p>
+	 *
+	 * @return a {@link org.apache.jena.rdf.model.Resource} object.
+	 */
 	public Resource getValueType() {
 		return getResource(SPL.valueType);
 	}
 	
 	
+	/**
+	 * <p>getComment.</p>
+	 *
+	 * @return a {@link java.lang.String} object.
+	 */
 	public String getComment() {
 		return getString(RDFS.comment);
 	}
 
 
+	/** {@inheritDoc} */
 	public void print(PrintContext p) {
 		// TODO Auto-generated method stub
 

@@ -33,17 +33,26 @@ import org.apache.jena.sparql.core.Quad;
 /**
  * An implementation of DatasetGraph that delegates all work to a given
  * Dataset implementation.
+ *
+
+ * @version $Id: $Id
  */
 public class DatasetWrappingDatasetGraph extends DatasetGraphBase {
 
 	private Dataset dataset;
 	
 	
+	/**
+	 * <p>Constructor for DatasetWrappingDatasetGraph.</p>
+	 *
+	 * @param dataset a {@link org.apache.jena.query.Dataset} object.
+	 */
 	public DatasetWrappingDatasetGraph(Dataset dataset) {
 		this.dataset = dataset;
 	}
 
 	
+	/** {@inheritDoc} */
 	@Override
 	public void add(Quad quad) {
 		Graph graph = getGraph(quad);
@@ -53,12 +62,14 @@ public class DatasetWrappingDatasetGraph extends DatasetGraphBase {
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public boolean containsGraph(Node graphNode) {
 		return dataset.containsNamedModel(graphNode.getURI());
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public void delete(Quad quad) {
 		Graph graph = getGraph(quad);
@@ -68,12 +79,14 @@ public class DatasetWrappingDatasetGraph extends DatasetGraphBase {
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public boolean isEmpty() {
 		return false;
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public Iterator<Node> listGraphNodes() {
 		List<Node> results = new LinkedList<Node>();
@@ -86,6 +99,7 @@ public class DatasetWrappingDatasetGraph extends DatasetGraphBase {
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public Iterator<Quad> find(Node g, Node s, Node p, Node o) {
 		// TODO Auto-generated method stub
@@ -93,6 +107,7 @@ public class DatasetWrappingDatasetGraph extends DatasetGraphBase {
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public Iterator<Quad> findNG(Node g, Node s, Node p, Node o) {
 		// TODO Auto-generated method stub
@@ -100,6 +115,7 @@ public class DatasetWrappingDatasetGraph extends DatasetGraphBase {
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public Graph getDefaultGraph() {
 		Model defaultModel = dataset.getDefaultModel();
@@ -112,6 +128,7 @@ public class DatasetWrappingDatasetGraph extends DatasetGraphBase {
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public Graph getGraph(Node graphNode) {
 		Model model = dataset.getNamedModel(graphNode.getURI());
@@ -124,6 +141,12 @@ public class DatasetWrappingDatasetGraph extends DatasetGraphBase {
 	}
 
 	
+	/**
+	 * <p>getGraph.</p>
+	 *
+	 * @param quad a {@link org.apache.jena.sparql.core.Quad} object.
+	 * @return a {@link org.apache.jena.graph.Graph} object.
+	 */
 	protected Graph getGraph(Quad quad) {
 		if(quad.isDefaultGraph()) {
 			return getDefaultGraph();
@@ -133,12 +156,14 @@ public class DatasetWrappingDatasetGraph extends DatasetGraphBase {
 		}
 	}
 	
+	/** {@inheritDoc} */
 	@Override
 	public Lock getLock() {
 		return dataset.getLock();
 	}
 
 	
+	/** {@inheritDoc} */
 	@Override
 	public long size() {
 		int count = 0;
@@ -151,6 +176,7 @@ public class DatasetWrappingDatasetGraph extends DatasetGraphBase {
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public void addGraph(Node graphName, Graph graph) {
 		// TODO Auto-generated method stub
@@ -158,6 +184,7 @@ public class DatasetWrappingDatasetGraph extends DatasetGraphBase {
 	}
 
 
+	/** {@inheritDoc} */
 	@Override
 	public void removeGraph(Node graphName) {
 		// TODO Auto-generated method stub

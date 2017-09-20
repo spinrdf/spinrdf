@@ -38,17 +38,27 @@ import org.spinrdf.vocabulary.SPIN;
 
 /**
  * Can be used to search for all queries associated with a class, e.g. via spin:rule.
- * 
+ *
  * As of July 2014 this also includes "inherited" templates: for any template call, it will
  * walk up the class hierarchy of templaces and checks for each spin:body whether all
  * required arguments are present, then includes them.  Template calls that do not have all
  * non-optional arguments filled in will not be returned.
  *
  * @author Holger Knublauch
+ * @version $Id: $Id
  */
 public class SPINQueryFinder {
 	
 
+	/**
+	 * <p>add.</p>
+	 *
+	 * @param class2Query a {@link java.util.Map} object.
+	 * @param s a {@link org.apache.jena.rdf.model.Statement} object.
+	 * @param model a {@link org.apache.jena.rdf.model.Model} object.
+	 * @param withClass a boolean.
+	 * @param allowAsk a boolean.
+	 */
 	public static void add(Map<Resource, List<CommandWrapper>> class2Query, Statement s,
 			Model model, boolean withClass, boolean allowAsk) {
 
@@ -159,12 +169,13 @@ public class SPINQueryFinder {
 
 	
 	/**
-	 * Gets a Map of QueryWrappers with their associated classes. 
+	 * Gets a Map of QueryWrappers with their associated classes.
+	 *
 	 * @param model  the Model to operate on
 	 * @param queryModel  the Model to query on (might be different)
 	 * @param predicate  the predicate such as <code>spin:rule</code>
 	 * @param withClass  true to also include a SPARQL clause to bind ?this
-	 *                   (something along the lines of ?this a ?THIS_CLASS) 
+	 *                   (something along the lines of ?this a ?THIS_CLASS)
 	 * @param allowAsk  also return ASK queries
 	 * @return the result Map, possibly empty but not null
 	 */

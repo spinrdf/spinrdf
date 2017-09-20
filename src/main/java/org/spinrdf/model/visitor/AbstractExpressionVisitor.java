@@ -25,21 +25,40 @@ import org.spinrdf.model.Variable;
 
 /**
  * An "empty" base implementation of ExpressionVisitor.
+ *
+
+ * @version $Id: $Id
  */
 public class AbstractExpressionVisitor implements ExpressionVisitor {
 
+	/**
+	 * <p>visit.</p>
+	 *
+	 * @param aggregation a {@link org.spinrdf.model.Aggregation} object.
+	 */
 	public void visit(Aggregation aggregation) {
 	}
 
 	
+	/**
+	 * <p>visit.</p>
+	 *
+	 * @param functionCall a {@link org.spinrdf.model.FunctionCall} object.
+	 */
 	public void visit(FunctionCall functionCall) {
 	}
 
 
+	/**
+	 * <p>visit.</p>
+	 *
+	 * @param node a {@link org.apache.jena.rdf.model.RDFNode} object.
+	 */
 	public void visit(RDFNode node) {
 	}
 
 
+	/** {@inheritDoc} */
 	public void visit(Variable variable) {
 	}
 }
