@@ -263,7 +263,7 @@ sp:ReversePath
   rdfs:label "Reverse path"^^xsd:string ;
   rdfs:subClassOf sp:Path ;
 .
-sp:ReversePath
+sp:NegatedPath
   rdf:type rdfs:Class ;
   rdfs:comment "A negated property path." ;
   rdfs:label "Negated path"^^xsd:string ;
