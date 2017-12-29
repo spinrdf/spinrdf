@@ -65,8 +65,10 @@ import org.apache.jena.sparql.path.P_FixedLength;
 import org.apache.jena.sparql.path.P_Inverse;
 import org.apache.jena.sparql.path.P_Link;
 import org.apache.jena.sparql.path.P_Mod;
+import org.apache.jena.sparql.path.P_NegPropSet;
 import org.apache.jena.sparql.path.P_OneOrMore1;
 import org.apache.jena.sparql.path.P_OneOrMoreN;
+import org.apache.jena.sparql.path.P_Path0;
 import org.apache.jena.sparql.path.P_Path1;
 import org.apache.jena.sparql.path.P_ReverseLink;
 import org.apache.jena.sparql.path.P_Seq;
@@ -778,6 +780,12 @@ public class ARQ2SPIN {
 			P_ReverseLink rl = (P_ReverseLink) path;
 			Resource r = model.createResource(SP.ReverseLinkPath);
 			r.addProperty(SP.node, model.asRDFNode(rl.getNode()));
+			return r;
+		} else if(path instanceof P_NegPropSet) {
+			P_NegPropSet neg = (P_NegPropSet) path;
+			List<P_Path0> p = neg.getNodes();
+			Resource r = model.createResource(SP.NegatedPath);
+			r.addProperty(SP.node, createPath(p.get(0)));
 			return r;
 		}
 		else {
