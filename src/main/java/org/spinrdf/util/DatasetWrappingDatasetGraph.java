@@ -25,10 +25,13 @@ import org.apache.jena.graph.Graph;
 import org.apache.jena.graph.Node;
 import org.apache.jena.graph.NodeFactory;
 import org.apache.jena.query.Dataset;
+import org.apache.jena.query.ReadWrite ;
+import org.apache.jena.query.TxnType ;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.shared.Lock;
 import org.apache.jena.sparql.core.DatasetGraphBase;
 import org.apache.jena.sparql.core.Quad;
+import org.apache.jena.sparql.core.Transactional.Promote ;
 
 /**
  * An implementation of DatasetGraph that delegates all work to a given
@@ -162,5 +165,61 @@ public class DatasetWrappingDatasetGraph extends DatasetGraphBase {
 	public void removeGraph(Node graphName) {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException();
+	}
+	@Override
+	public void begin(ReadWrite readWrite) {
+	    dataset.begin(readWrite);
+	}
+
+	@Override
+	public void begin(TxnType type) {
+	    dataset.begin(type);
+	}
+
+
+	@Override
+	public boolean promote(Promote mode) {
+	    return false;
+	}
+
+
+	@Override
+	public ReadWrite transactionMode() {
+	    return dataset.transactionMode();
+	}
+
+
+	@Override
+	public TxnType transactionType() {
+	    return dataset.transactionType();
+	}
+
+	@Override
+	public void commit() {
+	    dataset.commit();
+	}
+
+
+	@Override
+	public void abort() {
+	    dataset.abort();
+	}
+
+
+	@Override
+	public boolean isInTransaction() {
+	    return dataset.isInTransaction();
+	}
+
+
+	@Override
+	public void end() {
+	    dataset.end();
+	}
+
+
+	@Override
+	public boolean supportsTransactions() {
+	    return dataset.supportsTransactions();
 	}
 }

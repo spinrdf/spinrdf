@@ -26,6 +26,7 @@ import org.apache.jena.query.Dataset;
 import org.apache.jena.query.Query;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
+import org.apache.jena.shared.NotFoundException ;
 import org.spinrdf.util.JenaUtil;
 
 
@@ -35,64 +36,81 @@ import org.spinrdf.util.JenaUtil;
  * Query.
  */
 public class FromDataset extends DelegatingDataset {
-	
-	private Set<String> defaultGraphs;
-	
-	private Model defaultModel;
+    
+    private Set<String> defaultGraphs;
+    
+    private Model defaultModel;
 
-	private Set<String> namedGraphs;
-	
-	
-	public FromDataset(Dataset delegate, Query query) {
-		super(delegate);
-		defaultGraphs = new HashSet<String>(query.getGraphURIs());
-		namedGraphs = new HashSet<String>(query.getNamedGraphURIs());
-	}
-
-
-	@Override
-	public boolean containsNamedModel(String uri) {
-		if(namedGraphs.isEmpty()) {
-			return true;
-		}
-		else {
-			return namedGraphs.contains(uri);
-		}
-	}
+    private Set<String> namedGraphs;
+    
+    
+    public FromDataset(Dataset delegate, Query query) throws NotFoundException {
+        super(delegate);
+        defaultGraphs = new HashSet<String>(query.getGraphURIs());
+        namedGraphs = new HashSet<String>(query.getNamedGraphURIs());
+        initDefaultModel();
+    }
 
 
-	@Override
-	public Model getDefaultModel() {
-		if(defaultGraphs.isEmpty()) {
-			return super.getDefaultModel();
-		}
-		else {
-			if(defaultModel == null) {
-				if(defaultGraphs.size() == 1) {
-					String defaultGraphURI = defaultGraphs.iterator().next();
-					defaultModel = getNamedModel(defaultGraphURI);
-				}
-				else {
-					MultiUnion multiUnion = JenaUtil.createMultiUnion();
-					for(String baseURI : defaultGraphs) {
-						Model model = getNamedModel(baseURI);
-						multiUnion.addGraph(model.getGraph());
-					}
-					defaultModel = ModelFactory.createModelForGraph(multiUnion);
-				}
-			}
-			return defaultModel;
-		}
-	}
+    @Override
+    public boolean containsNamedModel(String uri) {
+        if(namedGraphs.isEmpty()) {
+            return true;
+        }
+        else {
+            return namedGraphs.contains(uri);
+        }
+    }
 
 
-	@Override
-	public Iterator<String> listNames() {
-		if(namedGraphs.isEmpty()) {
-			return super.listNames();
-		}
-		else {
-			return namedGraphs.iterator();
-		}
-	}
+    @Override
+    public Model getDefaultModel() {
+        return defaultModel;
+    }
+
+
+    private void initDefaultModel() throws NotFoundException {
+        if(defaultGraphs.isEmpty()) {
+            defaultModel = super.getDefaultModel();
+        }
+        else {
+            if(defaultGraphs.size() == 1) {
+                String defaultGraphURI = defaultGraphs.iterator().next();
+                defaultModel = getNamedModel(defaultGraphURI);
+                if(defaultModel == null) {
+                    throw new NotFoundException("Named graph " + defaultGraphURI + " not found");
+                }
+            }
+            else {
+                MultiUnion multiUnion = JenaUtil.createMultiUnion();
+                for(String graphURI : defaultGraphs) {
+                    Model model = getNamedModel(graphURI);
+                    if(model == null) {
+                        throw new NotFoundException("Named graph " + graphURI + " not found");
+                    }
+                    multiUnion.addGraph(model.getGraph());
+                }
+                defaultModel = ModelFactory.createModelForGraph(multiUnion);
+            }
+        }
+    }
+
+
+    @Override
+    public Iterator<String> listNames() {
+        if(namedGraphs.isEmpty()) {
+            return super.listNames();
+        }
+        else {
+            return namedGraphs.iterator();
+        }
+    }
+
+
+    @Override
+    public boolean isEmpty() {
+        return 
+            defaultModel.isEmpty() &&
+            namedGraphs.stream().map(name->getNamedModel(name)).allMatch(model->model.isEmpty());
+    }
 }

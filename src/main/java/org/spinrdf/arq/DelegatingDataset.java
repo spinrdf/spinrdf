@@ -22,6 +22,7 @@ import java.util.Iterator;
 import org.apache.jena.query.Dataset;
 import org.apache.jena.query.LabelExistsException;
 import org.apache.jena.query.ReadWrite;
+import org.apache.jena.query.TxnType ;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.shared.Lock;
 import org.apache.jena.sparql.core.DatasetGraph;
@@ -34,121 +35,154 @@ import org.spinrdf.util.DatasetWrappingDatasetGraph;
  */
 public abstract class DelegatingDataset implements Dataset {
 
-	private Dataset delegate;
-	
-	public DelegatingDataset(Dataset delegate) {
-		this.delegate = delegate;
-	}
+    private Dataset delegate;
+    
+    public DelegatingDataset(Dataset delegate) {
+        this.delegate = delegate;
+    }
 
-	@Override
-	public DatasetGraph asDatasetGraph() {
-		return new DatasetWrappingDatasetGraph(this);
-	}
+    @Override
+    public DatasetGraph asDatasetGraph() {
+        return new DatasetWrappingDatasetGraph(this);
+    }
 
-	
-	@Override
-	public void close() {
-		delegate.close();
-	}
+    
+    @Override
+    public void close() {
+        delegate.close();
+    }
 
-	
-	@Override
-	public boolean containsNamedModel(String uri) {
-		return delegate.containsNamedModel(uri);
-	}
+    
+    @Override
+    public boolean containsNamedModel(String uri) {
+        return delegate.containsNamedModel(uri);
+    }
 
-	
-	@Override
-	public Model getDefaultModel() {
-		return delegate.getDefaultModel();
-	}
-	
-	
-	public Dataset getDelegate() {
-		return delegate;
-	}
+    
+    @Override
+    public Model getDefaultModel() {
+        return delegate.getDefaultModel();
+    }
 
-	
-	@Override
-	public Lock getLock() {
-		return delegate.getLock();
-	}
+    @Override
+    public Model getUnionModel() {
+        return delegate.getUnionModel();
+    }   
 
-	
-	@Override
-	public Model getNamedModel(String uri) {
-		return delegate.getNamedModel(uri);
-	}
+    public Dataset getDelegate() {
+        return delegate;
+    }
 
-	
-	@Override
-	public Iterator<String> listNames() {
-		return delegate.listNames();
-	}
+    
+    @Override
+    public Lock getLock() {
+        return delegate.getLock();
+    }
 
-	
-	@Override
-	public void setDefaultModel(Model model) {
-		delegate.setDefaultModel(model);
-	}
+    
+    @Override
+    public Model getNamedModel(String uri) {
+        return delegate.getNamedModel(uri);
+    }
 
-	
-	@Override
-	public void addNamedModel(String uri, Model model)
-			throws LabelExistsException {
-		delegate.addNamedModel(uri, model);
-	}
+    
+    @Override
+    public Iterator<String> listNames() {
+        return delegate.listNames();
+    }
 
-	
-	@Override
-	public void removeNamedModel(String uri) {
-		delegate.removeNamedModel(uri);
-	}
+    
+    @Override
+    public Dataset setDefaultModel(Model model) {
+        delegate.setDefaultModel(model);
+        return this;
+    }
 
-	
-	@Override
-	public void replaceNamedModel(String uri, Model model) {
-		delegate.replaceNamedModel(uri, model);
-	}
+    
+    @Override
+    public Dataset addNamedModel(String uri, Model model) throws LabelExistsException {
+        delegate.addNamedModel(uri, model);
+        return this;
+    }
 
-	
-	@Override
-	public Context getContext() {
-		return delegate.getContext();
-	}
+    
+    @Override
+    public Dataset removeNamedModel(String uri) {
+        delegate.removeNamedModel(uri);
+        return this;
+    }
 
-	
-	@Override
-	public boolean supportsTransactions() {
-		return delegate.supportsTransactions();
-	}
+    
+    @Override
+    public Dataset replaceNamedModel(String uri, Model model) {
+        delegate.replaceNamedModel(uri, model);
+        return this;
+    }
+    
+    @Override
+    public Context getContext() {
+        return delegate.getContext();
+    }
+    
+    @Override
+    public boolean supportsTransactions() {
+        return delegate.supportsTransactions();
+    }
+    
+    @Override
+    public boolean supportsTransactionAbort() {
+        return delegate.supportsTransactionAbort();
+    }
 
-	@Override
-	public void begin(ReadWrite readWrite) {
-		delegate.begin(readWrite);
-	}
+    @Override
+    public void begin(TxnType type) {
+        delegate.begin(type);
+    }
 
-	
-	@Override
-	public void commit() {
-		delegate.commit();
-	}
+    @Override
+    public void begin(ReadWrite readWrite) {
+        delegate.begin(readWrite);
+    }
 
-	
-	@Override
-	public void abort() {
-		delegate.abort();
-	}
+    @Override
+    public boolean promote(Promote mode) {
+        return delegate.promote(mode);
+    }
 
-	
-	@Override
-	public boolean isInTransaction() {
-		return delegate.isInTransaction();
-	}
+    @Override
+    public TxnType transactionType() {
+        return delegate.transactionType();
+    }
 
-	
-	@Override
-	public void end() {
-		delegate.end();
-	}
+    @Override
+    public ReadWrite transactionMode() {
+        return delegate.transactionMode();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
+
+    @Override
+    public void commit() {
+        delegate.commit();
+    }
+    
+    @Override
+    public void abort() {
+        delegate.abort();
+    }
+
+    
+    @Override
+    public boolean isInTransaction() {
+        return delegate.isInTransaction();
+    }
+
+    
+    @Override
+    public void end() {
+        delegate.end();
+    }
 }
