@@ -17,7 +17,6 @@
 
 package org.spinrdf.util;
 
-import org.apache.xerces.util.XMLChar;
 import org.spinrdf.arq.ARQ2SPIN;
 import org.spinrdf.model.Command;
 import org.spinrdf.model.SPINFactory;
@@ -25,6 +24,7 @@ import org.spinrdf.model.print.StringPrintContext;
 import org.spinrdf.model.update.Update;
 import org.spinrdf.vocabulary.SP;
 import org.spinrdf.vocabulary.SPIN;
+import org.apache.jena.ext.xerces.util.XMLChar ;
 import org.apache.jena.graph.Graph;
 import org.apache.jena.graph.compose.MultiUnion;
 import org.apache.jena.rdf.model.Model;

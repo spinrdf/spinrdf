@@ -24,6 +24,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.apache.http.auth.AuthScope ;
+import org.apache.http.auth.Credentials ;
+import org.apache.http.auth.UsernamePasswordCredentials ;
+import org.apache.http.client.CredentialsProvider ;
+import org.apache.http.client.HttpClient ;
+import org.apache.http.impl.client.BasicCredentialsProvider ;
+import org.apache.http.impl.client.HttpClients ;
 import org.apache.jena.graph.Node;
 import org.apache.jena.query.Dataset;
 import org.apache.jena.query.Query;
@@ -34,6 +41,7 @@ import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.Syntax;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.RDFNode;
+import org.apache.jena.riot.web.HttpOp ;
 import org.apache.jena.shared.PrefixMapping;
 import org.apache.jena.shared.impl.PrefixMappingImpl;
 import org.apache.jena.sparql.core.DatasetImpl;
@@ -48,7 +56,6 @@ import org.spinrdf.model.update.Update;
 import org.spinrdf.system.ExtraPrefixes;
 import org.spinrdf.util.JenaUtil;
 import org.spinrdf.util.SPINExpressions;
-
 
 /**
  * A singleton that can create ARQ SPARQL Queries and QueryExecution
@@ -381,27 +388,66 @@ public class ARQFactory {
 	}
 	
 	
-	public QueryEngineHTTP createRemoteQueryExecution(
-			String service,
-			Query query, 
-			List<String> defaultGraphURIs, 
-			List<String> namedGraphURIs, 
-			String user, 
-			char[] password) {
-		QueryEngineHTTP qexec = (QueryEngineHTTP) QueryExecutionFactory.sparqlService(service, query);
-		if( defaultGraphURIs.size() > 0 ) {
-			qexec.setDefaultGraphURIs(defaultGraphURIs);
-		}
-		if( namedGraphURIs.size() > 0 ) {
-			qexec.setNamedGraphURIs(namedGraphURIs);
-		}
-		if( user != null ) {
-			qexec.setBasicAuthentication(user, password);
-		}
-		return qexec;
-	}
+//	public QueryEngineHTTP createRemoteQueryExecution(
+//			String service,
+//			Query query, 
+//			List<String> defaultGraphURIs, 
+//			List<String> namedGraphURIs, 
+//			String user, 
+//			char[] password) {
+//		QueryEngineHTTP qexec = (QueryEngineHTTP) QueryExecutionFactory.sparqlService(service, query);
+//		if( defaultGraphURIs.size() > 0 ) {
+//			qexec.setDefaultGraphURIs(defaultGraphURIs);
+//		}
+//		if( namedGraphURIs.size() > 0 ) {
+//			qexec.setNamedGraphURIs(namedGraphURIs);
+//		}
+//		if( user != null ) {
+//			qexec.setBasicAuthentication(user, password);
+//		}
+//		return qexec;
+//	}
 	
-	
+    public QueryEngineHTTP createRemoteQueryExecution(String service, Query query, List<String> defaultGraphURIs,
+                                                      List<String> namedGraphURIs, String user, String password) {
+        HttpClient httpClient = buildHttpClient(service, user, password);
+        QueryEngineHTTP qexec = (QueryEngineHTTP) QueryExecutionFactory.sparqlService(service, query, httpClient);
+        if( defaultGraphURIs.size() > 0 ) {
+            qexec.setDefaultGraphURIs(defaultGraphURIs);
+        }
+        if( namedGraphURIs.size() > 0 ) {
+            qexec.setNamedGraphURIs(namedGraphURIs);
+        }
+        return qexec;
+    }
+
+    public static HttpClient buildHttpClient(String serviceURI, String user, String password) {
+        if ( user == null )
+            return HttpOp.getDefaultHttpClient();
+        CredentialsProvider credsProvider = new BasicCredentialsProvider();
+        Credentials credentials = new UsernamePasswordCredentials(user, password);
+        credsProvider.setCredentials(AuthScope.ANY, credentials);
+        return HttpClients.custom()
+            .setDefaultCredentialsProvider(credsProvider)
+            .build();
+
+//        // Example for scoped credentials 
+//        // See http://jena.apache.org/documentation/query/http-auth.html
+//        CredentialsProvider credsProvider = new BasicCredentialsProvider();
+//        Credentials unscopedCredentials = new UsernamePasswordCredentials("user", "passwd");
+//        credsProvider.setCredentials(AuthScope.ANY, unscopedCredentials);
+//        Credentials scopedCredentials = new UsernamePasswordCredentials("user", "passwd");
+//        final String host = "http://example.com/sparql";
+//        final int port = 80;
+//        final String realm = "aRealm";
+//        final String schemeName = "DIGEST";
+//        AuthScope authscope = new AuthScope(host, port, realm, schemeName);
+//        credsProvider.setCredentials(authscope, scopedCredentials);
+//        return HttpClients.custom()
+//            .setDefaultCredentialsProvider(credsProvider)
+//            .build();
+    }
+	                                          
 	public UpdateRequest createUpdateRequest(String parsableString) {
 		UpdateRequest result = string2Update.get(parsableString);
 		if(result == null) {

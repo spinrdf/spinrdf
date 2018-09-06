@@ -33,6 +33,7 @@ import org.apache.jena.rdf.model.Model;
 import org.apache.jena.shared.Lock;
 import org.apache.jena.sparql.core.DatasetGraph;
 import org.apache.jena.sparql.core.Quad;
+import org.apache.jena.sparql.core.TransactionalNotSupported ;
 import org.apache.jena.sparql.util.Context;
 
 
@@ -40,7 +41,7 @@ import org.apache.jena.sparql.util.Context;
  * A GraphStore that wraps a given Dataset, so that each updateable
  * graph is wrapped with a ControlledUpdateGraph instead of the default.
  */
-class ControlledUpdateGraphStore implements DatasetGraph {
+class ControlledUpdateGraphStore extends TransactionalNotSupported implements DatasetGraph {
 	
 	private Map<Graph,ControlledUpdateGraph> cugs = new HashMap<Graph,ControlledUpdateGraph>();
 	
@@ -55,6 +56,12 @@ class ControlledUpdateGraphStore implements DatasetGraph {
 		}
 	}
 	
+	
+    @Override
+    public Graph getUnionGraph() {
+        return getControlledUpdateGraph(dataset.asDatasetGraph().getUnionGraph());
+    }
+    
 	
 	@Override
 	public void clear() {
