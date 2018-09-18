@@ -29,6 +29,7 @@ import org.apache.jena.query.QuerySolutionMap;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.RDFNode;
 import org.apache.jena.rdf.model.Statement;
+import org.apache.jena.rdf.model.StmtIterator;
 import org.apache.jena.vocabulary.RDF;
 import org.spinrdf.arq.ARQFactory;
 import org.spinrdf.model.*;
@@ -149,13 +150,24 @@ public class TemplateCallImpl extends ModuleCallImpl implements TemplateCall {
 
 
 	public Template getTemplate() {
-		Statement s = getProperty(RDF.type);
-		if(s != null && s.getObject().isURIResource()) {
-			return SPINModuleRegistry.get().getTemplate(s.getResource().getURI(), getModel());
+		StmtIterator it = listProperties(RDF.type);
+		try
+		{
+			while (it.hasNext()) {
+				Statement s = it.next();
+				if(s != null && s.getObject().isURIResource()) {
+					String uri = s.getResource().getURI();
+					Template template = SPINModuleRegistry.get().getTemplate(uri, getModel());
+					if(template != null) {
+						return template;
+					}
+				}
+			}
 		}
-		else {
-			return null;
+		finally {
+			it.close();
 		}
+		return null;
 	}
 
 
