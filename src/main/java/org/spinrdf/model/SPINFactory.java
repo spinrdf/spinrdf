@@ -261,13 +261,21 @@ public class SPINFactory {
 	 */
 	public static TemplateCall asTemplateCall(RDFNode node) {
 		if(node instanceof Resource) {
-			Statement s = ((Resource)node).getProperty(RDF.type);
-			if(s != null && s.getObject().isURIResource()) {
-				String uri = s.getResource().getURI();
-				Template template = SPINModuleRegistry.get().getTemplate(uri, s.getModel());
-				if(template != null) {
-					return node.as(TemplateCall.class);
+			StmtIterator it = ((Resource)node).listProperties(RDF.type);
+			try {
+				while (it.hasNext()) {
+					Statement s = it.next();
+					if(s != null && s.getObject().isURIResource()) {
+						String uri = s.getResource().getURI();
+						Template template = SPINModuleRegistry.get().getTemplate(uri, s.getModel());
+						if(template != null) {
+							return node.as(TemplateCall.class);
+						}
+					}
 				}
+			}
+			finally {
+				it.close();
 			}
 		}
 		return null;
