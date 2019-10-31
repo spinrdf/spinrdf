@@ -32,6 +32,7 @@ import org.apache.jena.rdf.model.Statement;
 import org.apache.jena.rdf.model.StmtIterator;
 import org.apache.jena.vocabulary.RDF;
 import org.spinrdf.arq.ARQFactory;
+import org.spinrdf.model.Module;
 import org.spinrdf.model.*;
 import org.spinrdf.model.print.PrintContext;
 import org.spinrdf.model.print.StringPrintContext;
