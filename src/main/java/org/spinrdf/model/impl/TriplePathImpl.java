@@ -28,6 +28,7 @@ import org.apache.jena.sparql.path.P_Alt;
 import org.apache.jena.sparql.path.P_Inverse;
 import org.apache.jena.sparql.path.P_Link;
 import org.apache.jena.sparql.path.P_Mod;
+import org.apache.jena.sparql.path.P_NegPropSet;
 import org.apache.jena.sparql.path.P_OneOrMore1;
 import org.apache.jena.sparql.path.P_ReverseLink;
 import org.apache.jena.sparql.path.P_Seq;
@@ -131,7 +132,13 @@ public class TriplePathImpl extends TupleImpl implements TriplePath {
 				else if(SP.ReverseLinkPath.equals(type)) {
 					Node node = JenaUtil.getProperty(path, SP.node).asNode();
 					return new P_ReverseLink(node);
+				} else if(SP.NegatedPath.equals(type)) {
+					Node node = JenaUtil.getProperty(path, SP.node).asNode();
+					P_NegPropSet p = new P_NegPropSet();
+					p.add(new P_Link(node));
+					return p;
 				}
+
 			}
 			return null;
 		}

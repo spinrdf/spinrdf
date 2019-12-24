@@ -127,6 +127,8 @@ public class SP {
 
     public final static Resource ReversePath = ResourceFactory.createResource(NS + "ReversePath");
 
+    public final static Resource NegatedPath = ResourceFactory.createResource(NS + "NegatedPath");
+    
     public final static Resource Select = ResourceFactory.createResource(NS + "Select");
 
     public final static Resource Service = ResourceFactory.createResource(NS + "Service");
