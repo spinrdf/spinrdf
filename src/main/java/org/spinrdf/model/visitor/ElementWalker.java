@@ -28,111 +28,118 @@ import org.spinrdf.model.*;
  * and the embedded expressions.
  */
 public class ElementWalker implements ElementVisitor {
-	
-	private ElementVisitor elementVisitor;
-	
-	private ExpressionVisitor expressionVisitor;
-	
-	
-	public ElementWalker(ElementVisitor elementVisitor, ExpressionVisitor expressionVisitor) {
-		this.elementVisitor = elementVisitor;
-		this.expressionVisitor = expressionVisitor;
-	}
+
+    private ElementVisitor elementVisitor;
+
+    private ExpressionVisitor expressionVisitor;
 
 
-	public void visit(Bind bind) {
-		elementVisitor.visit(bind);
-		visitExpression(bind.getExpression());
-	}
-
-	
-	public void visit(ElementList elementList) {
-		elementVisitor.visit(elementList);
-		visitChildren(elementList);
-	}
+    public ElementWalker(ElementVisitor elementVisitor, ExpressionVisitor expressionVisitor) {
+        this.elementVisitor = elementVisitor;
+        this.expressionVisitor = expressionVisitor;
+    }
 
 
-	public void visit(Exists exists) {
-		elementVisitor.visit(exists);
-		visitChildren(exists);
-	}
+    public void visit(Bind bind) {
+        elementVisitor.visit(bind);
+        visitExpression(bind.getExpression());
+    }
 
 
-	public void visit(Filter filter) {
-		elementVisitor.visit(filter);
-		visitExpression(filter.getExpression());
-	}
+    public void visit(ElementList elementList) {
+        elementVisitor.visit(elementList);
+        visitChildren(elementList);
+    }
 
 
-	@Override
-	public void visit(Minus minus) {
-		elementVisitor.visit(minus);
-		visitChildren(minus);
-	}
+    public void visit(Exists exists) {
+        elementVisitor.visit(exists);
+        visitChildren(exists);
+    }
 
 
-	public void visit(NamedGraph namedGraph) {
-		elementVisitor.visit(namedGraph);
-		visitChildren(namedGraph);
-	}
+    public void visit(Filter filter) {
+        elementVisitor.visit(filter);
+        visitExpression(filter.getExpression());
+    }
 
 
-	public void visit(NotExists notExists) {
-		elementVisitor.visit(notExists);
-		visitChildren(notExists);
-	}
+    @Override
+    public void visit(Minus minus) {
+        elementVisitor.visit(minus);
+        visitChildren(minus);
+    }
 
 
-	public void visit(Optional optional) {
-		elementVisitor.visit(optional);
-		visitChildren(optional);
-	}
+    public void visit(NamedGraph namedGraph) {
+        elementVisitor.visit(namedGraph);
+        visitChildren(namedGraph);
+    }
 
 
-	public void visit(Service service) {
-		elementVisitor.visit(service);
-		visitChildren(service);
-	}
+    public void visit(NotExists notExists) {
+        elementVisitor.visit(notExists);
+        visitChildren(notExists);
+    }
 
 
-	public void visit(SubQuery subQuery) {
-		elementVisitor.visit(subQuery);
-	}
+    public void visit(Optional optional) {
+        elementVisitor.visit(optional);
+        visitChildren(optional);
+    }
 
 
-	public void visit(TriplePath triplePath) {
-		elementVisitor.visit(triplePath);
-	}
+    public void visit(Service service) {
+        elementVisitor.visit(service);
+        visitChildren(service);
+    }
 
 
-	public void visit(TriplePattern triplePattern) {
-		elementVisitor.visit(triplePattern);
-	}
+    public void visit(SubQuery subQuery) {
+        elementVisitor.visit(subQuery);
+    }
 
 
-	public void visit(Union union) {
-		elementVisitor.visit(union);
-		visitChildren(union);
-	}
+    public void visit(TriplePath triplePath) {
+        elementVisitor.visit(triplePath);
+    }
 
 
-	public void visit(Values values) {
-		elementVisitor.visit(values);
-	}
-	
-	
-	protected void visitChildren(ElementGroup group) {
-		List<Element> childElements = group.getElements();
-		for(Element childElement : childElements) {
-			childElement.visit(this);
-		}
-	}
-	
-	
-	private void visitExpression(RDFNode node) {
-		if(expressionVisitor != null) {
-			ExpressionWalker expressionWalker = new ExpressionWalker(expressionVisitor);
-			ExpressionVisitors.visit(node, expressionWalker);
-		}
-	}
+    public void visit(TriplePattern triplePattern) {
+        elementVisitor.visit(triplePattern);
+    }
+
+
+    public void visit(Union union) {
+        elementVisitor.visit(union);
+        visitChildren(union);
+    }
+
+
+    public void visit(Values values) {
+        elementVisitor.visit(values);
+    }
+
+
+    protected void visitChildren(ElementGroup group) {
+        List<Element> childElements = group.getElements();
+        for(Element childElement : childElements) {
+            childElement.visit(this);
+        }
+    }
+
+
+    private void visitExpression(RDFNode node) {
+        if(expressionVisitor != null) {
+            ExpressionWalker expressionWalker = new ExpressionWalker(expressionVisitor);
+            ExpressionVisitors.visit(node, expressionWalker);
+        }
+    }
+
+
+    @Override
+    public void visit(Lateral lateral) {
+        elementVisitor.visit(lateral);
+        visitChildren(lateral);
+    }
 }

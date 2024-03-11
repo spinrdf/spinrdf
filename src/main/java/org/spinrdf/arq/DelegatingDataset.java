@@ -20,10 +20,10 @@ package org.spinrdf.arq;
 import java.util.Iterator;
 
 import org.apache.jena.query.Dataset;
-import org.apache.jena.query.LabelExistsException;
 import org.apache.jena.query.ReadWrite;
 import org.apache.jena.query.TxnType ;
 import org.apache.jena.rdf.model.Model;
+import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.shared.Lock;
 import org.apache.jena.sparql.core.DatasetGraph;
 import org.apache.jena.sparql.util.Context;
@@ -36,7 +36,7 @@ import org.spinrdf.util.DatasetWrappingDatasetGraph;
 public abstract class DelegatingDataset implements Dataset {
 
     private Dataset delegate;
-    
+
     public DelegatingDataset(Dataset delegate) {
         this.delegate = delegate;
     }
@@ -46,19 +46,19 @@ public abstract class DelegatingDataset implements Dataset {
         return new DatasetWrappingDatasetGraph(this);
     }
 
-    
+
     @Override
     public void close() {
         delegate.close();
     }
 
-    
+
     @Override
     public boolean containsNamedModel(String uri) {
         return delegate.containsNamedModel(uri);
     }
 
-    
+
     @Override
     public Model getDefaultModel() {
         return delegate.getDefaultModel();
@@ -67,68 +67,68 @@ public abstract class DelegatingDataset implements Dataset {
     @Override
     public Model getUnionModel() {
         return delegate.getUnionModel();
-    }   
+    }
 
     public Dataset getDelegate() {
         return delegate;
     }
 
-    
+
     @Override
     public Lock getLock() {
         return delegate.getLock();
     }
 
-    
+
     @Override
     public Model getNamedModel(String uri) {
         return delegate.getNamedModel(uri);
     }
 
-    
+
     @Override
     public Iterator<String> listNames() {
         return delegate.listNames();
     }
 
-    
+
     @Override
     public Dataset setDefaultModel(Model model) {
         delegate.setDefaultModel(model);
         return this;
     }
 
-    
+
     @Override
-    public Dataset addNamedModel(String uri, Model model) throws LabelExistsException {
+    public Dataset addNamedModel(String uri, Model model) {
         delegate.addNamedModel(uri, model);
         return this;
     }
 
-    
+
     @Override
     public Dataset removeNamedModel(String uri) {
         delegate.removeNamedModel(uri);
         return this;
     }
 
-    
+
     @Override
     public Dataset replaceNamedModel(String uri, Model model) {
         delegate.replaceNamedModel(uri, model);
         return this;
     }
-    
+
     @Override
     public Context getContext() {
         return delegate.getContext();
     }
-    
+
     @Override
     public boolean supportsTransactions() {
         return delegate.supportsTransactions();
     }
-    
+
     @Override
     public boolean supportsTransactionAbort() {
         return delegate.supportsTransactionAbort();
@@ -168,21 +168,54 @@ public abstract class DelegatingDataset implements Dataset {
     public void commit() {
         delegate.commit();
     }
-    
+
     @Override
     public void abort() {
         delegate.abort();
     }
 
-    
+
     @Override
     public boolean isInTransaction() {
         return delegate.isInTransaction();
     }
 
-    
+
     @Override
     public void end() {
         delegate.end();
+    }
+
+    @Override
+    public Dataset replaceNamedModel(Resource resource, Model model) {
+        delegate.replaceNamedModel(resource, model);
+        return this;
+    }
+
+    @Override
+    public Dataset removeNamedModel(Resource resource) {
+        delegate.removeNamedModel(resource);
+        return this;
+    }
+
+    @Override
+    public boolean containsNamedModel(Resource uri) {
+        return delegate.containsNamedModel(uri);
+    }
+
+    @Override
+    public Iterator<Resource> listModelNames() {
+        return delegate.listModelNames();
+    }
+
+    @Override
+    public Model getNamedModel(Resource uri) {
+        return delegate.getNamedModel(uri);
+    }
+
+    @Override
+    public Dataset addNamedModel(Resource resource, Model model) {
+        delegate.addNamedModel(resource, model);
+        return this;
     }
 }

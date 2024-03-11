@@ -39,39 +39,39 @@ import org.spinrdf.model.TemplateCall;
 
 /**
  * The built-in function spin:ask.
- * 
+ *
  * Can be used to invoke a given sp:Ask query.
  */
 public class AskFunction extends AbstractFunction implements FunctionFactory {
-	
-	@Override
-	public Function create(String uri) {
-		return this;
-	}
 
-	
-	@Override
-	protected NodeValue exec(Node[] nodes, FunctionEnv env) {
-		if(nodes.length == 0) {
-			throw new ExprEvalException("Missing arguments");
-		}
-		Model model = ModelFactory.createModelForGraph(env.getActiveGraph());
-		QuerySolutionMap initialBinding = SPINFunctionUtil.getInitialBinding(nodes, model);
-		Query spinQuery;
-		Resource queryOrTemplateCall = model.asRDFNode(nodes[0]).asResource();
-		if(SPINFactory.isTemplateCall(queryOrTemplateCall)) {
-			TemplateCall templateCall = SPINFactory.asTemplateCall(queryOrTemplateCall);
-			spinQuery = SPINFactory.asQuery(templateCall.getTemplate().getBody());
-			SPINFunctionUtil.addBindingsFromTemplateCall(initialBinding, templateCall);
-		}
-		else {
-			spinQuery = SPINFactory.asQuery(queryOrTemplateCall);
-		}
-		Dataset dataset = new DatasetWithDifferentDefaultModel(model, DatasetImpl.wrap(env.getDataset()));
-		org.apache.jena.query.Query arqQuery = ARQFactory.get().createQuery(spinQuery);
-		QueryExecution qexec = ARQFactory.get().createQueryExecution(arqQuery, dataset, initialBinding);
-		boolean result = qexec.execAsk();
-		qexec.close();
-		return NodeValue.makeBoolean(result);
-	}
+    @Override
+    public Function create(String uri) {
+        return this;
+    }
+
+
+    @Override
+    protected NodeValue exec(Node[] nodes, FunctionEnv env) {
+        if(nodes.length == 0) {
+            throw new ExprEvalException("Missing arguments");
+        }
+        Model model = ModelFactory.createModelForGraph(env.getActiveGraph());
+        QuerySolutionMap initialBinding = SPINFunctionUtil.getInitialBinding(nodes, model);
+        Query spinQuery;
+        Resource queryOrTemplateCall = model.asRDFNode(nodes[0]).asResource();
+        if(SPINFactory.isTemplateCall(queryOrTemplateCall)) {
+            TemplateCall templateCall = SPINFactory.asTemplateCall(queryOrTemplateCall);
+            spinQuery = SPINFactory.asQuery(templateCall.getTemplate().getBody());
+            SPINFunctionUtil.addBindingsFromTemplateCall(initialBinding, templateCall);
+        }
+        else {
+            spinQuery = SPINFactory.asQuery(queryOrTemplateCall);
+        }
+        Dataset dataset = new DatasetWithDifferentDefaultModel(model, DatasetImpl.wrap(env.getDataset()));
+        org.apache.jena.query.Query arqQuery = ARQFactory.get().createQuery(spinQuery);
+        QueryExecution qexec = ARQFactory.get().createQueryExecution(arqQuery, dataset, initialBinding).build();
+        boolean result = qexec.execAsk();
+        qexec.close();
+        return NodeValue.makeBoolean(result);
+    }
 }

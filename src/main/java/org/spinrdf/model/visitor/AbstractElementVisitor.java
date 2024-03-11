@@ -26,60 +26,65 @@ import org.spinrdf.model.*;
 public abstract class AbstractElementVisitor implements ElementVisitor {
 
 
-	public void visit(Bind let) {
-	}
-
-	
-	public void visit(ElementList elementList) {
-	}
-
-	
-	public void visit(Exists exists) {
-	}
+    public void visit(Bind let) {
+    }
 
 
-	public void visit(Filter filter) {
-	}
+    public void visit(ElementList elementList) {
+    }
 
 
-	@Override
-	public void visit(Minus minus) {
-	}
+    public void visit(Exists exists) {
+    }
 
 
-	public void visit(NamedGraph namedGraph) {
-	}
-	
-	
-	public void visit(NotExists notExists) {
-	}
+    public void visit(Filter filter) {
+    }
 
 
-	public void visit(Optional optional) {
-	}
+    @Override
+    public void visit(Minus minus) {
+    }
 
 
-	public void visit(Service service) {
-	}
+    public void visit(NamedGraph namedGraph) {
+    }
 
 
-	public void visit(SubQuery subQuery) {
-	}
+    public void visit(NotExists notExists) {
+    }
 
 
-	public void visit(TriplePath triplePath) {
-	}
+    public void visit(Optional optional) {
+    }
 
 
-	public void visit(TriplePattern triplePattern) {
-	}
+    public void visit(Service service) {
+    }
 
 
-	public void visit(Union union) {
-	}
+    public void visit(SubQuery subQuery) {
+    }
 
 
-	@Override
-	public void visit(Values values) {
-	}
+    public void visit(TriplePath triplePath) {
+    }
+
+
+    public void visit(TriplePattern triplePattern) {
+    }
+
+
+    public void visit(Union union) {
+    }
+
+
+    @Override
+    public void visit(Values values) {
+    }
+
+
+    @Override
+    public void visit(Lateral lateral) {
+    }
 }

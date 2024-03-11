@@ -26,7 +26,7 @@ import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.rdf.model.RDFNode;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.rdf.model.Statement;
-import org.apache.jena.sparql.engine.binding.BindingHashMap;
+import org.apache.jena.sparql.engine.binding.BindingRoot;
 import org.apache.jena.sparql.expr.ExprEvalException;
 import org.apache.jena.sparql.expr.ExprList;
 import org.apache.jena.sparql.expr.NodeValue;
@@ -46,74 +46,74 @@ import org.spinrdf.vocabulary.SPL;
  */
 public class InvokeFunction	extends AbstractFunction {
 
-	@Override
-	protected NodeValue exec(Node[] nodes, FunctionEnv env) {
-		if(nodes.length == 0) {
-			throw new ExprEvalException("Missing function URI argument");
-		}
-		Node commandNode = nodes[0];
-		if(!commandNode.isURI()) {
-			throw new ExprEvalException("First argument must be the URI of a function");
-		}
-		
-		String uri = commandNode.getURI();
-		
-		// Special handling of SPARQL system functions such as sp:gt
-		Resource functionResource = SPL.getModel().getResource(uri);
-		if(SP.NS.equals(functionResource.getNameSpace())) {
-			Statement symbolS = functionResource.getProperty(SPIN.symbol);
-			if(symbolS != null) {
-				final String varName = "result";
-				StringBuffer sb = new StringBuffer();
-				sb.append("SELECT ?" + varName + " \n");
-				sb.append("WHERE {\n");
-				sb.append("    BIND (");
-				sb.append(FmtUtils.stringForNode(nodes[1], env.getActiveGraph().getPrefixMapping()));
-				sb.append(" ");
-				sb.append(symbolS.getString());
-				sb.append(" ");
-				sb.append(FmtUtils.stringForNode(nodes[2], env.getActiveGraph().getPrefixMapping()));
-				sb.append(" AS ?" + varName + ") . \n");
-				sb.append("}");
-				
-				Model model = ModelFactory.createModelForGraph(env.getActiveGraph());
-				Query arq = ARQFactory.get().createQuery(model, sb.toString());
-				QueryExecution qexec = ARQFactory.get().createQueryExecution(arq, model);
-				ResultSet rs = qexec.execSelect();
-				try {
-					if(rs.hasNext()) {
-						RDFNode result = rs.next().get(varName);
-						if(result != null) {
-							return NodeValue.makeNode(result.asNode());
-						}
-					}
-					throw new ExprEvalException("Failed to evaluate function - empty result set");
-				}
-				finally {
-					qexec.close();
-				}
-			}
-		}
-		
-		FunctionFactory ff = FunctionRegistry.get().get(uri);
-		if(ff == null) {
-			throw new ExprEvalException("Unknown function " + uri);
-		}
-		
-		Function function = ff.create(uri);
-		ExprList exprList = new ExprList();
-		
-		for(int i = 1; i < nodes.length; i++) {
-			Node node = nodes[i];
-			if(node != null) {
-				exprList.add(NodeValue.makeNode(node));
-			}
-			else {
-				exprList.add(null);
-			}
-		}
-		
-		NodeValue result = function.exec(new BindingHashMap(), exprList, uri, env);
-		return result;
-	}
+    @Override
+    protected NodeValue exec(Node[] nodes, FunctionEnv env) {
+        if(nodes.length == 0) {
+            throw new ExprEvalException("Missing function URI argument");
+        }
+        Node commandNode = nodes[0];
+        if(!commandNode.isURI()) {
+            throw new ExprEvalException("First argument must be the URI of a function");
+        }
+
+        String uri = commandNode.getURI();
+
+        // Special handling of SPARQL system functions such as sp:gt
+        Resource functionResource = SPL.getModel().getResource(uri);
+        if(SP.NS.equals(functionResource.getNameSpace())) {
+            Statement symbolS = functionResource.getProperty(SPIN.symbol);
+            if(symbolS != null) {
+                final String varName = "result";
+                StringBuffer sb = new StringBuffer();
+                sb.append("SELECT ?" + varName + " \n");
+                sb.append("WHERE {\n");
+                sb.append("    BIND (");
+                sb.append(FmtUtils.stringForNode(nodes[1], env.getActiveGraph().getPrefixMapping()));
+                sb.append(" ");
+                sb.append(symbolS.getString());
+                sb.append(" ");
+                sb.append(FmtUtils.stringForNode(nodes[2], env.getActiveGraph().getPrefixMapping()));
+                sb.append(" AS ?" + varName + ") . \n");
+                sb.append("}");
+
+                Model model = ModelFactory.createModelForGraph(env.getActiveGraph());
+                Query arq = ARQFactory.get().createQuery(model, sb.toString());
+                QueryExecution qexec = ARQFactory.get().createQueryExecution(arq, model).build();
+                ResultSet rs = qexec.execSelect();
+                try {
+                    if(rs.hasNext()) {
+                        RDFNode result = rs.next().get(varName);
+                        if(result != null) {
+                            return NodeValue.makeNode(result.asNode());
+                        }
+                    }
+                    throw new ExprEvalException("Failed to evaluate function - empty result set");
+                }
+                finally {
+                    qexec.close();
+                }
+            }
+        }
+
+        FunctionFactory ff = FunctionRegistry.get().get(uri);
+        if(ff == null) {
+            throw new ExprEvalException("Unknown function " + uri);
+        }
+
+        Function function = ff.create(uri);
+        ExprList exprList = new ExprList();
+
+        for(int i = 1; i < nodes.length; i++) {
+            Node node = nodes[i];
+            if(node != null) {
+                exprList.add(NodeValue.makeNode(node));
+            }
+            else {
+                exprList.add(null);
+            }
+        }
+
+        NodeValue result = function.exec(BindingRoot.create(), exprList, uri, env);
+        return result;
+    }
 }
